@@ -1,0 +1,1026 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B002AF62DB600A220C7 /* cokcokApp.swift */; };
+		B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B022AF62DB600A220C7 /* ContentView.swift */; };
+		B8A93B052AF62DB700A220C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B042AF62DB700A220C7 /* Assets.xcassets */; };
+		B8A93B082AF62DB700A220C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B072AF62DB700A220C7 /* Preview Assets.xcassets */; };
+		B8A93B122AF62DB700A220C7 /* cokcokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B112AF62DB700A220C7 /* cokcokTests.swift */; };
+		B8A93B1C2AF62DB700A220C7 /* cokcokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B1B2AF62DB700A220C7 /* cokcokUITests.swift */; };
+		B8A93B1E2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B1D2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift */; };
+		B8A93B242AF62DB700A220C7 /* cokcok Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B8A93B232AF62DB700A220C7 /* cokcok Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B8A93B292AF62DB700A220C7 /* cokcokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B282AF62DB700A220C7 /* cokcokApp.swift */; };
+		B8A93B2B2AF62DB700A220C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B2A2AF62DB700A220C7 /* ContentView.swift */; };
+		B8A93B2D2AF62DB800A220C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */; };
+		B8A93B302AF62DB800A220C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */; };
+		B8A93B3A2AF62DB800A220C7 /* cokcok_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B392AF62DB800A220C7 /* cokcok_Watch_AppTests.swift */; };
+		B8A93B442AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B432AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift */; };
+		B8A93B462AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B452AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B8A93B0E2AF62DB700A220C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8A93AF52AF62DB600A220C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8A93AFC2AF62DB600A220C7;
+			remoteInfo = cokcok;
+		};
+		B8A93B182AF62DB700A220C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8A93AF52AF62DB600A220C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8A93AFC2AF62DB600A220C7;
+			remoteInfo = cokcok;
+		};
+		B8A93B252AF62DB700A220C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8A93AF52AF62DB600A220C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8A93B222AF62DB700A220C7;
+			remoteInfo = "cokcok Watch App";
+		};
+		B8A93B362AF62DB800A220C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8A93AF52AF62DB600A220C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8A93B222AF62DB700A220C7;
+			remoteInfo = "cokcok Watch App";
+		};
+		B8A93B402AF62DB800A220C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8A93AF52AF62DB600A220C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8A93B222AF62DB700A220C7;
+			remoteInfo = "cokcok Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B8A93B4C2AF62DB800A220C7 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				B8A93B242AF62DB700A220C7 /* cokcok Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B8A93AFD2AF62DB600A220C7 /* cokcok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cokcok.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8A93B002AF62DB600A220C7 /* cokcokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokApp.swift; sourceTree = "<group>"; };
+		B8A93B022AF62DB600A220C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B8A93B042AF62DB700A220C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B8A93B072AF62DB700A220C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B8A93B0D2AF62DB700A220C7 /* cokcokTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cokcokTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8A93B112AF62DB700A220C7 /* cokcokTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokTests.swift; sourceTree = "<group>"; };
+		B8A93B172AF62DB700A220C7 /* cokcokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cokcokUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8A93B1B2AF62DB700A220C7 /* cokcokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokUITests.swift; sourceTree = "<group>"; };
+		B8A93B1D2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B8A93B232AF62DB700A220C7 /* cokcok Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cokcok Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8A93B282AF62DB700A220C7 /* cokcokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokApp.swift; sourceTree = "<group>"; };
+		B8A93B2A2AF62DB700A220C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B8A93B352AF62DB800A220C7 /* cokcok Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cokcok Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8A93B392AF62DB800A220C7 /* cokcok_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcok_Watch_AppTests.swift; sourceTree = "<group>"; };
+		B8A93B3F2AF62DB800A220C7 /* cokcok Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cokcok Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8A93B432AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcok_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		B8A93B452AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcok_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B8A93AFA2AF62DB600A220C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B0A2AF62DB700A220C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B142AF62DB700A220C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B202AF62DB700A220C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B322AF62DB800A220C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B3C2AF62DB800A220C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B8A93AF42AF62DB600A220C7 = {
+			isa = PBXGroup;
+			children = (
+				B8A93AFF2AF62DB600A220C7 /* cokcok */,
+				B8A93B102AF62DB700A220C7 /* cokcokTests */,
+				B8A93B1A2AF62DB700A220C7 /* cokcokUITests */,
+				B8A93B272AF62DB700A220C7 /* cokcok Watch App */,
+				B8A93B382AF62DB800A220C7 /* cokcok Watch AppTests */,
+				B8A93B422AF62DB800A220C7 /* cokcok Watch AppUITests */,
+				B8A93AFE2AF62DB600A220C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B8A93AFE2AF62DB600A220C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93AFD2AF62DB600A220C7 /* cokcok.app */,
+				B8A93B0D2AF62DB700A220C7 /* cokcokTests.xctest */,
+				B8A93B172AF62DB700A220C7 /* cokcokUITests.xctest */,
+				B8A93B232AF62DB700A220C7 /* cokcok Watch App.app */,
+				B8A93B352AF62DB800A220C7 /* cokcok Watch AppTests.xctest */,
+				B8A93B3F2AF62DB800A220C7 /* cokcok Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B8A93AFF2AF62DB600A220C7 /* cokcok */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B002AF62DB600A220C7 /* cokcokApp.swift */,
+				B8A93B022AF62DB600A220C7 /* ContentView.swift */,
+				B8A93B042AF62DB700A220C7 /* Assets.xcassets */,
+				B8A93B062AF62DB700A220C7 /* Preview Content */,
+			);
+			path = cokcok;
+			sourceTree = "<group>";
+		};
+		B8A93B062AF62DB700A220C7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B072AF62DB700A220C7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B8A93B102AF62DB700A220C7 /* cokcokTests */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B112AF62DB700A220C7 /* cokcokTests.swift */,
+			);
+			path = cokcokTests;
+			sourceTree = "<group>";
+		};
+		B8A93B1A2AF62DB700A220C7 /* cokcokUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B1B2AF62DB700A220C7 /* cokcokUITests.swift */,
+				B8A93B1D2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift */,
+			);
+			path = cokcokUITests;
+			sourceTree = "<group>";
+		};
+		B8A93B272AF62DB700A220C7 /* cokcok Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B282AF62DB700A220C7 /* cokcokApp.swift */,
+				B8A93B2A2AF62DB700A220C7 /* ContentView.swift */,
+				B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */,
+				B8A93B2E2AF62DB800A220C7 /* Preview Content */,
+			);
+			path = "cokcok Watch App";
+			sourceTree = "<group>";
+		};
+		B8A93B2E2AF62DB800A220C7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B8A93B382AF62DB800A220C7 /* cokcok Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B392AF62DB800A220C7 /* cokcok_Watch_AppTests.swift */,
+			);
+			path = "cokcok Watch AppTests";
+			sourceTree = "<group>";
+		};
+		B8A93B422AF62DB800A220C7 /* cokcok Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B432AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift */,
+				B8A93B452AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "cokcok Watch AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B8A93AFC2AF62DB600A220C7 /* cokcok */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8A93B4D2AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcok" */;
+			buildPhases = (
+				B8A93AF92AF62DB600A220C7 /* Sources */,
+				B8A93AFA2AF62DB600A220C7 /* Frameworks */,
+				B8A93AFB2AF62DB600A220C7 /* Resources */,
+				B8A93B4C2AF62DB800A220C7 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8A93B262AF62DB700A220C7 /* PBXTargetDependency */,
+			);
+			name = cokcok;
+			productName = cokcok;
+			productReference = B8A93AFD2AF62DB600A220C7 /* cokcok.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B8A93B0C2AF62DB700A220C7 /* cokcokTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8A93B502AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcokTests" */;
+			buildPhases = (
+				B8A93B092AF62DB700A220C7 /* Sources */,
+				B8A93B0A2AF62DB700A220C7 /* Frameworks */,
+				B8A93B0B2AF62DB700A220C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8A93B0F2AF62DB700A220C7 /* PBXTargetDependency */,
+			);
+			name = cokcokTests;
+			productName = cokcokTests;
+			productReference = B8A93B0D2AF62DB700A220C7 /* cokcokTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B8A93B162AF62DB700A220C7 /* cokcokUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8A93B532AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcokUITests" */;
+			buildPhases = (
+				B8A93B132AF62DB700A220C7 /* Sources */,
+				B8A93B142AF62DB700A220C7 /* Frameworks */,
+				B8A93B152AF62DB700A220C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8A93B192AF62DB700A220C7 /* PBXTargetDependency */,
+			);
+			name = cokcokUITests;
+			productName = cokcokUITests;
+			productReference = B8A93B172AF62DB700A220C7 /* cokcokUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B8A93B222AF62DB700A220C7 /* cokcok Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8A93B492AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcok Watch App" */;
+			buildPhases = (
+				B8A93B1F2AF62DB700A220C7 /* Sources */,
+				B8A93B202AF62DB700A220C7 /* Frameworks */,
+				B8A93B212AF62DB700A220C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "cokcok Watch App";
+			productName = "cokcok Watch App";
+			productReference = B8A93B232AF62DB700A220C7 /* cokcok Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B8A93B342AF62DB800A220C7 /* cokcok Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8A93B562AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcok Watch AppTests" */;
+			buildPhases = (
+				B8A93B312AF62DB800A220C7 /* Sources */,
+				B8A93B322AF62DB800A220C7 /* Frameworks */,
+				B8A93B332AF62DB800A220C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8A93B372AF62DB800A220C7 /* PBXTargetDependency */,
+			);
+			name = "cokcok Watch AppTests";
+			productName = "cokcok Watch AppTests";
+			productReference = B8A93B352AF62DB800A220C7 /* cokcok Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B8A93B3E2AF62DB800A220C7 /* cokcok Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8A93B592AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcok Watch AppUITests" */;
+			buildPhases = (
+				B8A93B3B2AF62DB800A220C7 /* Sources */,
+				B8A93B3C2AF62DB800A220C7 /* Frameworks */,
+				B8A93B3D2AF62DB800A220C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8A93B412AF62DB800A220C7 /* PBXTargetDependency */,
+			);
+			name = "cokcok Watch AppUITests";
+			productName = "cokcok Watch AppUITests";
+			productReference = B8A93B3F2AF62DB800A220C7 /* cokcok Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B8A93AF52AF62DB600A220C7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					B8A93AFC2AF62DB600A220C7 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					B8A93B0C2AF62DB700A220C7 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = B8A93AFC2AF62DB600A220C7;
+					};
+					B8A93B162AF62DB700A220C7 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = B8A93AFC2AF62DB600A220C7;
+					};
+					B8A93B222AF62DB700A220C7 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					B8A93B342AF62DB800A220C7 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = B8A93B222AF62DB700A220C7;
+					};
+					B8A93B3E2AF62DB800A220C7 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = B8A93B222AF62DB700A220C7;
+					};
+				};
+			};
+			buildConfigurationList = B8A93AF82AF62DB600A220C7 /* Build configuration list for PBXProject "cokcok" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B8A93AF42AF62DB600A220C7;
+			productRefGroup = B8A93AFE2AF62DB600A220C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B8A93AFC2AF62DB600A220C7 /* cokcok */,
+				B8A93B0C2AF62DB700A220C7 /* cokcokTests */,
+				B8A93B162AF62DB700A220C7 /* cokcokUITests */,
+				B8A93B222AF62DB700A220C7 /* cokcok Watch App */,
+				B8A93B342AF62DB800A220C7 /* cokcok Watch AppTests */,
+				B8A93B3E2AF62DB800A220C7 /* cokcok Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B8A93AFB2AF62DB600A220C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8A93B082AF62DB700A220C7 /* Preview Assets.xcassets in Resources */,
+				B8A93B052AF62DB700A220C7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B0B2AF62DB700A220C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B152AF62DB700A220C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B212AF62DB700A220C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8A93B302AF62DB800A220C7 /* Preview Assets.xcassets in Resources */,
+				B8A93B2D2AF62DB800A220C7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B332AF62DB800A220C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B3D2AF62DB800A220C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B8A93AF92AF62DB600A220C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
+				B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B092AF62DB700A220C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8A93B122AF62DB700A220C7 /* cokcokTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B132AF62DB700A220C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8A93B1E2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift in Sources */,
+				B8A93B1C2AF62DB700A220C7 /* cokcokUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B1F2AF62DB700A220C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8A93B2B2AF62DB700A220C7 /* ContentView.swift in Sources */,
+				B8A93B292AF62DB700A220C7 /* cokcokApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B312AF62DB800A220C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8A93B3A2AF62DB800A220C7 /* cokcok_Watch_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8A93B3B2AF62DB800A220C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8A93B462AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift in Sources */,
+				B8A93B442AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B8A93B0F2AF62DB700A220C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8A93AFC2AF62DB600A220C7 /* cokcok */;
+			targetProxy = B8A93B0E2AF62DB700A220C7 /* PBXContainerItemProxy */;
+		};
+		B8A93B192AF62DB700A220C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8A93AFC2AF62DB600A220C7 /* cokcok */;
+			targetProxy = B8A93B182AF62DB700A220C7 /* PBXContainerItemProxy */;
+		};
+		B8A93B262AF62DB700A220C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8A93B222AF62DB700A220C7 /* cokcok Watch App */;
+			targetProxy = B8A93B252AF62DB700A220C7 /* PBXContainerItemProxy */;
+		};
+		B8A93B372AF62DB800A220C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8A93B222AF62DB700A220C7 /* cokcok Watch App */;
+			targetProxy = B8A93B362AF62DB800A220C7 /* PBXContainerItemProxy */;
+		};
+		B8A93B412AF62DB800A220C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8A93B222AF62DB700A220C7 /* cokcok Watch App */;
+			targetProxy = B8A93B402AF62DB800A220C7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B8A93B472AF62DB800A220C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B8A93B482AF62DB800A220C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		B8A93B4A2AF62DB800A220C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"cokcok Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.uos.cokcok;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uos.cokcok.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		B8A93B4B2AF62DB800A220C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"cokcok Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.uos.cokcok;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uos.cokcok.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		B8A93B4E2AF62DB800A220C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"cokcok/Preview Content\"";
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uos.cokcok;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B8A93B4F2AF62DB800A220C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"cokcok/Preview Content\"";
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uos.cokcok;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B8A93B512AF62DB800A220C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uos.cokcokTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cokcok.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cokcok";
+			};
+			name = Debug;
+		};
+		B8A93B522AF62DB800A220C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uos.cokcokTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cokcok.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cokcok";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B8A93B542AF62DB800A220C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uos.cokcokUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = cokcok;
+			};
+			name = Debug;
+		};
+		B8A93B552AF62DB800A220C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uos.cokcokUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = cokcok;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B8A93B572AF62DB800A220C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uos.cokcok-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cokcok Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cokcok Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		B8A93B582AF62DB800A220C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uos.cokcok-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cokcok Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cokcok Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		B8A93B5A2AF62DB800A220C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uos.cokcok-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "cokcok Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		B8A93B5B2AF62DB800A220C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uos.cokcok-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "cokcok Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B8A93AF82AF62DB600A220C7 /* Build configuration list for PBXProject "cokcok" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8A93B472AF62DB800A220C7 /* Debug */,
+				B8A93B482AF62DB800A220C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8A93B492AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcok Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8A93B4A2AF62DB800A220C7 /* Debug */,
+				B8A93B4B2AF62DB800A220C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8A93B4D2AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcok" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8A93B4E2AF62DB800A220C7 /* Debug */,
+				B8A93B4F2AF62DB800A220C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8A93B502AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcokTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8A93B512AF62DB800A220C7 /* Debug */,
+				B8A93B522AF62DB800A220C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8A93B532AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcokUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8A93B542AF62DB800A220C7 /* Debug */,
+				B8A93B552AF62DB800A220C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8A93B562AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcok Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8A93B572AF62DB800A220C7 /* Debug */,
+				B8A93B582AF62DB800A220C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8A93B592AF62DB800A220C7 /* Build configuration list for PBXNativeTarget "cokcok Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8A93B5A2AF62DB800A220C7 /* Debug */,
+				B8A93B5B2AF62DB800A220C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B8A93AF52AF62DB600A220C7 /* Project object */;
+}
