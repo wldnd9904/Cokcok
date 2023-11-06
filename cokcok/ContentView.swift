@@ -7,15 +7,27 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentView : View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            Text("요약")
+                .tabItem {
+                    Image(systemName: "list.bullet.clipboard")
+                    Summary()
+                }
+            Text("경기 분석")
+                .tabItem {
+                    Image(systemName: "waveform.path.ecg.rectangle")
+                    Matches()
+                }
+                .badge(10)
+            Text("스윙 분석")
+                .tabItem {
+                    Image(systemName: "figure.badminton")
+                    Swing()
+                }
         }
-        .padding()
+        .font(.headline)
     }
 }
 
