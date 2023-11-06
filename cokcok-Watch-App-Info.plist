@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIBackgroundModes</key>
+	<array/>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>경기 중의 운동 정보를 저장합니다.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>애플워치를 통해 기록된 경기 중의 운동 정보가 피트니스 앱에 등록됩니다.</string>
+</dict>
+</plist>

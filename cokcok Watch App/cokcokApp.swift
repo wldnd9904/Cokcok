@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct cokcok_Watch_AppApp: App {
+    @StateObject var workoutManager = WorkoutManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView{
+                StartView()
+            }
+            .sheet(isPresented: $workoutManager.showingSummaryView) {
+                SummaryView()
+            }
+            .environmentObject(workoutManager)
         }
     }
 }

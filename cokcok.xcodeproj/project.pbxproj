@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E6FD2AF8F9C800BF347E /* Summary.swift */; };
+		B877E7012AF8F9E900BF347E /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7002AF8F9E900BF347E /* Matches.swift */; };
+		B877E7032AF8F9FD00BF347E /* Swing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* Swing.swift */; };
 		B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B002AF62DB600A220C7 /* cokcokApp.swift */; };
 		B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B022AF62DB600A220C7 /* ContentView.swift */; };
 		B8A93B052AF62DB700A220C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B042AF62DB700A220C7 /* Assets.xcassets */; };
@@ -16,12 +19,21 @@
 		B8A93B1E2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B1D2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift */; };
 		B8A93B242AF62DB700A220C7 /* cokcok Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B8A93B232AF62DB700A220C7 /* cokcok Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B8A93B292AF62DB700A220C7 /* cokcokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B282AF62DB700A220C7 /* cokcokApp.swift */; };
-		B8A93B2B2AF62DB700A220C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B2A2AF62DB700A220C7 /* ContentView.swift */; };
+		B8A93B2B2AF62DB700A220C7 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B2A2AF62DB700A220C7 /* StartView.swift */; };
 		B8A93B2D2AF62DB800A220C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */; };
 		B8A93B302AF62DB800A220C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */; };
 		B8A93B3A2AF62DB800A220C7 /* cokcok_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B392AF62DB800A220C7 /* cokcok_Watch_AppTests.swift */; };
 		B8A93B442AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B432AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift */; };
 		B8A93B462AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B452AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift */; };
+		B8A93B5D2AF6313800A220C7 /* SessionPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B5C2AF6313800A220C7 /* SessionPagingView.swift */; };
+		B8A93B5F2AF6323F00A220C7 /* MetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B5E2AF6323F00A220C7 /* MetricsView.swift */; };
+		B8A93B612AF6340400A220C7 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B602AF6340400A220C7 /* ElapsedTimeView.swift */; };
+		B8A93B632AF6364D00A220C7 /* ControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B622AF6364D00A220C7 /* ControlsView.swift */; };
+		B8A93B652AF637C100A220C7 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B642AF637C100A220C7 /* Counter.swift */; };
+		B8A93B672AF6385A00A220C7 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B662AF6385A00A220C7 /* ScoreView.swift */; };
+		B8A93B692AF638C700A220C7 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B682AF638C700A220C7 /* SummaryView.swift */; };
+		B8A93B6B2AF63BC600A220C7 /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B6A2AF63BC600A220C7 /* ActivityRingsView.swift */; };
+		B8A93B6F2AF63D7800A220C7 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +89,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B877E6FD2AF8F9C800BF347E /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		B877E7002AF8F9E900BF347E /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
+		B877E7022AF8F9FD00BF347E /* Swing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swing.swift; sourceTree = "<group>"; };
 		B8A93AFD2AF62DB600A220C7 /* cokcok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cokcok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A93B002AF62DB600A220C7 /* cokcokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokApp.swift; sourceTree = "<group>"; };
 		B8A93B022AF62DB600A220C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,7 +104,7 @@
 		B8A93B1D2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B8A93B232AF62DB700A220C7 /* cokcok Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cokcok Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A93B282AF62DB700A220C7 /* cokcokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokApp.swift; sourceTree = "<group>"; };
-		B8A93B2A2AF62DB700A220C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B8A93B2A2AF62DB700A220C7 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8A93B352AF62DB800A220C7 /* cokcok Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cokcok Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +112,17 @@
 		B8A93B3F2AF62DB800A220C7 /* cokcok Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cokcok Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A93B432AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcok_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		B8A93B452AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcok_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B8A93B5C2AF6313800A220C7 /* SessionPagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPagingView.swift; sourceTree = "<group>"; };
+		B8A93B5E2AF6323F00A220C7 /* MetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsView.swift; sourceTree = "<group>"; };
+		B8A93B602AF6340400A220C7 /* ElapsedTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
+		B8A93B622AF6364D00A220C7 /* ControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsView.swift; sourceTree = "<group>"; };
+		B8A93B642AF637C100A220C7 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
+		B8A93B662AF6385A00A220C7 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		B8A93B682AF638C700A220C7 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		B8A93B6A2AF63BC600A220C7 /* ActivityRingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRingsView.swift; sourceTree = "<group>"; };
+		B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
+		B8A93B702AF644A700A220C7 /* cokcok Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "cokcok Watch App.entitlements"; sourceTree = "<group>"; };
+		B8A93B712AF644D700A220C7 /* cokcok-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "cokcok-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +171,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B877E6F92AF8F99C00BF347E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B877E7042AF8FA0500BF347E /* Swing */,
+				B877E6FF2AF8F9D500BF347E /* Matches */,
+				B877E6FC2AF8F9BB00BF347E /* Summary */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B877E6FA2AF8F9AC00BF347E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B877E6FB2AF8F9B400BF347E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B877E6FC2AF8F9BB00BF347E /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				B877E6FD2AF8F9C800BF347E /* Summary.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
+		B877E6FF2AF8F9D500BF347E /* Matches */ = {
+			isa = PBXGroup;
+			children = (
+				B877E7002AF8F9E900BF347E /* Matches.swift */,
+			);
+			path = Matches;
+			sourceTree = "<group>";
+		};
+		B877E7042AF8FA0500BF347E /* Swing */ = {
+			isa = PBXGroup;
+			children = (
+				B877E7022AF8F9FD00BF347E /* Swing.swift */,
+			);
+			path = Swing;
+			sourceTree = "<group>";
+		};
 		B8A93AF42AF62DB600A220C7 = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +248,9 @@
 		B8A93AFF2AF62DB600A220C7 /* cokcok */ = {
 			isa = PBXGroup;
 			children = (
+				B877E6FB2AF8F9B400BF347E /* Model */,
+				B877E6FA2AF8F9AC00BF347E /* Resources */,
+				B877E6F92AF8F99C00BF347E /* Views */,
 				B8A93B002AF62DB600A220C7 /* cokcokApp.swift */,
 				B8A93B022AF62DB600A220C7 /* ContentView.swift */,
 				B8A93B042AF62DB700A220C7 /* Assets.xcassets */,
@@ -210,10 +287,21 @@
 		B8A93B272AF62DB700A220C7 /* cokcok Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				B8A93B712AF644D700A220C7 /* cokcok-Watch-App-Info.plist */,
+				B8A93B702AF644A700A220C7 /* cokcok Watch App.entitlements */,
 				B8A93B282AF62DB700A220C7 /* cokcokApp.swift */,
-				B8A93B2A2AF62DB700A220C7 /* ContentView.swift */,
+				B8A93B2A2AF62DB700A220C7 /* StartView.swift */,
 				B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */,
 				B8A93B2E2AF62DB800A220C7 /* Preview Content */,
+				B8A93B5C2AF6313800A220C7 /* SessionPagingView.swift */,
+				B8A93B5E2AF6323F00A220C7 /* MetricsView.swift */,
+				B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */,
+				B8A93B602AF6340400A220C7 /* ElapsedTimeView.swift */,
+				B8A93B622AF6364D00A220C7 /* ControlsView.swift */,
+				B8A93B642AF637C100A220C7 /* Counter.swift */,
+				B8A93B662AF6385A00A220C7 /* ScoreView.swift */,
+				B8A93B682AF638C700A220C7 /* SummaryView.swift */,
+				B8A93B6A2AF63BC600A220C7 /* ActivityRingsView.swift */,
 			);
 			path = "cokcok Watch App";
 			sourceTree = "<group>";
@@ -261,6 +349,8 @@
 				B8A93B262AF62DB700A220C7 /* PBXTargetDependency */,
 			);
 			name = cokcok;
+			packageProductDependencies = (
+			);
 			productName = cokcok;
 			productReference = B8A93AFD2AF62DB600A220C7 /* cokcok.app */;
 			productType = "com.apple.product-type.application";
@@ -397,6 +487,8 @@
 				Base,
 			);
 			mainGroup = B8A93AF42AF62DB600A220C7;
+			packageReferences = (
+			);
 			productRefGroup = B8A93AFE2AF62DB600A220C7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -466,7 +558,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
+				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,
+				B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */,
 				B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */,
+				B877E7032AF8F9FD00BF347E /* Swing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,8 +586,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A93B2B2AF62DB700A220C7 /* ContentView.swift in Sources */,
+				B8A93B2B2AF62DB700A220C7 /* StartView.swift in Sources */,
+				B8A93B672AF6385A00A220C7 /* ScoreView.swift in Sources */,
 				B8A93B292AF62DB700A220C7 /* cokcokApp.swift in Sources */,
+				B8A93B6B2AF63BC600A220C7 /* ActivityRingsView.swift in Sources */,
+				B8A93B6F2AF63D7800A220C7 /* WorkoutManager.swift in Sources */,
+				B8A93B612AF6340400A220C7 /* ElapsedTimeView.swift in Sources */,
+				B8A93B5F2AF6323F00A220C7 /* MetricsView.swift in Sources */,
+				B8A93B652AF637C100A220C7 /* Counter.swift in Sources */,
+				B8A93B632AF6364D00A220C7 /* ControlsView.swift in Sources */,
+				B8A93B5D2AF6313800A220C7 /* SessionPagingView.swift in Sources */,
+				B8A93B692AF638C700A220C7 /* SummaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,12 +767,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "cokcok Watch App/cokcok Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"cokcok Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "cokcok-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.uos.cokcok;
@@ -693,12 +799,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "cokcok Watch App/cokcok Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"cokcok Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "cokcok-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.uos.cokcok;
