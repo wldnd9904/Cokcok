@@ -19,7 +19,12 @@ class WorkoutManager: NSObject, ObservableObject {
     var selectedMenu: MenuType? {
         didSet {
             guard let selectedMenu = selectedMenu else { return }
-            startWorkout()
+            switch selectedMenu {
+            case .matchRecord:
+                startWorkout()
+            case .swingRecord:
+                break
+            }
         }
     }
     @Published var showingSummaryView: Bool = false {

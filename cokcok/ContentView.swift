@@ -24,7 +24,7 @@ struct ContentView : View {
             Text("스윙 분석")
                 .tabItem {
                     Image(systemName: "figure.badminton")
-                    Swing()
+                    SwingView()
                 }
         }
         .font(.headline)

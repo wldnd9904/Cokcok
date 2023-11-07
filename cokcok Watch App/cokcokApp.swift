@@ -13,7 +13,7 @@ struct cokcok_Watch_AppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView{
+            NavigationStack{
                 StartView()
             }
             .sheet(isPresented: $workoutManager.showingSummaryView) {

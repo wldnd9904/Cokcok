@@ -7,8 +7,8 @@
 
 import SwiftUI
 import HealthKit
-enum MenuType: UInt, Identifiable, CaseIterable {
-    case skillEstimate
+enum MenuType: UInt, Identifiable, CaseIterable, Hashable {
+    case swingRecord
     case matchRecord
     
     public var id:UInt {
@@ -16,8 +16,8 @@ enum MenuType: UInt, Identifiable, CaseIterable {
     }
     var name: String {
         switch self {
-        case .skillEstimate:
-            return "실력 측정"
+        case .swingRecord:
+            return "스윙 분석"
         case .matchRecord:
             return "경기 기록"
         }
@@ -25,20 +25,25 @@ enum MenuType: UInt, Identifiable, CaseIterable {
 }
 
 struct StartView: View {
-    @EnvironmentObject var workoutManager : WorkoutManager
     var menuTypes: [MenuType] = MenuType.allCases
     var body: some View {
-        List(menuTypes) { menuType in
-            NavigationLink(
-                menuType.name,
-                destination: SessionPagingView(),
-                tag: menuType, selection: $workoutManager.selectedMenu)
-            .padding(EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 5))
-        }
-        .listStyle(.carousel)
-        .navigationBarTitle("메뉴")
-        .onAppear {
-            workoutManager.requestAuthorization()
+        NavigationStack{
+            List{
+                NavigationLink(value: MenuType.swingRecord){
+                    Text(MenuType.swingRecord.name)
+                }
+                NavigationLink(value: MenuType.matchRecord){
+                    Text(MenuType.matchRecord.name)
+                }
+            }
+            .navigationDestination(for: MenuType.self) { menuType in
+                switch menuType {
+                case .swingRecord:
+                    SwingRecordWatchView()
+                case .matchRecord:
+                    SessionPagingView()
+                }
+            }
         }
     }
 }
@@ -47,5 +52,4 @@ struct StartView: View {
     NavigationView{
         StartView()
     }
-    .environmentObject(WorkoutManager())
 }

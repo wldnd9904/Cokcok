@@ -7,24 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B837CA792AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */; };
+		B837CA7A2AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */; };
 		B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E6FD2AF8F9C800BF347E /* Summary.swift */; };
 		B877E7012AF8F9E900BF347E /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7002AF8F9E900BF347E /* Matches.swift */; };
-		B877E7032AF8F9FD00BF347E /* Swing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* Swing.swift */; };
+		B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* SwingView.swift */; };
+		B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885022AF900740041F092 /* SwingRecordView.swift */; };
+		B8A885052AF901270041F092 /* SwingRecordViewModelPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885042AF901270041F092 /* SwingRecordViewModelPhone.swift */; };
+		B8A885082AF901C70041F092 /* AVAuthorizationChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885072AF901C70041F092 /* AVAuthorizationChecker.swift */; };
+		B8A8850A2AF9020B0041F092 /* AVPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885092AF9020B0041F092 /* AVPreview.swift */; };
+		B8A8850C2AF9024C0041F092 /* VideoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A8850B2AF9024C0041F092 /* VideoError.swift */; };
+		B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A8850E2AF9052E0041F092 /* AVCaptureSession+AddIO.swift */; };
+		B8A885172AF90B0E0041F092 /* SwingRecordWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885162AF90B0E0041F092 /* SwingRecordWatchView.swift */; };
+		B8A885192AF90E230041F092 /* SwingRecordViewModelWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885182AF90E230041F092 /* SwingRecordViewModelWatch.swift */; };
 		B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B002AF62DB600A220C7 /* cokcokApp.swift */; };
 		B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B022AF62DB600A220C7 /* ContentView.swift */; };
 		B8A93B052AF62DB700A220C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B042AF62DB700A220C7 /* Assets.xcassets */; };
 		B8A93B082AF62DB700A220C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B072AF62DB700A220C7 /* Preview Assets.xcassets */; };
-		B8A93B122AF62DB700A220C7 /* cokcokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B112AF62DB700A220C7 /* cokcokTests.swift */; };
-		B8A93B1C2AF62DB700A220C7 /* cokcokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B1B2AF62DB700A220C7 /* cokcokUITests.swift */; };
-		B8A93B1E2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B1D2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift */; };
 		B8A93B242AF62DB700A220C7 /* cokcok Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B8A93B232AF62DB700A220C7 /* cokcok Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B8A93B292AF62DB700A220C7 /* cokcokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B282AF62DB700A220C7 /* cokcokApp.swift */; };
 		B8A93B2B2AF62DB700A220C7 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B2A2AF62DB700A220C7 /* StartView.swift */; };
 		B8A93B2D2AF62DB800A220C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */; };
 		B8A93B302AF62DB800A220C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */; };
-		B8A93B3A2AF62DB800A220C7 /* cokcok_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B392AF62DB800A220C7 /* cokcok_Watch_AppTests.swift */; };
-		B8A93B442AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B432AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift */; };
-		B8A93B462AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B452AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift */; };
 		B8A93B5D2AF6313800A220C7 /* SessionPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B5C2AF6313800A220C7 /* SessionPagingView.swift */; };
 		B8A93B5F2AF6323F00A220C7 /* MetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B5E2AF6323F00A220C7 /* MetricsView.swift */; };
 		B8A93B612AF6340400A220C7 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B602AF6340400A220C7 /* ElapsedTimeView.swift */; };
@@ -89,29 +93,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeviceMotion.swift; sourceTree = "<group>"; };
 		B877E6FD2AF8F9C800BF347E /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		B877E7002AF8F9E900BF347E /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
-		B877E7022AF8F9FD00BF347E /* Swing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swing.swift; sourceTree = "<group>"; };
+		B877E7022AF8F9FD00BF347E /* SwingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingView.swift; sourceTree = "<group>"; };
+		B8A885022AF900740041F092 /* SwingRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordView.swift; sourceTree = "<group>"; };
+		B8A885042AF901270041F092 /* SwingRecordViewModelPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordViewModelPhone.swift; sourceTree = "<group>"; };
+		B8A885072AF901C70041F092 /* AVAuthorizationChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAuthorizationChecker.swift; sourceTree = "<group>"; };
+		B8A885092AF9020B0041F092 /* AVPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPreview.swift; sourceTree = "<group>"; };
+		B8A8850B2AF9024C0041F092 /* VideoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoError.swift; sourceTree = "<group>"; };
+		B8A8850E2AF9052E0041F092 /* AVCaptureSession+AddIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCaptureSession+AddIO.swift"; sourceTree = "<group>"; };
+		B8A885162AF90B0E0041F092 /* SwingRecordWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordWatchView.swift; sourceTree = "<group>"; };
+		B8A885182AF90E230041F092 /* SwingRecordViewModelWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordViewModelWatch.swift; sourceTree = "<group>"; };
 		B8A93AFD2AF62DB600A220C7 /* cokcok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cokcok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A93B002AF62DB600A220C7 /* cokcokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokApp.swift; sourceTree = "<group>"; };
 		B8A93B022AF62DB600A220C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B8A93B042AF62DB700A220C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8A93B072AF62DB700A220C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8A93B0D2AF62DB700A220C7 /* cokcokTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cokcokTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8A93B112AF62DB700A220C7 /* cokcokTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokTests.swift; sourceTree = "<group>"; };
 		B8A93B172AF62DB700A220C7 /* cokcokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cokcokUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8A93B1B2AF62DB700A220C7 /* cokcokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokUITests.swift; sourceTree = "<group>"; };
-		B8A93B1D2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B8A93B232AF62DB700A220C7 /* cokcok Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cokcok Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A93B282AF62DB700A220C7 /* cokcokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokApp.swift; sourceTree = "<group>"; };
 		B8A93B2A2AF62DB700A220C7 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8A93B352AF62DB800A220C7 /* cokcok Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cokcok Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8A93B392AF62DB800A220C7 /* cokcok_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcok_Watch_AppTests.swift; sourceTree = "<group>"; };
 		B8A93B3F2AF62DB800A220C7 /* cokcok Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cokcok Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8A93B432AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcok_Watch_AppUITests.swift; sourceTree = "<group>"; };
-		B8A93B452AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcok_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B8A93B5C2AF6313800A220C7 /* SessionPagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPagingView.swift; sourceTree = "<group>"; };
 		B8A93B5E2AF6323F00A220C7 /* MetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsView.swift; sourceTree = "<group>"; };
 		B8A93B602AF6340400A220C7 /* ElapsedTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
@@ -191,6 +198,7 @@
 		B877E6FB2AF8F9B400BF347E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B8A885042AF901270041F092 /* SwingRecordViewModelPhone.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -214,20 +222,85 @@
 		B877E7042AF8FA0500BF347E /* Swing */ = {
 			isa = PBXGroup;
 			children = (
-				B877E7022AF8F9FD00BF347E /* Swing.swift */,
+				B877E7022AF8F9FD00BF347E /* SwingView.swift */,
+				B8A885022AF900740041F092 /* SwingRecordView.swift */,
+				B8A885092AF9020B0041F092 /* AVPreview.swift */,
 			);
 			path = Swing;
+			sourceTree = "<group>";
+		};
+		B8A885062AF901B10041F092 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B8A885072AF901C70041F092 /* AVAuthorizationChecker.swift */,
+				B8A8850B2AF9024C0041F092 /* VideoError.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B8A8850D2AF904930041F092 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B8A8850E2AF9052E0041F092 /* AVCaptureSession+AddIO.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B8A885102AF90A150041F092 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B8A885152AF90AE20041F092 /* SwingRecord */,
+				B8A93B2A2AF62DB700A220C7 /* StartView.swift */,
+				B8A885142AF90AAD0041F092 /* MatchRecord */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8A885132AF90AA30041F092 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */,
+				B8A885182AF90E230041F092 /* SwingRecordViewModelWatch.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B8A885142AF90AAD0041F092 /* MatchRecord */ = {
+			isa = PBXGroup;
+			children = (
+				B8A93B602AF6340400A220C7 /* ElapsedTimeView.swift */,
+				B8A93B622AF6364D00A220C7 /* ControlsView.swift */,
+				B8A93B642AF637C100A220C7 /* Counter.swift */,
+				B8A93B662AF6385A00A220C7 /* ScoreView.swift */,
+				B8A93B682AF638C700A220C7 /* SummaryView.swift */,
+				B8A93B6A2AF63BC600A220C7 /* ActivityRingsView.swift */,
+				B8A93B5C2AF6313800A220C7 /* SessionPagingView.swift */,
+				B8A93B5E2AF6323F00A220C7 /* MetricsView.swift */,
+			);
+			path = MatchRecord;
+			sourceTree = "<group>";
+		};
+		B8A885152AF90AE20041F092 /* SwingRecord */ = {
+			isa = PBXGroup;
+			children = (
+				B8A885162AF90B0E0041F092 /* SwingRecordWatchView.swift */,
+			);
+			path = SwingRecord;
+			sourceTree = "<group>";
+		};
+		B8A8851A2AF90E800041F092 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		B8A93AF42AF62DB600A220C7 = {
 			isa = PBXGroup;
 			children = (
 				B8A93AFF2AF62DB600A220C7 /* cokcok */,
-				B8A93B102AF62DB700A220C7 /* cokcokTests */,
-				B8A93B1A2AF62DB700A220C7 /* cokcokUITests */,
 				B8A93B272AF62DB700A220C7 /* cokcok Watch App */,
-				B8A93B382AF62DB800A220C7 /* cokcok Watch AppTests */,
-				B8A93B422AF62DB800A220C7 /* cokcok Watch AppUITests */,
 				B8A93AFE2AF62DB600A220C7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -248,6 +321,9 @@
 		B8A93AFF2AF62DB600A220C7 /* cokcok */ = {
 			isa = PBXGroup;
 			children = (
+				B8A8851A2AF90E800041F092 /* Shared */,
+				B8A8850D2AF904930041F092 /* Extensions */,
+				B8A885062AF901B10041F092 /* Utils */,
 				B877E6FB2AF8F9B400BF347E /* Model */,
 				B877E6FA2AF8F9AC00BF347E /* Resources */,
 				B877E6F92AF8F99C00BF347E /* Views */,
@@ -267,41 +343,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B8A93B102AF62DB700A220C7 /* cokcokTests */ = {
-			isa = PBXGroup;
-			children = (
-				B8A93B112AF62DB700A220C7 /* cokcokTests.swift */,
-			);
-			path = cokcokTests;
-			sourceTree = "<group>";
-		};
-		B8A93B1A2AF62DB700A220C7 /* cokcokUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B8A93B1B2AF62DB700A220C7 /* cokcokUITests.swift */,
-				B8A93B1D2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift */,
-			);
-			path = cokcokUITests;
-			sourceTree = "<group>";
-		};
 		B8A93B272AF62DB700A220C7 /* cokcok Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				B8A885132AF90AA30041F092 /* Model */,
+				B8A885102AF90A150041F092 /* Views */,
 				B8A93B712AF644D700A220C7 /* cokcok-Watch-App-Info.plist */,
 				B8A93B702AF644A700A220C7 /* cokcok Watch App.entitlements */,
 				B8A93B282AF62DB700A220C7 /* cokcokApp.swift */,
-				B8A93B2A2AF62DB700A220C7 /* StartView.swift */,
 				B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */,
 				B8A93B2E2AF62DB800A220C7 /* Preview Content */,
-				B8A93B5C2AF6313800A220C7 /* SessionPagingView.swift */,
-				B8A93B5E2AF6323F00A220C7 /* MetricsView.swift */,
-				B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */,
-				B8A93B602AF6340400A220C7 /* ElapsedTimeView.swift */,
-				B8A93B622AF6364D00A220C7 /* ControlsView.swift */,
-				B8A93B642AF637C100A220C7 /* Counter.swift */,
-				B8A93B662AF6385A00A220C7 /* ScoreView.swift */,
-				B8A93B682AF638C700A220C7 /* SummaryView.swift */,
-				B8A93B6A2AF63BC600A220C7 /* ActivityRingsView.swift */,
 			);
 			path = "cokcok Watch App";
 			sourceTree = "<group>";
@@ -312,23 +363,6 @@
 				B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		B8A93B382AF62DB800A220C7 /* cokcok Watch AppTests */ = {
-			isa = PBXGroup;
-			children = (
-				B8A93B392AF62DB800A220C7 /* cokcok_Watch_AppTests.swift */,
-			);
-			path = "cokcok Watch AppTests";
-			sourceTree = "<group>";
-		};
-		B8A93B422AF62DB800A220C7 /* cokcok Watch AppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B8A93B432AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift */,
-				B8A93B452AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift */,
-			);
-			path = "cokcok Watch AppUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,11 +591,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8A8850C2AF9024C0041F092 /* VideoError.swift in Sources */,
+				B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */,
+				B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */,
+				B8A885052AF901270041F092 /* SwingRecordViewModelPhone.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
 				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,
+				B8A885082AF901C70041F092 /* AVAuthorizationChecker.swift in Sources */,
 				B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */,
 				B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */,
-				B877E7032AF8F9FD00BF347E /* Swing.swift in Sources */,
+				B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */,
+				B8A8850A2AF9020B0041F092 /* AVPreview.swift in Sources */,
+				B837CA792AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,7 +610,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A93B122AF62DB700A220C7 /* cokcokTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,8 +617,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A93B1E2AF62DB700A220C7 /* cokcokUITestsLaunchTests.swift in Sources */,
-				B8A93B1C2AF62DB700A220C7 /* cokcokUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,7 +629,10 @@
 				B8A93B292AF62DB700A220C7 /* cokcokApp.swift in Sources */,
 				B8A93B6B2AF63BC600A220C7 /* ActivityRingsView.swift in Sources */,
 				B8A93B6F2AF63D7800A220C7 /* WorkoutManager.swift in Sources */,
+				B837CA7A2AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */,
 				B8A93B612AF6340400A220C7 /* ElapsedTimeView.swift in Sources */,
+				B8A885192AF90E230041F092 /* SwingRecordViewModelWatch.swift in Sources */,
+				B8A885172AF90B0E0041F092 /* SwingRecordWatchView.swift in Sources */,
 				B8A93B5F2AF6323F00A220C7 /* MetricsView.swift in Sources */,
 				B8A93B652AF637C100A220C7 /* Counter.swift in Sources */,
 				B8A93B632AF6364D00A220C7 /* ControlsView.swift in Sources */,
@@ -604,7 +645,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A93B3A2AF62DB800A220C7 /* cokcok_Watch_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,8 +652,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A93B462AF62DB800A220C7 /* cokcok_Watch_AppUITestsLaunchTests.swift in Sources */,
-				B8A93B442AF62DB800A220C7 /* cokcok_Watch_AppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,12 +878,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사용자의 스윙 동작을 분석하기 위해 카메라가 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -873,12 +913,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사용자의 스윙 동작을 분석하기 위해 카메라가 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

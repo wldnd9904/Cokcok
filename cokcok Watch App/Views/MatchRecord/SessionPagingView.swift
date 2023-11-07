@@ -11,7 +11,7 @@ import WatchKit
 struct SessionPagingView: View {
     @Environment(\.isLuminanceReduced) var isLuminanceReduced
     @EnvironmentObject var workoutManager: WorkoutManager
-    @State private var selection: Tab = .metrics
+    @State private var selection: Tab = .controls
     
     enum Tab {
         case controls, metrics, nowPlaying, score
