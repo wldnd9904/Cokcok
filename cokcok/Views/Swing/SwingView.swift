@@ -9,10 +9,7 @@ import SwiftUI
 
 struct SwingView: View {
     var body: some View {
-        VStack{
-            Text("스윙 분석")
-            SwingRecordView()
-        }
+        SwingRecordView()
     }
 }
 

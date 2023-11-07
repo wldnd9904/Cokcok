@@ -13,6 +13,7 @@ struct SwingRecordView: View {
     var body: some View {
         VStack(alignment: .center) {
             Text("애플워치: \(model.wcsession.isReachable ? "연결됨": "연결되지 않음")")
+            Text(model.errorMessage)
             ZStack {
                 model.preview?
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -23,7 +24,7 @@ struct SwingRecordView: View {
                         Button(action: {
                             model.isRecording ? model.stopRecording() : model.startRecording()
                         }) {
-                            model.isRecording ? Text("시작") : Text("정지")
+                            model.isRecording ? Text("정지") : Text("시작")
                         }
                         .padding()
                         .background(Color.blue)

@@ -10,21 +10,21 @@ import SwiftUI
 struct ContentView : View {
     var body: some View {
         TabView {
-            Text("요약")
+            Summary()
                 .tabItem {
                     Image(systemName: "list.bullet.clipboard")
-                    Summary()
+                    Text("요약")
                 }
-            Text("경기 분석")
+            Matches()
                 .tabItem {
                     Image(systemName: "waveform.path.ecg.rectangle")
-                    Matches()
+                    Text("경기 분석")
                 }
                 .badge(10)
-            Text("스윙 분석")
+            SwingView()
                 .tabItem {
                     Image(systemName: "figure.badminton")
-                    SwingView()
+                    Text("스윙 분석")
                 }
         }
         .font(.headline)

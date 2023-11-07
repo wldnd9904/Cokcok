@@ -130,6 +130,7 @@
 		B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		B8A93B702AF644A700A220C7 /* cokcok Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "cokcok Watch App.entitlements"; sourceTree = "<group>"; };
 		B8A93B712AF644D700A220C7 /* cokcok-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "cokcok-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B8BC891B2AFA6EF900DE6F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +322,7 @@
 		B8A93AFF2AF62DB600A220C7 /* cokcok */ = {
 			isa = PBXGroup;
 			children = (
+				B8BC891B2AFA6EF900DE6F46 /* Info.plist */,
 				B8A8851A2AF90E800041F092 /* Shared */,
 				B8A8850D2AF904930041F092 /* Extensions */,
 				B8A885062AF901B10041F092 /* Utils */,
@@ -877,6 +879,7 @@
 				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cokcok/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSCameraUsageDescription = "사용자의 스윙 동작을 분석하기 위해 카메라가 사용됩니다.";
@@ -885,6 +888,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -912,6 +916,7 @@
 				DEVELOPMENT_TEAM = XQ4N3Y5X6L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cokcok/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSCameraUsageDescription = "사용자의 스윙 동작을 분석하기 위해 카메라가 사용됩니다.";
@@ -920,6 +925,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

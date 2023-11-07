@@ -11,8 +11,16 @@ import AVFoundation
 import UIKit
 
 class SwingRecordViewModelPhone: NSObject, ObservableObject {
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .medium
+        return formatter
+    }()
+    
     @Published var preview: AVPreview?
     @Published var isRecording: Bool = false
+    @Published var errorMessage: String = ""
     let wcsession: WCSession
     let avsession: AVCaptureSession
     var folderName: String?
@@ -27,6 +35,7 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
     
     override init() {
         self.avsession = AVCaptureSession()
+        self.avsession.sessionPreset = .medium
         self.wcsession = WCSession.default
         self.videoOutput = AVCaptureVideoDataOutput()
         super.init()
@@ -45,6 +54,7 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
                 try avsession
                     .addMovieFileOutput()
                     .startRunning()
+                
                 DispatchQueue.main.async {
                     self.preview = AVPreview(session: self.avsession, gravity: .resizeAspectFill)
                 }
@@ -59,10 +69,12 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
         if self.isRecording { return }
         guard wcsession.isReachable else {
             print("Cannot find reachable Apple Watch")
+            errorMessage = "Cannot find reachable Apple Watch"
             return
         }
         guard let output = avsession.movieFileOutput else {
             print("Cannot find movie file output")
+            errorMessage = "Cannot find movie file output"
             return
         }
         self.wcsession.sendMessage(["message":"start"], replyHandler: nil)
@@ -70,20 +82,23 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
         
         // Documents 디렉토리 경로 가져오기
         let fileManager = FileManager.default
-        let folderName = "swing-\(Date())"
+        folderName = "swing-\(Date())"
         guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             print("Cannot access local file domain")
+            errorMessage = "Cannot access local file domain"
             return
         }
         do {
             // 폴더 경로 설정
-            let folderPath = documentsDirectory.appendingPathComponent(folderName)
+            let folderPath = documentsDirectory.appendingPathComponent(folderName!)
             try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true, attributes: nil)
             let filePath = folderPath.appendingPathComponent("Video.mp4")
+            errorMessage = "저장 경로: \(filePath)"
             // 녹화 시작
             output.startRecording(to: filePath, recordingDelegate: self)
         } catch {
             print("Error creating folder or starting recording: \(error)")
+            errorMessage = "Error creating folder or starting recording: \(error)"
         }
     }
     
