@@ -10,20 +10,11 @@ import SwiftUI
 
 
 struct Counter: View {
-    @Binding var score: Int
+    let score: Int
     let color:Color
-    func incrementVar(){
-        score+=1
-    }
-    func decrementVar(){
-        if score != 0
-        {
-            score-=1
-        }
-    }
-    func resetVar(){
-        score=0
-    }
+    let incrementVar: () -> Void
+    let decrementVar: () -> Void
+    let resetVar: () -> Void
     var body: some View {
         VStack{
             HStack{
@@ -66,5 +57,9 @@ struct Counter: View {
 }
 
 #Preview {
-    Counter( score: .constant(1), color: .red)
+    Counter(score: (20), color: .red, incrementVar: {
+        print("Increment Button Pressed")
+    }, decrementVar: {
+        print("Decrement Button Pressed")
+    }, resetVar: {})
 }

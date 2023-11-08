@@ -17,7 +17,6 @@ struct SwingRecordView: View {
             ZStack {
                 model.preview?
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    .edgesIgnoringSafeArea(.all)
                 VStack {
                     Spacer()
                     HStack{

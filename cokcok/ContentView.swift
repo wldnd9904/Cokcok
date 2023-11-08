@@ -27,6 +27,7 @@ struct ContentView : View {
                     Text("스윙 분석")
                 }
         }
+        .background(.thinMaterial)
         .font(.headline)
     }
 }

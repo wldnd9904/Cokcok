@@ -8,25 +8,7 @@
 import Foundation
 import HealthKit
 
-struct MatchSummary {
-    let workout: HKWorkout?
-    let myScore: Int
-    let opponentScore: Int
-    let averageHeartRate: Double
-}
-
 class WorkoutManager: NSObject, ObservableObject {
-    var selectedMenu: MenuType? {
-        didSet {
-            guard let selectedMenu = selectedMenu else { return }
-            switch selectedMenu {
-            case .matchRecord:
-                startWorkout()
-            case .swingRecord:
-                break
-            }
-        }
-    }
     @Published var showingSummaryView: Bool = false {
         didSet {
             // Sheet dismissed
@@ -35,12 +17,14 @@ class WorkoutManager: NSObject, ObservableObject {
             }
         }
     }
-    
     let healthStore = HKHealthStore()
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
     
     func startWorkout() {
+        if running { return }
+            running = true
+        matchSummary = MatchSummary(workout: nil, myScore: 0, opponentScore: 0, averageHeartRate: 0, myScoreHistory: [], opponentScoreHistory: [])
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .badminton
         configuration.locationType = .indoor
@@ -119,8 +103,6 @@ class WorkoutManager: NSObject, ObservableObject {
     @Published var averageHeartRate: Double = 0
     @Published var heartRate: Double = 0
     @Published var activeEnergy: Double = 0
-    @Published var myScore: Int = 0
-    @Published var opponentScore: Int = 0
     @Published var matchSummary: MatchSummary?
     
     func updateForStatistics(_ statistics: HKStatistics?) {
@@ -142,15 +124,12 @@ class WorkoutManager: NSObject, ObservableObject {
     }
     
     func resetWorkout() {
-        selectedMenu = nil
         builder = nil
         session = nil
         matchSummary = nil
         activeEnergy = 0
         averageHeartRate = 0
         heartRate = 0
-        myScore = 0
-        opponentScore = 0
     }
 }
 
@@ -169,7 +148,8 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
             builder?.endCollection(withEnd: date) { (success, error) in
                 self.builder?.finishWorkout { (workout, error) in
                     DispatchQueue.main.async {
-                        self.matchSummary = MatchSummary(workout: workout, myScore: self.myScore, opponentScore: self.opponentScore, averageHeartRate: self.averageHeartRate)
+                        self.matchSummary?.averageHeartRate = self.averageHeartRate
+                        self.matchSummary?.workout = workout
                     }
                 }
             }

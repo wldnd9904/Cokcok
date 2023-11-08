@@ -38,6 +38,11 @@
 		B8A93B692AF638C700A220C7 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B682AF638C700A220C7 /* SummaryView.swift */; };
 		B8A93B6B2AF63BC600A220C7 /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B6A2AF63BC600A220C7 /* ActivityRingsView.swift */; };
 		B8A93B6F2AF63D7800A220C7 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */; };
+		B8C36C4F2AFA73DD00671129 /* MatchSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */; };
+		B8C36C502AFA73DD00671129 /* MatchSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */; };
+		B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C512AFA74AD00671129 /* MatchItem.swift */; };
+		B8C36C542AFAA18900671129 /* Date&Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C532AFAA18900671129 /* Date&Time.swift */; };
+		B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C552AFABB2A00671129 /* ScoreChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +136,10 @@
 		B8A93B702AF644A700A220C7 /* cokcok Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "cokcok Watch App.entitlements"; sourceTree = "<group>"; };
 		B8A93B712AF644D700A220C7 /* cokcok-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "cokcok-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B8BC891B2AFA6EF900DE6F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSummary.swift; sourceTree = "<group>"; };
+		B8C36C512AFA74AD00671129 /* MatchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchItem.swift; sourceTree = "<group>"; };
+		B8C36C532AFAA18900671129 /* Date&Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date&Time.swift"; sourceTree = "<group>"; };
+		B8C36C552AFABB2A00671129 /* ScoreChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				B877E7002AF8F9E900BF347E /* Matches.swift */,
+				B8C36C512AFA74AD00671129 /* MatchItem.swift */,
+				B8C36C552AFABB2A00671129 /* ScoreChart.swift */,
 			);
 			path = Matches;
 			sourceTree = "<group>";
@@ -235,6 +246,7 @@
 			children = (
 				B8A885072AF901C70041F092 /* AVAuthorizationChecker.swift */,
 				B8A8850B2AF9024C0041F092 /* VideoError.swift */,
+				B8C36C532AFAA18900671129 /* Date&Time.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -293,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */,
+				B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -594,12 +607,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8A8850C2AF9024C0041F092 /* VideoError.swift in Sources */,
+				B8C36C542AFAA18900671129 /* Date&Time.swift in Sources */,
 				B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */,
 				B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */,
 				B8A885052AF901270041F092 /* SwingRecordViewModelPhone.swift in Sources */,
+				B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
 				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,
+				B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */,
 				B8A885082AF901C70041F092 /* AVAuthorizationChecker.swift in Sources */,
+				B8C36C4F2AFA73DD00671129 /* MatchSummary.swift in Sources */,
 				B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */,
 				B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */,
 				B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */,
@@ -629,6 +646,7 @@
 				B8A93B2B2AF62DB700A220C7 /* StartView.swift in Sources */,
 				B8A93B672AF6385A00A220C7 /* ScoreView.swift in Sources */,
 				B8A93B292AF62DB700A220C7 /* cokcokApp.swift in Sources */,
+				B8C36C502AFA73DD00671129 /* MatchSummary.swift in Sources */,
 				B8A93B6B2AF63BC600A220C7 /* ActivityRingsView.swift in Sources */,
 				B8A93B6F2AF63D7800A220C7 /* WorkoutManager.swift in Sources */,
 				B837CA7A2AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */,

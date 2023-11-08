@@ -28,7 +28,9 @@ struct SessionPagingView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(selection == .nowPlaying)
         .onChange(of: workoutManager.running) {
-            displayMetricsView()
+            if workoutManager.running {
+                displayMetricsView()
+            }
         }
         .tabViewStyle(
             PageTabViewStyle(indexDisplayMode: isLuminanceReduced ? .never : .automatic)
