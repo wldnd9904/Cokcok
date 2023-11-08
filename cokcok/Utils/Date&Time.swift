@@ -40,16 +40,34 @@ func formatDateString(for date: Date) -> String {
     }
 }
 
+func formatDateWithDay(_ date: Date) -> String {
+    let calendar = Calendar.current
+    let currentYear = calendar.component(.year, from: Date())
+    let year = calendar.component(.year, from: date)
+    
+    let dateFormatter = DateFormatter()
+    // 한글 로케일 설정
+    dateFormatter.locale = Locale(identifier: "ko_KR")
+    if currentYear == year {
+        // 올해인 경우
+        dateFormatter.dateFormat = "M월 d일 (EEEE)"
+        return dateFormatter.string(from: date)
+    } else {
+        // 올해가 아닌 경우
+        dateFormatter.dateFormat = "y년 M월 d일 (EEEE)"
+        return dateFormatter.string(from: date)
+    }
+}
 
-
-func formatTimeIntervalDuration(_ duration: TimeInterval) -> String {
+func formatTimeIntervalDuration(_ duration: TimeInterval, showseconds:Bool = false) -> String {
     let timeInSeconds = Int(duration)
     let hours = timeInSeconds / 3600
     let minutes = (timeInSeconds % 3600) / 60
+    let seconds = timeInSeconds % 60
 
-    if hours < 10 {
-        return "\(hours):\(minutes / 10)\(minutes % 10)"
+    if showseconds {
+        return String(format: "\(hours):%02d:%02d", minutes, seconds)
     } else {
-        return String(format: "%02d:%02d", hours, minutes)
+        return String(format: "\(hours):%02d", minutes)
     }
 }

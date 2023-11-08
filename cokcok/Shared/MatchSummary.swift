@@ -100,11 +100,15 @@ func generateRandomWorkout() -> HKWorkout? {
     let calorieBurnedPerMinute = Double.random(in: 5...7)
     let totalCaloriesBurned = calorieBurnedPerMinute * (workoutDuration / 60)
     
+    // totalDistance를 100m에서 1km 사이 랜덤으로 설정
+    let totalDistance = Double.random(in: 100...1000)
+    
     // HKWorkout 생성
-    let workout = HKWorkout(activityType: workoutType, start: randomStartDate, end: randomStartDate.addingTimeInterval(workoutDuration), workoutEvents: nil, totalEnergyBurned: HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: totalCaloriesBurned), totalDistance: nil, metadata: nil)
+    let workout = HKWorkout(activityType: workoutType, start: randomStartDate, end: randomStartDate.addingTimeInterval(workoutDuration), workoutEvents: nil, totalEnergyBurned: HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: totalCaloriesBurned), totalDistance: HKQuantity(unit: HKUnit.meter(), doubleValue: totalDistance), metadata: nil)
     
     return workout
 }
+
 
 //MARK: - 히스토리 그래프로 그리기
 extension MatchSummary {
@@ -139,11 +143,11 @@ extension MatchSummary {
                     myDates.removeFirst()
                     opponentDates.removeFirst()
                 }
-            } else if let myDate = myNextDate {
+            } else if let _ = myNextDate {
                 curMyScore += 1
                 myHistory.append((curTimestamp, curMyScore))
                 myDates.removeFirst()
-            } else if let opponentDate = opponentNextDate {
+            } else if let _ = opponentNextDate {
                 curOpponentScore += 1
                 opponentHistory.append((curTimestamp, curOpponentScore))
                 opponentDates.removeFirst()

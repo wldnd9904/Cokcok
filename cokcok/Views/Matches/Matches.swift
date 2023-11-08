@@ -14,13 +14,17 @@ struct Matches: View {
     var body: some View {
         ScrollView{
             ForEach(randomMatchSummaries.sorted{$0.workout!.startDate > $1.workout!.startDate}, id: \.workout.hashValue) { match in
-                MatchItem(match: match)
-                    .padding(.horizontal,5)
+                NavigationLink(destination: MatchDetail(match:match).navigationTitle(formatDateWithDay(match.workout?.startDate ?? Date()))){
+                    MatchItem(match: match)
+                        .padding(.horizontal,5)
+                }
             }
         }
     }
 }
 
 #Preview {
-    Matches()
+    NavigationStack{
+        Matches()
+    }
 }
