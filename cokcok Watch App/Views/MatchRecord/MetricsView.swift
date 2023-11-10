@@ -30,13 +30,12 @@ struct MetricsView: View {
                         )
                     )
                 )
-                Text(
-                    workoutManager.heartRate
-                        .formatted(
+                Text(workoutManager.heartRate.formatted(
                             .number.precision(.fractionLength(0))
                         )
                     + " bpm"
                 )
+                Text(Measurement(value: workoutManager.distance, unit: UnitLength.meters).formatted(.measurement(width: .abbreviated, usage: .road)))
             }
             .font(.system(.title, design: .rounded)
                 .monospacedDigit()

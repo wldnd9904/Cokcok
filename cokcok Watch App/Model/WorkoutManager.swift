@@ -7,6 +7,7 @@
 
 import Foundation
 import HealthKit
+import CoreMotion
 
 class WorkoutManager: NSObject, ObservableObject {
     @Published var showingSummaryView: Bool = false {
@@ -20,6 +21,7 @@ class WorkoutManager: NSObject, ObservableObject {
     let healthStore = HKHealthStore()
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
+    let motionManager = CMMotionManager()
     
     func startWorkout() {
         if running { return }
@@ -64,6 +66,7 @@ class WorkoutManager: NSObject, ObservableObject {
         let typesToRead: Set = [
             HKQuantityType.quantityType(forIdentifier: .heartRate)!,
             HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
+            HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
             HKObjectType.activitySummaryType()
         ]
 
@@ -103,6 +106,7 @@ class WorkoutManager: NSObject, ObservableObject {
     @Published var averageHeartRate: Double = 0
     @Published var heartRate: Double = 0
     @Published var activeEnergy: Double = 0
+    @Published var distance: Double = 0
     @Published var matchSummary: MatchSummary?
     
     func updateForStatistics(_ statistics: HKStatistics?) {
@@ -117,11 +121,17 @@ class WorkoutManager: NSObject, ObservableObject {
             case HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned):
                 let energyUnit = HKUnit.kilocalorie()
                 self.activeEnergy = statistics.sumQuantity()?.doubleValue(for: energyUnit) ?? 0
+            case HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning):
+                let meterUnit = HKUnit.meter()
+                self.distance = statistics.sumQuantity()?.doubleValue(for: meterUnit) ?? 0
             default:
                 return
             }
         }
     }
+    
+    // MARK: - 손목 데이터
+    private var recordedMotion:[CMDeviceMotion] = []
     
     func resetWorkout() {
         builder = nil
@@ -130,6 +140,7 @@ class WorkoutManager: NSObject, ObservableObject {
         activeEnergy = 0
         averageHeartRate = 0
         heartRate = 0
+        distance = 0
     }
 }
 
