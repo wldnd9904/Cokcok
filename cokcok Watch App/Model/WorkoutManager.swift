@@ -9,6 +9,23 @@ import Foundation
 import HealthKit
 import CoreMotion
 
+enum WorkoutState {
+    case idle, running, pause, saving1, saving2, sending, sent, saved, error
+    var message: String {
+        switch(self) {
+        case .idle:"대기"
+        case .running:"경기 기록 중"
+        case .pause:"일시 정지"
+        case .saving1:"운동 정보를 저장하는 중"
+        case .saving2:"경기 결과를 저장하는 중"
+        case .sending:"경기 결과를 서버에 전송하는 중"
+        case .sent:"전송 완료"
+        case .saved:"전송 실패. 경기 결과를 내부 저장소에 임시로 저장합니다."
+        case .error:"오류가 발생했습니다. 처음으로 돌아갑니다."
+        }
+    }
+}
+
 class WorkoutManager: NSObject, ObservableObject {
     @Published var showingSummaryView: Bool = false {
         didSet {
@@ -22,10 +39,13 @@ class WorkoutManager: NSObject, ObservableObject {
     var session: HKWorkoutSession?
     var builder: HKLiveWorkoutBuilder?
     let motionManager = CMMotionManager()
+    let queue = OperationQueue()
     
     func startWorkout() {
-        if running { return }
-            running = true
+        guard motionManager.isDeviceMotionAvailable else {
+            return
+        }
+        if state != .idle { return }
         matchSummary = MatchSummary(id: UUID(), startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, myScoreHistory: [], opponentScoreHistory: [])
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .badminton
@@ -46,12 +66,14 @@ class WorkoutManager: NSObject, ObservableObject {
         
         session?.delegate = self
         builder?.delegate = self
-        
         // Start the workout session and begin data collection.
         let startDate = Date()
         session?.startActivity(with: startDate)
+        startRecordingDeviceMotion()
         builder?.beginCollection(withStart: startDate) { (success, error) in
-            // The workout has started.
+            if success {
+                self.state = .running
+            }
         }
     }
     
@@ -79,18 +101,20 @@ class WorkoutManager: NSObject, ObservableObject {
     // MARK: - State Control
 
     // The workout session state.
-    @Published var running = false
+    @Published var state :WorkoutState = .idle
 
     func pause() {
+        state = .pause
         session?.pause()
     }
 
     func resume() {
+        state = .running
         session?.resume()
     }
 
     func togglePause() {
-        if running == true {
+        if state == .running {
             pause()
         } else {
             resume()
@@ -107,7 +131,8 @@ class WorkoutManager: NSObject, ObservableObject {
     @Published var heartRate: Double = 0
     @Published var activeEnergy: Double = 0
     @Published var distance: Double = 0
-    @Published var matchSummary: MatchSummary?
+    var matchSummary: MatchSummary?
+    private var recordedMotion:[CMDeviceMotion] = []
     
     func updateForStatistics(_ statistics: HKStatistics?) {
         guard let statistics = statistics else { return }
@@ -130,9 +155,6 @@ class WorkoutManager: NSObject, ObservableObject {
         }
     }
     
-    // MARK: - 손목 데이터
-    private var recordedMotion:[CMDeviceMotion] = []
-    
     func resetWorkout() {
         builder = nil
         session = nil
@@ -150,13 +172,11 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
                         didChangeTo toState: HKWorkoutSessionState,
                         from fromState: HKWorkoutSessionState,
                         date: Date) {
-        DispatchQueue.main.async {
-            self.running = toState == .running
-        }
 
         // Wait for the session to transition states before ending the builder.
         if toState == .ended {
             builder?.endCollection(withEnd: date) { (success, error) in
+                self.state = .saving1
                 self.builder?.finishWorkout { (workout, error) in
                     DispatchQueue.main.async {
                         self.matchSummary?.averageHeartRate = self.averageHeartRate
@@ -165,6 +185,7 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
                         self.matchSummary?.endDate = workout?.endDate ?? Date()
                         self.matchSummary?.totalEnergyBurned = workout?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0
                         self.matchSummary?.totalDistance = workout?.totalDistance?.doubleValue(for: .meter()) ?? 0
+                        self.endRecordingDeviceMotion()
                     }
                 }
             }
@@ -190,5 +211,35 @@ extension WorkoutManager: HKLiveWorkoutBuilderDelegate {
             // Update the published values.
             updateForStatistics(statistics)
         }
+    }
+}
+
+// MARK: - 손목 데이터 녹화 관련
+extension WorkoutManager {
+    private func startRecordingDeviceMotion() {
+        motionManager.deviceMotionUpdateInterval = 1/50
+        recordedMotion.removeAll()
+        motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
+            guard let data = data else {
+                print("Error: \(error!)")
+                return
+            }
+            self.recordedMotion.append(data)
+        }
+    }
+    private func endRecordingDeviceMotion() {
+        motionManager.stopDeviceMotionUpdates()
+        print(recordedMotion.count)
+        //TODO: 메타데이터는 json, 모션 데이터는 csv파일로 저장
+        self.state = .saving2
+        
+        //TODO: 서버로 전송 시도
+        self.state = .sending
+        
+        //TODO: 보내졌다면 저장한 파일 삭제
+        self.state = .sent //보내졌을 때
+        
+        //TODO: 못보냈다면 일단 내부에 저장
+        self.state = .saved //못보냈을 때
     }
 }
