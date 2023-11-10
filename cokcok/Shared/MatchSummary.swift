@@ -14,10 +14,15 @@ enum Player {
 
 struct MatchSummary: Identifiable {
     var id: UUID
-    var workout: HKWorkout?
+    var startDate: Date
+    var endDate: Date
+    var duration: TimeInterval
+    var totalDistance: Double
+    var totalEnergyBurned: Double
+    var averageHeartRate: Double
+    
     var myScore: Int
     var opponentScore: Int
-    var averageHeartRate: Double
     var myScoreHistory: [Date] // 내 점수 변동 히스토리
     var opponentScoreHistory: [Date] // 상대의 점수 변동 히스토리
     
@@ -67,10 +72,10 @@ func generateRandomMatchSummaries(count: Int) -> [MatchSummary] {
 
     for _ in 1...count {
         let averageHeartRate = Double.random(in: heartRateRange)
-        let workout: HKWorkout? = generateRandomWorkout()
-        var matchSummary = MatchSummary(id: UUID(), workout: workout, myScore: 0, opponentScore: 0, averageHeartRate: averageHeartRate, myScoreHistory: [], opponentScoreHistory: [])
-        var currentTime = matchSummary.workout!.startDate
-        let endTime = matchSummary.workout!.endDate
+        guard let workout: HKWorkout = generateRandomWorkout() else { return [] }
+        var matchSummary = MatchSummary(id: UUID(), startDate: workout.startDate, endDate: workout.endDate, duration: workout.duration, totalDistance: workout.totalDistance!.doubleValue(for: .meter()), totalEnergyBurned: workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()), averageHeartRate: averageHeartRate, myScore: 0, opponentScore: 0, myScoreHistory: [], opponentScoreHistory: [])
+        var currentTime = matchSummary.startDate
+        let endTime = matchSummary.endDate
         while matchSummary.myScore < 21 && matchSummary.opponentScore < 21 && currentTime < endTime {
             let randomTimeInterval = TimeInterval(arc4random_uniform(60) + 1) // 1부터 60초 사이의 랜덤 시간 간격
             currentTime += randomTimeInterval

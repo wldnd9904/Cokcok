@@ -16,7 +16,7 @@ struct MatchItem: View {
                 Image(systemName: "clock")
                     .foregroundColor(.green)
                     .font(.title)
-                Text("\(formatTimeIntervalDuration(match.workout?.duration ?? 0))")
+                Text("\(formatTimeIntervalDuration(match.duration))")
                     .font(.system(.title, design: .rounded, weight: .bold)).foregroundStyle(.green)
                 Spacer()
                 Text("\(match.myScore)")
@@ -43,7 +43,7 @@ struct MatchItem: View {
                             .font(.subheadline)
                             .foregroundColor(.red)
                     }
-                    Text(formatDateString(for: match.workout?.startDate ?? Date()))
+                    Text(formatDateString(for: match.startDate))
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }

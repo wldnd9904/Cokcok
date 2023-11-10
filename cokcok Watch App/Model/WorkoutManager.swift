@@ -26,7 +26,7 @@ class WorkoutManager: NSObject, ObservableObject {
     func startWorkout() {
         if running { return }
             running = true
-        matchSummary = MatchSummary(id: UUID(), workout: nil, myScore: 0, opponentScore: 0, averageHeartRate: 0, myScoreHistory: [], opponentScoreHistory: [])
+        matchSummary = MatchSummary(id: UUID(), startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, myScoreHistory: [], opponentScoreHistory: [])
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .badminton
         configuration.locationType = .indoor
@@ -160,7 +160,11 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
                 self.builder?.finishWorkout { (workout, error) in
                     DispatchQueue.main.async {
                         self.matchSummary?.averageHeartRate = self.averageHeartRate
-                        self.matchSummary?.workout = workout
+                        self.matchSummary?.duration = workout?.duration ?? 0
+                        self.matchSummary?.startDate = workout?.startDate ?? Date()
+                        self.matchSummary?.endDate = workout?.endDate ?? Date()
+                        self.matchSummary?.totalEnergyBurned = workout?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0
+                        self.matchSummary?.totalDistance = workout?.totalDistance?.doubleValue(for: .meter()) ?? 0
                     }
                 }
             }

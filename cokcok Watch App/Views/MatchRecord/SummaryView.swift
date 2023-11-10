@@ -29,23 +29,21 @@ struct SummaryView: View {
                         .font(.title)
                     SummaryMetricView(
                         title: "경기 시간",
-                        value: durationFormatter.string(from: workoutManager.matchSummary?.workout?.duration ?? 0.0) ?? ""
+                        value: durationFormatter.string(from: workoutManager.matchSummary?.duration ?? 0.0) ?? ""
                     ).accentColor(Color.green)
                     SummaryMetricView(
                         title: "경기 점수",
                         value: "\(workoutManager.matchSummary?.myScore ?? 0) : \(workoutManager.matchSummary?.opponentScore ?? 0)"
                     ).accentColor(.yellow)
                     SummaryMetricView(title: "이동 거리",
-                                      value: Measurement(value: workoutManager.matchSummary?.workout?.totalDistance?.doubleValue(for: .meter()) ?? 0,
-                                                         unit: UnitLength.meters)
+                                      value: Measurement(value: workoutManager.matchSummary?.totalDistance ?? 0, unit: UnitLength.meters)
                                         .formatted(.measurement(width: .abbreviated,
                                                                 usage: .road,
-                                                                numberFormatStyle: .number.precision(.fractionLength(2)))))
-                        .foregroundStyle(.green)
+                                                                numberFormatStyle: .number.precision(.fractionLength(2))))).foregroundStyle(.green)
                     SummaryMetricView(
                         title: "소모 열량",
                         value: Measurement(
-                            value: workoutManager.matchSummary?.workout?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
+                            value: workoutManager.matchSummary?.totalEnergyBurned ?? 0,
                             unit: UnitEnergy.kilocalories
                         ).formatted(
                             .measurement(

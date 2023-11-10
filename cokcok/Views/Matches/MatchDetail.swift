@@ -14,9 +14,9 @@ struct MatchDetail: View {
         List {
             Section(header:Text("운동 세부사항").font(.title2).foregroundStyle(.primary).bold()){
                 HStack() {
-                    DetailItem(title: "운동 시간", value:formatTimeIntervalDuration(match.workout?.duration ?? 0, showseconds:true))
+                    DetailItem(title: "운동 시간", value:formatTimeIntervalDuration(match.duration, showseconds:true))
                             .accentColor(.green)
-                    DetailItem(title: "이동 거리", value: Measurement(value: match.workout?.totalDistance?.doubleValue(for: .meter()) ?? 0,
+                    DetailItem(title: "이동 거리", value: Measurement(value: match.totalDistance,
                                                    unit: UnitLength.meters)
                                   .formatted(.measurement(width: .abbreviated,
                                                           usage: .road,
@@ -30,7 +30,7 @@ struct MatchDetail: View {
                         ) + " bpm")
                         .accentColor(.red)
                     DetailItem(title: "총 킬로칼로리", value:Measurement(
-                        value: match.workout?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
+                        value: match.totalEnergyBurned,
                         unit: UnitEnergy.kilocalories
                     ).formatted(
                         .measurement(

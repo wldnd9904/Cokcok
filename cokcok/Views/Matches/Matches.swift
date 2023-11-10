@@ -13,8 +13,8 @@ struct Matches: View {
     
     var body: some View {
         ScrollView{
-            ForEach(randomMatchSummaries.sorted{$0.workout!.startDate > $1.workout!.startDate}, id: \.workout.hashValue) { match in
-                NavigationLink(destination: MatchDetail(match:match).navigationTitle(formatDateWithDay(match.workout?.startDate ?? Date()))){
+            ForEach(randomMatchSummaries.sorted{$0.startDate > $1.startDate}, id: \.id) { match in
+                NavigationLink(destination: MatchDetail(match:match).navigationTitle(formatDateWithDay(match.startDate))){
                     MatchItem(match: match)
                         .padding(.horizontal,5)
                 }
