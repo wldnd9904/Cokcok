@@ -11,14 +11,14 @@ struct ScoreView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
     var body: some View {
         HStack{
-            Counter(score: workoutManager.matchSummary?.myScore ?? 0, color: .blue, incrementVar: {
+            Counter2(score: workoutManager.matchSummary?.myScore ?? 0, color: .blue, incrementVar: {
                 workoutManager.matchSummary?.addScore(player: .me)
             }, decrementVar: {
                 workoutManager.matchSummary?.removeScore(player: .me)
             }, resetVar: {
                 workoutManager.matchSummary?.resetScore(player: .me)
             })
-            Counter(score: workoutManager.matchSummary?.opponentScore ?? 0, color: .red, incrementVar: {
+            Counter2(score: workoutManager.matchSummary?.opponentScore ?? 0, color: .red, incrementVar: {
                 workoutManager.matchSummary?.addScore(player: .opponent)
             }, decrementVar: {
                 workoutManager.matchSummary?.removeScore(player: .opponent)
