@@ -12,7 +12,8 @@ enum Player {
     case me, opponent
 }
 
-struct MatchSummary {
+struct MatchSummary: Identifiable {
+    var id: UUID
     var workout: HKWorkout?
     var myScore: Int
     var opponentScore: Int
@@ -67,7 +68,7 @@ func generateRandomMatchSummaries(count: Int) -> [MatchSummary] {
     for _ in 1...count {
         let averageHeartRate = Double.random(in: heartRateRange)
         let workout: HKWorkout? = generateRandomWorkout()
-        var matchSummary = MatchSummary(workout: workout, myScore: 0, opponentScore: 0, averageHeartRate: averageHeartRate, myScoreHistory: [], opponentScoreHistory: [])
+        var matchSummary = MatchSummary(id: UUID(), workout: workout, myScore: 0, opponentScore: 0, averageHeartRate: averageHeartRate, myScoreHistory: [], opponentScoreHistory: [])
         var currentTime = matchSummary.workout!.startDate
         let endTime = matchSummary.workout!.endDate
         while matchSummary.myScore < 21 && matchSummary.opponentScore < 21 && currentTime < endTime {

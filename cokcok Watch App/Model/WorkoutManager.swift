@@ -24,7 +24,7 @@ class WorkoutManager: NSObject, ObservableObject {
     func startWorkout() {
         if running { return }
             running = true
-        matchSummary = MatchSummary(workout: nil, myScore: 0, opponentScore: 0, averageHeartRate: 0, myScoreHistory: [], opponentScoreHistory: [])
+        matchSummary = MatchSummary(id: UUID(), workout: nil, myScore: 0, opponentScore: 0, averageHeartRate: 0, myScoreHistory: [], opponentScoreHistory: [])
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .badminton
         configuration.locationType = .indoor

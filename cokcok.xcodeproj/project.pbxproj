@@ -101,6 +101,7 @@
 /* Begin PBXFileReference section */
 		B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetail.swift; sourceTree = "<group>"; };
 		B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeviceMotion.swift; sourceTree = "<group>"; };
+		B846A72D2AFE019E00B1F590 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B877E6FD2AF8F9C800BF347E /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		B877E7002AF8F9E900BF347E /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		B877E7022AF8F9FD00BF347E /* SwingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingView.swift; sourceTree = "<group>"; };
@@ -316,6 +317,7 @@
 		B8A93AF42AF62DB600A220C7 = {
 			isa = PBXGroup;
 			children = (
+				B846A72D2AFE019E00B1F590 /* MyPlayground.playground */,
 				B8A93AFF2AF62DB600A220C7 /* cokcok */,
 				B8A93B272AF62DB700A220C7 /* cokcok Watch App */,
 				B8A93AFE2AF62DB600A220C7 /* Products */,
