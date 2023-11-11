@@ -12,23 +12,23 @@ struct ScoreChart: View {
     let matchSummary: MatchSummary
     func history(_ whose: Character) -> [(x: Int, y:Int)] {
         var sum:Int = 0
-        var graph:[(x: Int, y:Int)]  =  matchSummary.history.enumerated().reduce(into:[]) {
+        var graph:[(x: Int, y:Int)]  =  matchSummary.history.enumerated().reduce(into:[(    x:0,y:0)]) {
             if $1.element == whose {
                 sum += 1
-                $0.append((x:$1.offset, y:sum))
+                $0.append((x:$1.offset+1, y:sum))
             }
         }
-        graph.append((x:matchSummary.history.count-1, y:sum))
+        graph.append((x:matchSummary.history.count, y:sum))
         return graph
     }
     
     var body: some View {
         Chart{
-            ForEach(history("m"), id:\.x) {x,y in
-                MyLineMark(x:x, y:y, div: "나")
-            }
             ForEach(history("o"), id:\.x) {x,y in
                 MyLineMark(x:x, y:y, div: "상대")
+            }
+            ForEach(history("m"), id:\.x) {x,y in
+                MyLineMark(x:x, y:y, div: "나")
             }
         }
         .chartForegroundStyleScale([
