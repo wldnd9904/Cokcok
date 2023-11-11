@@ -23,17 +23,16 @@ struct MatchSummary: Identifiable {
     
     var myScore: Int
     var opponentScore: Int
-    var myScoreHistory: [Date] // 내 점수 변동 히스토리
-    var opponentScoreHistory: [Date] // 상대의 점수 변동 히스토리
+    var history: String
     
     // 새로운 점수 변동 기록 추가
     mutating func addScore(player: Player, timestamp:Date = Date()) {
         switch(player){
         case .me:
-            myScoreHistory.append(timestamp)
+            history.append("m")
             myScore += 1
         case .opponent:
-            opponentScoreHistory.append(timestamp)
+            history.append("o")
             opponentScore += 1
         }
     }
@@ -41,13 +40,13 @@ struct MatchSummary: Identifiable {
     mutating func removeScore(player: Player) {
         switch player {
         case .me:
-            if !myScoreHistory.isEmpty {
-                myScoreHistory.removeLast()
+            if let lastIndex = history.lastIndex(of: "m") {
+                history.remove(at: lastIndex)
                 myScore -= 1
             }
         case .opponent:
-            if !opponentScoreHistory.isEmpty {
-                opponentScoreHistory.removeLast()
+            if let lastIndex = history.lastIndex(of: "o") {
+                history.remove(at: lastIndex)
                 opponentScore -= 1
             }
         }
@@ -56,11 +55,11 @@ struct MatchSummary: Identifiable {
     mutating func resetScore(player: Player) {
         switch player {
         case .me:
-            myScoreHistory.removeAll()
             myScore = 0
+            history = String(repeating:"o", count: opponentScore)
         case .opponent:
-            opponentScoreHistory.removeAll()
             opponentScore = 0
+            history = String(repeating: "m", count: myScore)
         }
     }
 }
@@ -73,7 +72,7 @@ func generateRandomMatchSummaries(count: Int) -> [MatchSummary] {
     for _ in 1...count {
         let averageHeartRate = Double.random(in: heartRateRange)
         guard let workout: HKWorkout = generateRandomWorkout() else { return [] }
-        var matchSummary = MatchSummary(id: UUID(), startDate: workout.startDate, endDate: workout.endDate, duration: workout.duration, totalDistance: workout.totalDistance!.doubleValue(for: .meter()), totalEnergyBurned: workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()), averageHeartRate: averageHeartRate, myScore: 0, opponentScore: 0, myScoreHistory: [], opponentScoreHistory: [])
+        var matchSummary = MatchSummary(id: UUID(), startDate: workout.startDate, endDate: workout.endDate, duration: workout.duration, totalDistance: workout.totalDistance!.doubleValue(for: .meter()), totalEnergyBurned: workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()), averageHeartRate: averageHeartRate, myScore: 0, opponentScore: 0, history:"")
         var currentTime = matchSummary.startDate
         let endTime = matchSummary.endDate
         while matchSummary.myScore < 21 && matchSummary.opponentScore < 21 && currentTime < endTime {
@@ -113,59 +112,4 @@ func generateRandomWorkout() -> HKWorkout? {
     let workout = HKWorkout(activityType: workoutType, start: randomStartDate, end: randomStartDate.addingTimeInterval(workoutDuration), workoutEvents: nil, totalEnergyBurned: HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: totalCaloriesBurned), totalDistance: HKQuantity(unit: HKUnit.meter(), doubleValue: totalDistance), metadata: nil)
     
     return workout
-}
-
-
-//MARK: - 히스토리 그래프로 그리기
-extension MatchSummary {
-    func getHistory(myHistory: inout [(x: Int, y: Int)], opponentHistory: inout [(x: Int, y: Int)]) {
-        var curTimestamp: Int = 1
-        var curMyScore: Int = 0
-        var curOpponentScore: Int = 0
-        
-        // 복사본을 만들어 히스토리와 비교
-        var myDates = Array(self.myScoreHistory)
-        var opponentDates = Array(self.opponentScoreHistory)
-        
-        // 두 히스토리 중 작은 날짜까지 반복
-        while !myDates.isEmpty || !opponentDates.isEmpty {
-            let myNextDate = myDates.first
-            let opponentNextDate = opponentDates.first
-            
-            if let myDate = myNextDate, let opponentDate = opponentNextDate {
-                if myDate < opponentDate {
-                    curMyScore += 1
-                    myHistory.append((curTimestamp, curMyScore))
-                    myDates.removeFirst()
-                } else if opponentDate < myDate {
-                    curOpponentScore += 1
-                    opponentHistory.append((curTimestamp, curOpponentScore))
-                    opponentDates.removeFirst()
-                } else { // 동시에 점수가 오르면
-                    curMyScore += 1
-                    curOpponentScore += 1
-                    myHistory.append((curTimestamp, curMyScore))
-                    opponentHistory.append((curTimestamp, curOpponentScore))
-                    myDates.removeFirst()
-                    opponentDates.removeFirst()
-                }
-            } else if let _ = myNextDate {
-                curMyScore += 1
-                myHistory.append((curTimestamp, curMyScore))
-                myDates.removeFirst()
-            } else if let _ = opponentNextDate {
-                curOpponentScore += 1
-                opponentHistory.append((curTimestamp, curOpponentScore))
-                opponentDates.removeFirst()
-            }
-            curTimestamp += 1
-        }
-        curTimestamp -= 1
-        if myHistory.last!.x == curTimestamp {
-            opponentHistory.append((curTimestamp,curOpponentScore))
-        }
-        if opponentHistory.last!.x == curTimestamp {
-            myHistory.append((curTimestamp,curMyScore))
-        }
-    }
 }

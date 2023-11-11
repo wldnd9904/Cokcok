@@ -10,45 +10,44 @@ import Charts
 
 struct ScoreChart: View {
     let matchSummary: MatchSummary
-    @State var myHistory: [(x: Int, y:Int)] = [(0,0)]
-    @State var opponentHistory: [(x: Int, y:Int)] = [(0,0)]
-    @State var loading: Bool = true
-    
-    var body: some View {
-        if loading {
-            ProgressView("그래프를 표시하는 중...")
-            .onAppear{
-                matchSummary.getHistory(myHistory: &myHistory, opponentHistory: &opponentHistory)
-                loading = false
-            }
-        } else {
-            Chart{
-                ForEach(myHistory, id:\.x) {x,y in
-                    MyLineMark(x:x, y:y, div: "나")
-                }
-                ForEach(opponentHistory, id:\.x) {x,y in
-                    MyLineMark(x:x, y:y, div: "상대")
-                }
-            }
-            .chartForegroundStyleScale([
-                "나": .blue,
-                "상대": .red
-            ])
-            .chartSymbolScale([
-                "나":Circle().strokeBorder(lineWidth: 3),
-                "상대": Circle().strokeBorder(lineWidth: 3)
-            ])
-            .chartXScale(domain: -1...max(myHistory.last?.x ?? 0, opponentHistory.last?.x ?? 0)+1)
-            .chartYScale(domain: -1...max(myHistory.last?.y ?? 0, opponentHistory.last?.y ?? 0)+1)
-            .chartXAxis {
-                AxisMarks() { _ in
-                }
-            }
-            .chartYAxis{
-                AxisMarks(position:.leading)
+    func history(_ whose: Character) -> [(x: Int, y:Int)] {
+        var sum:Int = 0
+        var graph:[(x: Int, y:Int)]  =  matchSummary.history.enumerated().reduce(into:[]) {
+            if $1.element == whose {
+                sum += 1
+                $0.append((x:$1.offset, y:sum))
             }
         }
-            
+        graph.append((x:matchSummary.history.count-1, y:sum))
+        return graph
+    }
+    
+    var body: some View {
+        Chart{
+            ForEach(history("m"), id:\.x) {x,y in
+                MyLineMark(x:x, y:y, div: "나")
+            }
+            ForEach(history("o"), id:\.x) {x,y in
+                MyLineMark(x:x, y:y, div: "상대")
+            }
+        }
+        .chartForegroundStyleScale([
+            "나": .blue,
+            "상대": .red
+        ])
+        .chartSymbolScale([
+            "나":Circle().strokeBorder(lineWidth: 3),
+            "상대": Circle().strokeBorder(lineWidth: 3)
+        ])
+        .chartXScale(domain: -1...matchSummary.history.count+1)
+        .chartYScale(domain: -1...max(matchSummary.myScore , matchSummary.opponentScore)+1)
+        .chartXAxis {
+            AxisMarks() { _ in
+            }
+        }
+        .chartYAxis{
+            AxisMarks(position:.leading)
+        }
     }
 }
 

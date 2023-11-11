@@ -48,7 +48,7 @@ class WorkoutManager: NSObject, ObservableObject {
         }
         if state != .idle { return }
         self.state = .running
-        matchSummary = MatchSummary(id: UUID(), startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, myScoreHistory: [], opponentScoreHistory: [])
+        matchSummary = MatchSummary(id: UUID(), startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, history:"")
         print("matchsummary = \(matchSummary!.id)")
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .badminton
