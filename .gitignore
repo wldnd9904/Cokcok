@@ -3,3 +3,4 @@ timeline.xctimeline
 playground.xcworkspace
 Contents.swift
 *.xcplayground
+xcschememanagement.plist
