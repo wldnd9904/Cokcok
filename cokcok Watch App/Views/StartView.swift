@@ -8,8 +8,7 @@
 import SwiftUI
 import HealthKit
 enum MenuType: UInt, Identifiable, CaseIterable, Hashable {
-    case swingRecord
-    case matchRecord
+    case swingRecord, matchRecord, savedData
     
     public var id:UInt {
         rawValue
@@ -20,6 +19,8 @@ enum MenuType: UInt, Identifiable, CaseIterable, Hashable {
             return "스윙 분석"
         case .matchRecord:
             return "경기 기록"
+        case .savedData:
+            return "Debug: 저장된 경기 확인"
         }
     }
 }
@@ -36,6 +37,9 @@ struct StartView: View {
                 NavigationLink(value: MenuType.matchRecord){
                     Text(MenuType.matchRecord.name)
                 }
+                NavigationLink(value: MenuType.savedData){
+                    Text(MenuType.savedData.name)
+                }
             }
             .navigationDestination(for: MenuType.self) { menuType in
                 switch menuType {
@@ -43,6 +47,8 @@ struct StartView: View {
                     SwingRecordWatchView()
                 case .matchRecord:
                     SessionPagingView()
+                case .savedData:
+                    SavedDataView()
                 }
             }
         }
