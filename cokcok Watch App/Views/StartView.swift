@@ -25,6 +25,7 @@ enum MenuType: UInt, Identifiable, CaseIterable, Hashable {
 }
 
 struct StartView: View {
+    @EnvironmentObject var workoutManager: WorkoutManager
     var menuTypes: [MenuType] = MenuType.allCases
     var body: some View {
         NavigationStack{
@@ -45,11 +46,15 @@ struct StartView: View {
                 }
             }
         }
+        .onAppear {
+            workoutManager.requestAuthorization()
+        }
     }
 }
 
 #Preview {
     NavigationView{
         StartView()
+            .environmentObject(WorkoutManager())
     }
 }

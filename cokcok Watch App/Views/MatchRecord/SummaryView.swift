@@ -19,8 +19,8 @@ struct SummaryView: View {
     }()
     
     var body: some View {
-        if workoutManager.matchSummary == nil {
-            ProgressView("경기를 기록하는 중...")
+        if workoutManager.state != .ended {
+            ProgressView(workoutManager.state.message)
                 .navigationBarHidden(true)
         } else {
             ScrollView(.vertical) {

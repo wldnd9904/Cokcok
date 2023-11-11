@@ -14,22 +14,25 @@ struct SessionPagingView: View {
     @State private var selection: Tab = .controls
     
     enum Tab {
-        case controls, metrics, nowPlaying, score
+        case controls, metrics, score
     }
     
     var body: some View {
         TabView(selection: $selection) {
             ControlsView().tag(Tab.controls)
-            MetricsView().tag(Tab.metrics)
-            ScoreView().tag(Tab.score)
-            NowPlayingView().tag(Tab.nowPlaying)
+            if workoutManager.state != .idle {
+                MetricsView().tag(Tab.metrics)
+                ScoreView().tag(Tab.score)
+            }
         }
         .navigationTitle("경기 기록")
         .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(selection == .nowPlaying)
-        .onChange(of: workoutManager.running) {
-            if workoutManager.running {
-                displayMetricsView()
+        .onChange(of: workoutManager.state) {
+            if workoutManager.state == .running {
+                displayView(.score)
+            }
+            if workoutManager.state == .pause {
+                displayView(.metrics)
             }
         }
         .tabViewStyle(
@@ -37,9 +40,9 @@ struct SessionPagingView: View {
         )
     }
     
-    private func displayMetricsView() {
+    private func displayView(_ tab: Tab) {
         withAnimation {
-            selection = .metrics
+            selection = tab
         }
     }
 }

@@ -38,11 +38,11 @@ struct ControlsView: View {
                     Button {
                         workoutManager.togglePause()
                     } label: {
-                        Image(systemName: workoutManager.running ? "pause" : "play")
+                        Image(systemName: workoutManager.state == .running ? "pause" : "play")
                     }
                     .tint(Color.yellow)
                     .font(.title2)
-                    Text(workoutManager.running ? "일시정지" : "재개")
+                    Text(workoutManager.state == .running ? "일시정지" : "재개")
                 }
             }
         }

@@ -12,7 +12,7 @@ struct Counter2: View {
     let color:Color
     let incrementVar: () -> Void
     let decrementVar: () -> Void
-    let resetVar: () -> Void
+    let resetVar: (() -> Void)?
     
     var body: some View {
         ZStack {

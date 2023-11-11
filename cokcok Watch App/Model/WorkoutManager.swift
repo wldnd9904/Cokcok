@@ -10,7 +10,7 @@ import HealthKit
 import CoreMotion
 
 enum WorkoutState {
-    case idle, running, pause, saving1, saving2, sending, sent, saved, error
+    case idle, running, pause, saving1, saving2, sending, sent, saved, error, ended
     var message: String {
         switch(self) {
         case .idle:"대기"
@@ -22,6 +22,7 @@ enum WorkoutState {
         case .sent:"전송 완료"
         case .saved:"전송 실패. 경기 결과를 내부 저장소에 임시로 저장합니다."
         case .error:"오류가 발생했습니다. 처음으로 돌아갑니다."
+        case .ended:"경기 기록 종료"
         }
     }
 }
@@ -46,7 +47,9 @@ class WorkoutManager: NSObject, ObservableObject {
             return
         }
         if state != .idle { return }
+        self.state = .running
         matchSummary = MatchSummary(id: UUID(), startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, myScoreHistory: [], opponentScoreHistory: [])
+        print("matchsummary = \(matchSummary!.id)")
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .badminton
         configuration.locationType = .indoor
@@ -55,7 +58,6 @@ class WorkoutManager: NSObject, ObservableObject {
             session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
             builder = session?.associatedWorkoutBuilder()
         } catch {
-            // Handle any exceptions.
             return
         }
 
@@ -72,7 +74,10 @@ class WorkoutManager: NSObject, ObservableObject {
         startRecordingDeviceMotion()
         builder?.beginCollection(withStart: startDate) { (success, error) in
             if success {
-                self.state = .running
+                DispatchQueue.main.async { print("builder.beginCollection()") }
+            }
+            if (error != nil) {
+                print(error!)
             }
         }
     }
@@ -81,7 +86,7 @@ class WorkoutManager: NSObject, ObservableObject {
     func requestAuthorization() {
         // The quantity type to write to the health store.
         let typesToShare: Set = [
-            HKQuantityType.workoutType()
+            HKQuantityType.workoutType(),
         ]
 
         // The quantity types to read from the health store.
@@ -104,11 +109,13 @@ class WorkoutManager: NSObject, ObservableObject {
     @Published var state :WorkoutState = .idle
 
     func pause() {
+        print("pause")
         state = .pause
         session?.pause()
     }
 
     func resume() {
+        print("resume")
         state = .running
         session?.resume()
     }
@@ -122,8 +129,8 @@ class WorkoutManager: NSObject, ObservableObject {
     }
 
     func endWorkout() {
-        session?.end()
         showingSummaryView = true
+        session?.end()
     }
     
     // MARK: - Match Metrics
@@ -131,7 +138,7 @@ class WorkoutManager: NSObject, ObservableObject {
     @Published var heartRate: Double = 0
     @Published var activeEnergy: Double = 0
     @Published var distance: Double = 0
-    var matchSummary: MatchSummary?
+    @Published var matchSummary: MatchSummary?
     private var recordedMotion:[CMDeviceMotion] = []
     
     func updateForStatistics(_ statistics: HKStatistics?) {
@@ -156,6 +163,7 @@ class WorkoutManager: NSObject, ObservableObject {
     }
     
     func resetWorkout() {
+        state = .idle
         builder = nil
         session = nil
         matchSummary = nil
@@ -176,16 +184,19 @@ extension WorkoutManager: HKWorkoutSessionDelegate {
         // Wait for the session to transition states before ending the builder.
         if toState == .ended {
             builder?.endCollection(withEnd: date) { (success, error) in
-                self.state = .saving1
-                self.builder?.finishWorkout { (workout, error) in
-                    DispatchQueue.main.async {
-                        self.matchSummary?.averageHeartRate = self.averageHeartRate
-                        self.matchSummary?.duration = workout?.duration ?? 0
-                        self.matchSummary?.startDate = workout?.startDate ?? Date()
-                        self.matchSummary?.endDate = workout?.endDate ?? Date()
-                        self.matchSummary?.totalEnergyBurned = workout?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0
-                        self.matchSummary?.totalDistance = workout?.totalDistance?.doubleValue(for: .meter()) ?? 0
-                        self.endRecordingDeviceMotion()
+                DispatchQueue.main.async {
+                    self.state = .saving1
+                    self.builder?.finishWorkout { (workout, error) in
+                        DispatchQueue.main.async {
+                            self.matchSummary?.averageHeartRate = self.averageHeartRate
+                            self.matchSummary?.duration = workout?.duration ?? 0
+                            self.matchSummary?.startDate = workout?.startDate ?? Date()
+                            self.matchSummary?.endDate = workout?.endDate ?? Date()
+                            self.matchSummary?.totalEnergyBurned = workout?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0
+                            self.matchSummary?.totalDistance = workout?.totalDistance?.doubleValue(for: .meter()) ?? 0
+                            print("\(String(describing: self.matchSummary?.averageHeartRate)), \(String(describing: self.matchSummary?.duration)), \(String(describing: self.matchSummary?.startDate))")
+                            self.endRecordingDeviceMotion()
+                        }
                     }
                 }
             }
@@ -229,10 +240,9 @@ extension WorkoutManager {
     }
     private func endRecordingDeviceMotion() {
         motionManager.stopDeviceMotionUpdates()
-        print(recordedMotion.count)
+        print(self.recordedMotion.count)
         //TODO: 메타데이터는 json, 모션 데이터는 csv파일로 저장
         self.state = .saving2
-        
         //TODO: 서버로 전송 시도
         self.state = .sending
         
@@ -241,5 +251,7 @@ extension WorkoutManager {
         
         //TODO: 못보냈다면 일단 내부에 저장
         self.state = .saved //못보냈을 때
+        
+        self.state = .ended
     }
 }
