@@ -27,9 +27,9 @@ enum MenuType: UInt, Identifiable, CaseIterable, Hashable {
 
 struct StartView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
-    var menuTypes: [MenuType] = MenuType.allCases
+    @State var path: [MenuType] = []
     var body: some View {
-        NavigationStack{
+        NavigationStack(path:$path){
             List{
                 NavigationLink(value: MenuType.swingRecord){
                     Text(MenuType.swingRecord.name)
@@ -50,6 +50,11 @@ struct StartView: View {
                 case .savedData:
                     SavedDataView()
                 }
+            }
+        }
+        .onChange(of: workoutManager.state) {
+            if workoutManager.state == .ended {
+                path = []
             }
         }
         .onAppear {

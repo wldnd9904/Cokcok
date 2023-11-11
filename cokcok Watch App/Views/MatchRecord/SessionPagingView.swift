@@ -25,8 +25,8 @@ struct SessionPagingView: View {
                 ScoreView().tag(Tab.score)
             }
         }
+        .navigationBarBackButtonHidden(workoutManager.state != .idle)
         .navigationTitle("경기 기록")
-        .navigationBarBackButtonHidden(true)
         .onChange(of: workoutManager.state) {
             if workoutManager.state == .running {
                 displayView(.score)
@@ -38,6 +38,9 @@ struct SessionPagingView: View {
         .tabViewStyle(
             PageTabViewStyle(indexDisplayMode: isLuminanceReduced ? .never : .automatic)
         )
+        .onAppear{
+            workoutManager.state = .idle
+        }
     }
     
     private func displayView(_ tab: Tab) {

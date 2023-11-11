@@ -21,6 +21,7 @@
 		B840642F2AFF73BD00C46D41 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064262AFF73BD00C46D41 /* ElapsedTimeView.swift */; };
 		B840645F2AFF75D600C46D41 /* SavedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840645E2AFF75D600C46D41 /* SavedDataView.swift */; };
 		B84064612AFF75F000C46D41 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064602AFF75F000C46D41 /* DataManager.swift */; };
+		B84064632AFFB7DF00C46D41 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064602AFF75F000C46D41 /* DataManager.swift */; };
 		B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E6FD2AF8F9C800BF347E /* Summary.swift */; };
 		B877E7012AF8F9E900BF347E /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7002AF8F9E900BF347E /* Matches.swift */; };
 		B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* SwingView.swift */; };
@@ -299,7 +300,6 @@
 		B8A885132AF90AA30041F092 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B84064602AFF75F000C46D41 /* DataManager.swift */,
 				B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */,
 				B8A885182AF90E230041F092 /* SwingRecordViewModelWatch.swift */,
 			);
@@ -317,6 +317,7 @@
 		B8A8851A2AF90E800041F092 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				B84064602AFF75F000C46D41 /* DataManager.swift */,
 				B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */,
 				B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */,
 			);
@@ -627,6 +628,7 @@
 				B8A885052AF901270041F092 /* SwingRecordViewModelPhone.swift in Sources */,
 				B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
+				B84064632AFFB7DF00C46D41 /* DataManager.swift in Sources */,
 				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,
 				B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */,
 				B8A885082AF901C70041F092 /* AVAuthorizationChecker.swift in Sources */,

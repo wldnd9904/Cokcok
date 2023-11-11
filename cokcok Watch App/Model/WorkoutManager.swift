@@ -163,7 +163,7 @@ class WorkoutManager: NSObject, ObservableObject {
     }
     
     func resetWorkout() {
-        state = .idle
+        state = .ended
         builder = nil
         session = nil
         matchSummary = nil

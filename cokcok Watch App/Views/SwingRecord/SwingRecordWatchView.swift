@@ -27,6 +27,7 @@ struct SwingRecordWatchView: View {
         }.onDisappear(perform: {
             model.stopRecording()
         })
+        .navigationBarBackButtonHidden(model.isRecording)
     }
 }
 
