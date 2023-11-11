@@ -12,7 +12,7 @@ enum Player {
     case me, opponent
 }
 
-struct MatchSummary: Identifiable {
+struct MatchSummary: Identifiable, Codable {
     var id: UUID
     var startDate: Date
     var endDate: Date

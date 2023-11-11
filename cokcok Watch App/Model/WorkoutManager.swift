@@ -241,8 +241,24 @@ extension WorkoutManager {
     private func endRecordingDeviceMotion() {
         motionManager.stopDeviceMotionUpdates()
         print(self.recordedMotion.count)
-        //TODO: 메타데이터는 json, 모션 데이터는 csv파일로 저장
+        // saving2: 메타데이터는 json, 모션 데이터는 csv파일로 저장
         self.state = .saving2
+        guard let matchSummary = self.matchSummary else {
+            self.state = .error
+            return
+        }
+        guard let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appending(path: "\(matchSummary.id)") else {
+            self.state = .error
+            return
+        }
+        do {
+            try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+            try DataManager.shared.saveToJSONFile(matchSummary, to: directoryURL.appending(path:"matchSummary.json"))
+            try DataManager.shared.saveMotionDataToCSV(self.recordedMotion, filePath: directoryURL.appending(path:"motionData.csv"))
+        } catch {
+            self.state = .error
+            return
+        }
         //TODO: 서버로 전송 시도
         self.state = .sending
         

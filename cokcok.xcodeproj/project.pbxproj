@@ -20,7 +20,7 @@
 		B840642E2AFF73BD00C46D41 /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064252AFF73BD00C46D41 /* ActivityRingsView.swift */; };
 		B840642F2AFF73BD00C46D41 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064262AFF73BD00C46D41 /* ElapsedTimeView.swift */; };
 		B840645F2AFF75D600C46D41 /* SavedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840645E2AFF75D600C46D41 /* SavedDataView.swift */; };
-		B84064612AFF75F000C46D41 /* MatchDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064602AFF75F000C46D41 /* MatchDataManager.swift */; };
+		B84064612AFF75F000C46D41 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064602AFF75F000C46D41 /* DataManager.swift */; };
 		B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E6FD2AF8F9C800BF347E /* Summary.swift */; };
 		B877E7012AF8F9E900BF347E /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7002AF8F9E900BF347E /* Matches.swift */; };
 		B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* SwingView.swift */; };
@@ -114,7 +114,7 @@
 		B84064252AFF73BD00C46D41 /* ActivityRingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityRingsView.swift; sourceTree = "<group>"; };
 		B84064262AFF73BD00C46D41 /* ElapsedTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
 		B840645E2AFF75D600C46D41 /* SavedDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedDataView.swift; sourceTree = "<group>"; };
-		B84064602AFF75F000C46D41 /* MatchDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchDataManager.swift; sourceTree = "<group>"; };
+		B84064602AFF75F000C46D41 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		B84064622AFF7A4B00C46D41 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B877E6FD2AF8F9C800BF347E /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		B877E7002AF8F9E900BF347E /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
@@ -299,7 +299,7 @@
 		B8A885132AF90AA30041F092 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B84064602AFF75F000C46D41 /* MatchDataManager.swift */,
+				B84064602AFF75F000C46D41 /* DataManager.swift */,
 				B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */,
 				B8A885182AF90E230041F092 /* SwingRecordViewModelWatch.swift */,
 			);
@@ -667,7 +667,7 @@
 				B840642D2AFF73BD00C46D41 /* ScoreView.swift in Sources */,
 				B837CA7A2AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */,
 				B840642B2AFF73BD00C46D41 /* ControlsView.swift in Sources */,
-				B84064612AFF75F000C46D41 /* MatchDataManager.swift in Sources */,
+				B84064612AFF75F000C46D41 /* DataManager.swift in Sources */,
 				B840642E2AFF73BD00C46D41 /* ActivityRingsView.swift in Sources */,
 				B8A885192AF90E230041F092 /* SwingRecordViewModelWatch.swift in Sources */,
 				B8A885172AF90B0E0041F092 /* SwingRecordWatchView.swift in Sources */,
