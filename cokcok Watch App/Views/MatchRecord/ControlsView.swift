@@ -9,18 +9,16 @@ import SwiftUI
 
 struct ControlsView: View {
     @EnvironmentObject var workoutManager: WorkoutManager
+    @Binding var path: [MenuType]
     
     var body: some View {
-        if workoutManager.matchSummary == nil {
-            Button(action: {
-                workoutManager.startWorkout()
-            }){
-                Image(systemName: "play.circle.fill")
-                    .resizable()
-                    .frame(width: 120, height: 120)
-                    .foregroundColor(.green)
+        if workoutManager.state == .idle {
+            CountDownView(count: 3, color: .green){
+                if path.last == .matchRecord {
+                    print("start")
+                    workoutManager.startWorkout()
+                }
             }
-            .buttonStyle(.plain)
         }
         else {
             HStack {
@@ -50,6 +48,6 @@ struct ControlsView: View {
 }
 
 #Preview {
-    ControlsView()
+    ControlsView(path: .constant([.matchRecord]))
         .environmentObject(WorkoutManager())
 }

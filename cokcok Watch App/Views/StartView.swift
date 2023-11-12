@@ -46,7 +46,7 @@ struct StartView: View {
                 case .swingRecord:
                     SwingRecordWatchView()
                 case .matchRecord:
-                    SessionPagingView()
+                    SessionPagingView(path: $path)
                 case .savedData:
                     SavedDataView()
                 }

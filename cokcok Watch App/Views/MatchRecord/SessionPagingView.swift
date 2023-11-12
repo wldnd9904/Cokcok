@@ -12,6 +12,7 @@ struct SessionPagingView: View {
     @Environment(\.isLuminanceReduced) var isLuminanceReduced
     @EnvironmentObject var workoutManager: WorkoutManager
     @State private var selection: Tab = .controls
+    @Binding var path: [MenuType]
     
     enum Tab {
         case controls, metrics, score
@@ -19,7 +20,7 @@ struct SessionPagingView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            ControlsView().tag(Tab.controls)
+            ControlsView(path: $path).tag(Tab.controls)
             if workoutManager.state != .idle {
                 MetricsView().tag(Tab.metrics)
                 ScoreView().tag(Tab.score)
@@ -28,11 +29,13 @@ struct SessionPagingView: View {
         .navigationBarBackButtonHidden(workoutManager.state != .idle)
         .navigationTitle("경기 기록")
         .onChange(of: workoutManager.state) {
-            if workoutManager.state == .running {
-                displayView(.score)
-            }
-            if workoutManager.state == .pause {
-                displayView(.metrics)
+            withAnimation{
+                if workoutManager.state == .running {
+                    displayView(.score)
+                }
+                if workoutManager.state == .pause {
+                    displayView(.metrics)
+                }
             }
         }
         .tabViewStyle(
@@ -51,6 +54,6 @@ struct SessionPagingView: View {
 }
 
 #Preview {
-    SessionPagingView()
+    SessionPagingView(path:.constant([.matchRecord]))
         .environmentObject(WorkoutManager())
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */; };
+		B836316F2B00DB7200797755 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B836316E2B00DB7200797755 /* CountDownView.swift */; };
 		B837CA792AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */; };
 		B837CA7A2AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */; };
 		B84064272AFF73BD00C46D41 /* MetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840641E2AFF73BD00C46D41 /* MetricsView.swift */; };
@@ -104,6 +105,7 @@
 
 /* Begin PBXFileReference section */
 		B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetail.swift; sourceTree = "<group>"; };
+		B836316E2B00DB7200797755 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 		B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeviceMotion.swift; sourceTree = "<group>"; };
 		B840641E2AFF73BD00C46D41 /* MetricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricsView.swift; sourceTree = "<group>"; };
 		B840641F2AFF73BD00C46D41 /* SummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				B8A885152AF90AE20041F092 /* SwingRecord */,
 				B8A93B2A2AF62DB700A220C7 /* StartView.swift */,
 				B840641D2AFF73BD00C46D41 /* MatchRecord */,
+				B836316E2B00DB7200797755 /* CountDownView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B836316F2B00DB7200797755 /* CountDownView.swift in Sources */,
 				B840645F2AFF75D600C46D41 /* SavedDataView.swift in Sources */,
 				B8A93B2B2AF62DB700A220C7 /* StartView.swift in Sources */,
 				B8A93B292AF62DB700A220C7 /* cokcokApp.swift in Sources */,

@@ -43,9 +43,12 @@ class WorkoutManager: NSObject, ObservableObject {
     let queue = OperationQueue()
     
     func startWorkout() {
+        #if targetEnvironment(simulator)
+        #else
         guard motionManager.isDeviceMotionAvailable else {
             return
         }
+        #endif
         if state != .idle { return }
         self.state = .running
         matchSummary = MatchSummary(id: UUID(), startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, history:"")
