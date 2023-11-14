@@ -43,6 +43,7 @@ class WorkoutManager: NSObject, ObservableObject {
     let queue = OperationQueue()
     
     func startWorkout() {
+        //시뮬레이터에서는 검사 안 함
         #if targetEnvironment(simulator)
         #else
         guard motionManager.isDeviceMotionAvailable else {

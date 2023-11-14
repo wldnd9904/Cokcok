@@ -11,16 +11,31 @@ import CoreMotion
 import HealthKit
 import SwiftUI
 
+enum SwingRecordState {
+    case idle, running, saving, sending, sent, saved, error, ended
+    var message: String {
+        switch(self) {
+        case .idle:"대기"
+        case .running:"스윙 기록 중"
+        case .saving:"데이터 저장 중"
+        case .sending:"iPhone으로 데이터를 전송하는 중"
+        case .sent:"전송 완료"
+        case .saved:"전송 실패. iPhone을 확인해주세요." 
+        case .error:"오류가 발생했습니다. 처음으로 돌아갑니다."
+        case .ended:"경기 기록 종료"
+        }
+    }
+}
+
 class SwingRecordViewModelWatch: NSObject, ObservableObject {
     var wcsession: WCSession
     var hksession: HKWorkoutSession?
     var motionManager: CMMotionManager
     var queue: OperationQueue
     let healthStore = HKHealthStore()
+    private var recordedMotion: [CMDeviceMotion] = []
     
-    @Published var isRecording: Bool = false
-    @Published var record: [MyDeviceMotion] = []
-    @Published var firstTimeStamp: Double = 0
+    @Published var state: SwingRecordState = .idle
     @Published var livePreviewImageView: UIImage = UIImage()
     
     init(session: WCSession = .default) {
@@ -34,7 +49,7 @@ class SwingRecordViewModelWatch: NSObject, ObservableObject {
     }
 
     func startRecording() {
-        if self.isRecording { return }
+        if self.state != .idle { return }
         if(self.wcsession.isReachable) {
             self.wcsession.sendMessage(["message":"start"], replyHandler: nil)
         }
@@ -43,47 +58,37 @@ class SwingRecordViewModelWatch: NSObject, ObservableObject {
         } catch {
             return
         }
-        self.isRecording = true
-        self.firstTimeStamp = 0
-        self.record.removeAll()
+        self.state = .running
+        self.recordedMotion.removeAll()
         self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
             guard let data = data else {
                 print("Error: \(error!)")
                 return
             }
-            if self.firstTimeStamp == 0 {
-                self.firstTimeStamp = data.timestamp
-            }
-            let myData = MyDeviceMotion(
-                timestamp: data.timestamp - self.firstTimeStamp,
-                attitude: MyDeviceMotion.MyAttitude(
-                    pitch: String(format: "%.6f", data.attitude.pitch),
-                    yaw: String(format: "%.6f", data.attitude.yaw),
-                    roll: String(format: "%.6f", data.attitude.roll)
-                ),
-                userAcceleration: MyDeviceMotion.MyAcceleration(
-                    x: String(format: "%.6f", data.userAcceleration.x),
-                    y: String(format: "%.6f", data.userAcceleration.y),
-                    z: String(format: "%.6f", data.userAcceleration.z)
-                )
-            )
-            self.record.append(myData)
+            self.recordedMotion.append(data)
         }
     }
     func stopRecording() {
-        if !self.isRecording { return }
-        self.isRecording = false
-        self.motionManager.stopDeviceMotionUpdates()
-        if(self.wcsession.isReachable){
-            do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(self.record)
-                self.wcsession.sendMessageData(data, replyHandler: nil)
-            } catch {
-            }
+        if self.state != .running { return }
+        if(self.wcsession.isReachable) {
             self.wcsession.sendMessage(["message":"stop"], replyHandler: nil)
         }
+        self.state = .saving
+        self.motionManager.stopDeviceMotionUpdates()
         endHKSession()
+        print(self.recordedMotion.count)
+        DispatchQueue.main.async {
+            guard let tmpFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                self.state = .error
+                return
+            }
+            do {
+                try DataManager.shared.saveMotionDataToCSV(self.recordedMotion, filePath: tmpFileURL.appending(path:"swingData.csv"))
+            } catch {
+                self.state = .error
+                return
+            }
+        }
     }
 }
 
@@ -105,7 +110,7 @@ extension SwingRecordViewModelWatch: WCSessionDelegate {
     }
 }
 
-// MARK: - 헬스킷 워크아웃 세션 델리게이트
+// MARK: - 헬스킷 워크아웃 세션 
 extension SwingRecordViewModelWatch {
     func startHKSession() throws {
         let configuration = HKWorkoutConfiguration()
@@ -119,6 +124,5 @@ extension SwingRecordViewModelWatch {
     func endHKSession() {
         hksession?.end()
     }
-    
 }
     
