@@ -7,9 +7,24 @@
 
 import SwiftUI
 
+
 struct ContentView : View {
+    private enum Tab:Hashable {
+        case swing, summary, matches
+    }
+    @State private var selectedTab: Tab = .summary
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
+            NavigationStack{
+                SwingView()
+                    .navigationTitle("스윙 분석")
+            }
+            .tabItem {
+                Image(systemName: "figure.badminton")
+                Text("스윙 분석")
+            }
+            .tag(Tab.swing)
+            
             NavigationStack{
                 Summary()
                     .navigationTitle("요약")
@@ -18,6 +33,8 @@ struct ContentView : View {
                 Image(systemName: "list.bullet.clipboard")
                 Text("요약")
             }
+            .tag(Tab.summary)
+            
             NavigationStack {
                 Matches()
                     .navigationTitle("경기 분석")
@@ -27,14 +44,8 @@ struct ContentView : View {
                 Text("경기 분석")
             }
             .badge(10)
-            NavigationStack{
-                SwingView()
-                    .navigationTitle("스윙 분석")
-            }
-            .tabItem {
-                Image(systemName: "figure.badminton")
-                Text("스윙 분석")
-            }
+            .tag(Tab.matches)
+            
         }
         .background(.thinMaterial)
         .font(.headline)

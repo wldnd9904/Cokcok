@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80430D52B04E89000383D88 /* MedalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80430D42B04E89000383D88 /* MedalView.swift */; };
 		B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */; };
 		B837CA792AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */; };
 		B837CA7A2AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */; };
@@ -21,6 +22,10 @@
 		B840642F2AFF73BD00C46D41 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064262AFF73BD00C46D41 /* ElapsedTimeView.swift */; };
 		B840645F2AFF75D600C46D41 /* SavedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840645E2AFF75D600C46D41 /* SavedDataView.swift */; };
 		B84064612AFF75F000C46D41 /* MatchDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064602AFF75F000C46D41 /* MatchDataManager.swift */; };
+		B84C96EB2B035090001106C6 /* UserImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C96EA2B035090001106C6 /* UserImage.swift */; };
+		B84C96ED2B0350B5001106C6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C96EC2B0350B5001106C6 /* User.swift */; };
+		B84C96EF2B0356B3001106C6 /* RecentSwing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C96EE2B0356B3001106C6 /* RecentSwing.swift */; };
+		B84C96F12B0356C5001106C6 /* RecentMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C96F02B0356C5001106C6 /* RecentMatch.swift */; };
 		B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E6FD2AF8F9C800BF347E /* Summary.swift */; };
 		B877E7012AF8F9E900BF347E /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7002AF8F9E900BF347E /* Matches.swift */; };
 		B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* SwingView.swift */; };
@@ -42,6 +47,7 @@
 		B8A93B2D2AF62DB800A220C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B2C2AF62DB800A220C7 /* Assets.xcassets */; };
 		B8A93B302AF62DB800A220C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */; };
 		B8A93B6F2AF63D7800A220C7 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */; };
+		B8AAD0662B04921900D9213C /* SummaryBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AAD0652B04921900D9213C /* SummaryBoxView.swift */; };
 		B8C36C4F2AFA73DD00671129 /* MatchSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */; };
 		B8C36C502AFA73DD00671129 /* MatchSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */; };
 		B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C512AFA74AD00671129 /* MatchItem.swift */; };
@@ -102,6 +108,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B80430D42B04E89000383D88 /* MedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalView.swift; sourceTree = "<group>"; };
 		B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetail.swift; sourceTree = "<group>"; };
 		B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeviceMotion.swift; sourceTree = "<group>"; };
 		B840641E2AFF73BD00C46D41 /* MetricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricsView.swift; sourceTree = "<group>"; };
@@ -116,6 +123,10 @@
 		B840645E2AFF75D600C46D41 /* SavedDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedDataView.swift; sourceTree = "<group>"; };
 		B84064602AFF75F000C46D41 /* MatchDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchDataManager.swift; sourceTree = "<group>"; };
 		B84064622AFF7A4B00C46D41 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		B84C96EA2B035090001106C6 /* UserImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImage.swift; sourceTree = "<group>"; };
+		B84C96EC2B0350B5001106C6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B84C96EE2B0356B3001106C6 /* RecentSwing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSwing.swift; sourceTree = "<group>"; };
+		B84C96F02B0356C5001106C6 /* RecentMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMatch.swift; sourceTree = "<group>"; };
 		B877E6FD2AF8F9C800BF347E /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		B877E7002AF8F9E900BF347E /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		B877E7022AF8F9FD00BF347E /* SwingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingView.swift; sourceTree = "<group>"; };
@@ -144,6 +155,7 @@
 		B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		B8A93B702AF644A700A220C7 /* cokcok Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "cokcok Watch App.entitlements"; sourceTree = "<group>"; };
 		B8A93B712AF644D700A220C7 /* cokcok-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "cokcok-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B8AAD0652B04921900D9213C /* SummaryBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryBoxView.swift; sourceTree = "<group>"; };
 		B8BC891B2AFA6EF900DE6F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSummary.swift; sourceTree = "<group>"; };
 		B8C36C512AFA74AD00671129 /* MatchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchItem.swift; sourceTree = "<group>"; };
@@ -234,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				B8A885042AF901270041F092 /* SwingRecordViewModelPhone.swift */,
+				B84C96EC2B0350B5001106C6 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -242,6 +255,11 @@
 			isa = PBXGroup;
 			children = (
 				B877E6FD2AF8F9C800BF347E /* Summary.swift */,
+				B84C96EA2B035090001106C6 /* UserImage.swift */,
+				B84C96EE2B0356B3001106C6 /* RecentSwing.swift */,
+				B84C96F02B0356C5001106C6 /* RecentMatch.swift */,
+				B8AAD0652B04921900D9213C /* SummaryBoxView.swift */,
+				B80430D42B04E89000383D88 /* MedalView.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -620,8 +638,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84C96F12B0356C5001106C6 /* RecentMatch.swift in Sources */,
 				B8A8850C2AF9024C0041F092 /* VideoError.swift in Sources */,
 				B8C36C542AFAA18900671129 /* Date&Time.swift in Sources */,
+				B8AAD0662B04921900D9213C /* SummaryBoxView.swift in Sources */,
+				B84C96EB2B035090001106C6 /* UserImage.swift in Sources */,
 				B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */,
 				B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */,
 				B8A885052AF901270041F092 /* SwingRecordViewModelPhone.swift in Sources */,
@@ -633,10 +654,13 @@
 				B8C36C4F2AFA73DD00671129 /* MatchSummary.swift in Sources */,
 				B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */,
 				B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */,
+				B80430D52B04E89000383D88 /* MedalView.swift in Sources */,
 				B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */,
 				B8A8850A2AF9020B0041F092 /* AVPreview.swift in Sources */,
 				B837CA792AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */,
 				B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */,
+				B84C96ED2B0350B5001106C6 /* User.swift in Sources */,
+				B84C96EF2B0356B3001106C6 /* RecentSwing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
