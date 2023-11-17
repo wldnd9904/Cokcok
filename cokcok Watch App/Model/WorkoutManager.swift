@@ -115,12 +115,20 @@ class WorkoutManager: NSObject, ObservableObject {
     func pause() {
         print("pause")
         state = .pause
+        motionManager.stopDeviceMotionUpdates()
         session?.pause()
     }
 
     func resume() {
         print("resume")
         state = .running
+        motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
+            guard let data = data else {
+                print("Error: \(error!)")
+                return
+            }
+            self.recordedMotion.append(data)
+        }
         session?.resume()
     }
 

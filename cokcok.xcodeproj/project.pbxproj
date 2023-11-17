@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B80430D52B04E89000383D88 /* MedalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80430D42B04E89000383D88 /* MedalView.swift */; };
 		B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */; };
-		B836316F2B00DB7200797755 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B836316E2B00DB7200797755 /* CountDownView.swift */; };
 		B837CA792AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */; };
 		B837CA7A2AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */; };
 		B84064272AFF73BD00C46D41 /* MetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840641E2AFF73BD00C46D41 /* MetricsView.swift */; };
@@ -22,19 +21,16 @@
 		B840642E2AFF73BD00C46D41 /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064252AFF73BD00C46D41 /* ActivityRingsView.swift */; };
 		B840642F2AFF73BD00C46D41 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064262AFF73BD00C46D41 /* ElapsedTimeView.swift */; };
 		B840645F2AFF75D600C46D41 /* SavedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840645E2AFF75D600C46D41 /* SavedDataView.swift */; };
-<<<<<<< HEAD
-		B84064612AFF75F000C46D41 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064602AFF75F000C46D41 /* DataManager.swift */; };
-		B84064632AFFB7DF00C46D41 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064602AFF75F000C46D41 /* DataManager.swift */; };
-=======
-		B84064612AFF75F000C46D41 /* MatchDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064602AFF75F000C46D41 /* MatchDataManager.swift */; };
 		B84C96EB2B035090001106C6 /* UserImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C96EA2B035090001106C6 /* UserImage.swift */; };
 		B84C96ED2B0350B5001106C6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C96EC2B0350B5001106C6 /* User.swift */; };
 		B84C96EF2B0356B3001106C6 /* RecentSwing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C96EE2B0356B3001106C6 /* RecentSwing.swift */; };
 		B84C96F12B0356C5001106C6 /* RecentMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C96F02B0356C5001106C6 /* RecentMatch.swift */; };
->>>>>>> feature/summary
 		B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E6FD2AF8F9C800BF347E /* Summary.swift */; };
 		B877E7012AF8F9E900BF347E /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7002AF8F9E900BF347E /* Matches.swift */; };
 		B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* SwingView.swift */; };
+		B89B63672B0723B8009B46EA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89B63662B0723B8009B46EA /* DataManager.swift */; };
+		B89B63682B07241A009B46EA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89B63662B0723B8009B46EA /* DataManager.swift */; };
+		B89B636A2B072435009B46EA /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89B63692B072435009B46EA /* CountDownView.swift */; };
 		B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885022AF900740041F092 /* SwingRecordView.swift */; };
 		B8A885052AF901270041F092 /* SwingRecordViewModelPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885042AF901270041F092 /* SwingRecordViewModelPhone.swift */; };
 		B8A885082AF901C70041F092 /* AVAuthorizationChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885072AF901C70041F092 /* AVAuthorizationChecker.swift */; };
@@ -116,7 +112,6 @@
 /* Begin PBXFileReference section */
 		B80430D42B04E89000383D88 /* MedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalView.swift; sourceTree = "<group>"; };
 		B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetail.swift; sourceTree = "<group>"; };
-		B836316E2B00DB7200797755 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 		B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDeviceMotion.swift; sourceTree = "<group>"; };
 		B840641E2AFF73BD00C46D41 /* MetricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricsView.swift; sourceTree = "<group>"; };
 		B840641F2AFF73BD00C46D41 /* SummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
@@ -128,7 +123,6 @@
 		B84064252AFF73BD00C46D41 /* ActivityRingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityRingsView.swift; sourceTree = "<group>"; };
 		B84064262AFF73BD00C46D41 /* ElapsedTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
 		B840645E2AFF75D600C46D41 /* SavedDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedDataView.swift; sourceTree = "<group>"; };
-		B84064602AFF75F000C46D41 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		B84064622AFF7A4B00C46D41 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B84C96EA2B035090001106C6 /* UserImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImage.swift; sourceTree = "<group>"; };
 		B84C96EC2B0350B5001106C6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -137,6 +131,8 @@
 		B877E6FD2AF8F9C800BF347E /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		B877E7002AF8F9E900BF347E /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		B877E7022AF8F9FD00BF347E /* SwingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingView.swift; sourceTree = "<group>"; };
+		B89B63662B0723B8009B46EA /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B89B63692B072435009B46EA /* CountDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountDownView.swift; path = "cokcok Watch App/Views/CountDownView.swift"; sourceTree = SOURCE_ROOT; };
 		B8A885022AF900740041F092 /* SwingRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordView.swift; sourceTree = "<group>"; };
 		B8A885042AF901270041F092 /* SwingRecordViewModelPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordViewModelPhone.swift; sourceTree = "<group>"; };
 		B8A885072AF901C70041F092 /* AVAuthorizationChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAuthorizationChecker.swift; sourceTree = "<group>"; };
@@ -219,6 +215,7 @@
 		B840641D2AFF73BD00C46D41 /* MatchRecord */ = {
 			isa = PBXGroup;
 			children = (
+				B89B63692B072435009B46EA /* CountDownView.swift */,
 				B840641E2AFF73BD00C46D41 /* MetricsView.swift */,
 				B840641F2AFF73BD00C46D41 /* SummaryView.swift */,
 				B84064202AFF73BD00C46D41 /* Counter2.swift */,
@@ -317,7 +314,6 @@
 				B8A885152AF90AE20041F092 /* SwingRecord */,
 				B8A93B2A2AF62DB700A220C7 /* StartView.swift */,
 				B840641D2AFF73BD00C46D41 /* MatchRecord */,
-				B836316E2B00DB7200797755 /* CountDownView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -342,7 +338,7 @@
 		B8A8851A2AF90E800041F092 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				B84064602AFF75F000C46D41 /* DataManager.swift */,
+				B89B63662B0723B8009B46EA /* DataManager.swift */,
 				B837CA782AFA0AE800AB1595 /* MyDeviceMotion.swift */,
 				B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */,
 			);
@@ -647,6 +643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84C96F12B0356C5001106C6 /* RecentMatch.swift in Sources */,
+				B89B63672B0723B8009B46EA /* DataManager.swift in Sources */,
 				B8A8850C2AF9024C0041F092 /* VideoError.swift in Sources */,
 				B8C36C542AFAA18900671129 /* Date&Time.swift in Sources */,
 				B8AAD0662B04921900D9213C /* SummaryBoxView.swift in Sources */,
@@ -656,7 +653,6 @@
 				B8A885052AF901270041F092 /* SwingRecordViewModelPhone.swift in Sources */,
 				B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
-				B84064632AFFB7DF00C46D41 /* DataManager.swift in Sources */,
 				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,
 				B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */,
 				B8A885082AF901C70041F092 /* AVAuthorizationChecker.swift in Sources */,
@@ -691,7 +687,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B836316F2B00DB7200797755 /* CountDownView.swift in Sources */,
+				B89B636A2B072435009B46EA /* CountDownView.swift in Sources */,
 				B840645F2AFF75D600C46D41 /* SavedDataView.swift in Sources */,
 				B8A93B2B2AF62DB700A220C7 /* StartView.swift in Sources */,
 				B8A93B292AF62DB700A220C7 /* cokcokApp.swift in Sources */,
@@ -699,9 +695,9 @@
 				B84064292AFF73BD00C46D41 /* Counter2.swift in Sources */,
 				B8A93B6F2AF63D7800A220C7 /* WorkoutManager.swift in Sources */,
 				B840642D2AFF73BD00C46D41 /* ScoreView.swift in Sources */,
+				B89B63682B07241A009B46EA /* DataManager.swift in Sources */,
 				B837CA7A2AFA0AE800AB1595 /* MyDeviceMotion.swift in Sources */,
 				B840642B2AFF73BD00C46D41 /* ControlsView.swift in Sources */,
-				B84064612AFF75F000C46D41 /* DataManager.swift in Sources */,
 				B840642E2AFF73BD00C46D41 /* ActivityRingsView.swift in Sources */,
 				B8A885192AF90E230041F092 /* SwingRecordViewModelWatch.swift in Sources */,
 				B8A885172AF90B0E0041F092 /* SwingRecordWatchView.swift in Sources */,

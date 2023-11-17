@@ -33,7 +33,7 @@ class SwingRecordViewModelWatch: NSObject, ObservableObject {
     var motionManager: CMMotionManager
     var queue: OperationQueue
     let healthStore = HKHealthStore()
-    private var recordedMotion: [CMDeviceMotion] = []
+    var recordedMotion: [CMDeviceMotion] = []
     
     @Published var state: SwingRecordState = .idle
     @Published var livePreviewImageView: UIImage = UIImage()

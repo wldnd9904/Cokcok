@@ -10,24 +10,21 @@ struct SwingRecordWatchView: View {
                 .rotationEffect(Angle(degrees: 90))
                 .scaleEffect(x: -1, y: 1)
             VStack {
-                Text("Pitch: \(model.record.last?.attitude.pitch ?? "0")")
-                Text("Yaw: \(model.record.last?.attitude.yaw ?? "0")")
-                Text("Roll: \(model.record.last?.attitude.roll ?? "0")")
-                Text("Data Length: \(model.record.count)")
+                Text("Data Length: \(model.recordedMotion.count)")
                 Button(action: {
-                    if !model.isRecording {
+                    if model.state == .idle {
                         model.startRecording()
                     } else {
                         model.stopRecording()
                     }
                 }) {
-                    Text(model.isRecording ? "Stop Recording" : "Start Recording")
+                    Text(model.state == .running ? "Stop Recording" : "Start Recording")
                 }
             }
         }.onDisappear(perform: {
             model.stopRecording()
         })
-        .navigationBarBackButtonHidden(model.isRecording)
+        .navigationBarBackButtonHidden(model.state == .running)
     }
 }
 
