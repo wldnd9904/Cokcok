@@ -53,18 +53,18 @@ struct MatchDetail: View {
                 }
                 HStack() {
                     Spacer()
-                    SwingItem(number: 11, name: "포어헤드 언더", color: .blue)
+                    StrokeItem(number: 11, name: "포어헤드 언더", color: .blue)
                     Spacer()
-                    SwingItem(number: 25, name: "포어핸드 하이", color: .green)
+                    StrokeItem(number: 25, name: "포어핸드 하이", color: .green)
                     Spacer()
-                    SwingItem(number: 4, name: "스매시", color: .red)
+                    StrokeItem(number: 4, name: "스매시", color: .red)
                     Spacer()
                 }
                 HStack {
                     Spacer()
-                    SwingItem(number: 19, name: "백핸드 언더", color: .yellow)
+                    StrokeItem(number: 19, name: "백핸드 언더", color: .yellow)
                     Spacer()
-                    SwingItem(number: 1, name: "백핸드 하이", color: .orange)
+                    StrokeItem(number: 1, name: "백핸드 하이", color: .orange)
                     Spacer()
                 }
             }
@@ -96,7 +96,7 @@ struct DetailItem: View {
     }
 }
 
-struct SwingItem: View {
+private struct StrokeItem: View {
     var number: Int
     var name: String
     var color: Color

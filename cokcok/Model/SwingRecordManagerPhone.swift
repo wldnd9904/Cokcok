@@ -9,8 +9,24 @@ import Foundation
 import WatchConnectivity
 import AVFoundation
 import UIKit
+import SwiftUI
 
-class SwingRecordViewModelPhone: NSObject, ObservableObject {
+enum SwingRecordManagerPhoneState {
+    case idle, running, saving, recieving, sending, sent,  error
+    var message: String {
+        switch(self) {
+        case .idle:"대기"
+        case .running:"경기 기록 중"
+        case .saving:"영상을 저장하는 중"
+        case .sending:"영상과 손목 데이터를 서버에 전송하는 중"
+        case .recieving:"손목 데이터 수신 중"
+        case .sent:"전송 완료"
+        case .error:"오류가 발생했습니다. 처음으로 돌아갑니다."
+        }
+    }
+}
+
+class SwingRecordManagerPhone: NSObject, ObservableObject {
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -19,8 +35,9 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
     }()
     
     @Published var preview: AVPreview?
-    @Published var isRecording: Bool = false
+    @Published var state: SwingRecordManagerPhoneState = .idle
     @Published var errorMessage: String = ""
+    @Published var isReachable: Bool = false
     let wcsession: WCSession
     let avsession: AVCaptureSession
     var folderName: String?
@@ -32,6 +49,7 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
     var videoOutput: AVCaptureVideoDataOutput
     var backCameraInput: AVCaptureInput!
     var frontCameraInput: AVCaptureInput!
+    
     
     override init() {
         self.avsession = AVCaptureSession()
@@ -66,7 +84,7 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
     }
     
     func startRecording() {
-        if self.isRecording { return }
+        if self.state != .idle { return }
         guard wcsession.isReachable else {
             print("Cannot find reachable Apple Watch")
             errorMessage = "Cannot find reachable Apple Watch"
@@ -78,7 +96,7 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
             return
         }
         self.wcsession.sendMessage(["message":"start"], replyHandler: nil)
-        self.isRecording = true
+        self.state = .running
         
         // Documents 디렉토리 경로 가져오기
         let fileManager = FileManager.default
@@ -103,11 +121,11 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
     }
     
     func stopRecording() {
-        if !self.isRecording { return }
+        if self.state != .running { return }
         if(self.wcsession.isReachable) {
             self.wcsession.sendMessage(["message":"stop"], replyHandler: nil)
         }
-        self.isRecording = false
+        self.state = .saving
         guard let output = self.avsession.movieFileOutput else {
             print("Cannot find movie file output")
             return
@@ -117,16 +135,18 @@ class SwingRecordViewModelPhone: NSObject, ObservableObject {
 }
 
 // MARK: - 애플워치 세션 델리게이트
-extension SwingRecordViewModelPhone: WCSessionDelegate {
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        
+extension SwingRecordManagerPhone: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {    }
+    func sessionDidBecomeInactive(_ session: WCSession) {    }
+    func sessionDidDeactivate(_ session: WCSession) {    }
+    
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        withAnimation{
+            self.isReachable = session.isReachable
+        }
     }
-    func sessionDidBecomeInactive(_ session: WCSession) {
-        
-    }
-    func sessionDidDeactivate(_ session: WCSession) {
-        
-    }
+    
+    //애플워치로부터 시작/종료 메시지 수신
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         DispatchQueue.main.async {
             switch(message["message"] as? String) {
@@ -136,6 +156,7 @@ extension SwingRecordViewModelPhone: WCSessionDelegate {
             }
         }
     }
+    //애플워치로부터 스트림 데이터 수신(사용안함)
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
         // 데이터를 파일로 저장
         DispatchQueue.main.async {
@@ -169,20 +190,19 @@ extension SwingRecordViewModelPhone: WCSessionDelegate {
 }
 
 // MARK: - 녹화 파일 아웃풋 델리게이트
-extension SwingRecordViewModelPhone: AVCaptureFileOutputRecordingDelegate {
+extension SwingRecordManagerPhone: AVCaptureFileOutputRecordingDelegate {
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         print("Video record is finished!")
     }
 }
 
 // MARK: 카메라 화면 애플워치와 공유
-extension SwingRecordViewModelPhone: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension SwingRecordManagerPhone: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         // Get TimeStamp
         let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
         let timestampInSec = timestamp.seconds
         // Check timestamp interval
-        if(isRecording) { return }
         guard timestampInSec - self.prevTimestamp > self.minFrameInterval else {
             return
         }
@@ -216,7 +236,7 @@ extension SwingRecordViewModelPhone: AVCaptureVideoDataOutputSampleBufferDelegat
 
 
 // MARK: - 카메라 화면 전환
-extension SwingRecordViewModelPhone {
+extension SwingRecordManagerPhone {
     func switchCameraInput() { //카메라 화면 전환
         //이렇게 값 변경할때 필요한 begin, commit!!
         avsession.beginConfiguration()

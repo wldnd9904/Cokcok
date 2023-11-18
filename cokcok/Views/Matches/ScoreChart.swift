@@ -56,7 +56,7 @@ struct ScoreChart: View {
         .frame(height:200)
 }
 
-struct MyLineMark: ChartContent {
+private struct MyLineMark: ChartContent {
     let x: Int
     let y: Int
     let div: String

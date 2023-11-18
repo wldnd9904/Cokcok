@@ -32,7 +32,7 @@
 		B89B63682B07241A009B46EA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89B63662B0723B8009B46EA /* DataManager.swift */; };
 		B89B636A2B072435009B46EA /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89B63692B072435009B46EA /* CountDownView.swift */; };
 		B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885022AF900740041F092 /* SwingRecordView.swift */; };
-		B8A885052AF901270041F092 /* SwingRecordViewModelPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885042AF901270041F092 /* SwingRecordViewModelPhone.swift */; };
+		B8A885052AF901270041F092 /* SwingRecordManagerPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885042AF901270041F092 /* SwingRecordManagerPhone.swift */; };
 		B8A885082AF901C70041F092 /* AVAuthorizationChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885072AF901C70041F092 /* AVAuthorizationChecker.swift */; };
 		B8A8850A2AF9020B0041F092 /* AVPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885092AF9020B0041F092 /* AVPreview.swift */; };
 		B8A8850C2AF9024C0041F092 /* VideoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A8850B2AF9024C0041F092 /* VideoError.swift */; };
@@ -50,6 +50,9 @@
 		B8A93B302AF62DB800A220C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B2F2AF62DB800A220C7 /* Preview Assets.xcassets */; };
 		B8A93B6F2AF63D7800A220C7 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */; };
 		B8AAD0662B04921900D9213C /* SummaryBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AAD0652B04921900D9213C /* SummaryBoxView.swift */; };
+		B8AB85032B089B1200361F86 /* SwingTrendChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB85022B089B1200361F86 /* SwingTrendChart.swift */; };
+		B8AB85052B089CA400361F86 /* SwingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB85042B089CA400361F86 /* SwingItem.swift */; };
+		B8AB85072B089D2F00361F86 /* SwingAnalyze.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB85062B089D2F00361F86 /* SwingAnalyze.swift */; };
 		B8C36C4F2AFA73DD00671129 /* MatchSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */; };
 		B8C36C502AFA73DD00671129 /* MatchSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */; };
 		B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C512AFA74AD00671129 /* MatchItem.swift */; };
@@ -134,7 +137,7 @@
 		B89B63662B0723B8009B46EA /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		B89B63692B072435009B46EA /* CountDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountDownView.swift; path = "cokcok Watch App/Views/CountDownView.swift"; sourceTree = SOURCE_ROOT; };
 		B8A885022AF900740041F092 /* SwingRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordView.swift; sourceTree = "<group>"; };
-		B8A885042AF901270041F092 /* SwingRecordViewModelPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordViewModelPhone.swift; sourceTree = "<group>"; };
+		B8A885042AF901270041F092 /* SwingRecordManagerPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordManagerPhone.swift; sourceTree = "<group>"; };
 		B8A885072AF901C70041F092 /* AVAuthorizationChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAuthorizationChecker.swift; sourceTree = "<group>"; };
 		B8A885092AF9020B0041F092 /* AVPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPreview.swift; sourceTree = "<group>"; };
 		B8A8850B2AF9024C0041F092 /* VideoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoError.swift; sourceTree = "<group>"; };
@@ -159,6 +162,9 @@
 		B8A93B702AF644A700A220C7 /* cokcok Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "cokcok Watch App.entitlements"; sourceTree = "<group>"; };
 		B8A93B712AF644D700A220C7 /* cokcok-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "cokcok-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B8AAD0652B04921900D9213C /* SummaryBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryBoxView.swift; sourceTree = "<group>"; };
+		B8AB85022B089B1200361F86 /* SwingTrendChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingTrendChart.swift; sourceTree = "<group>"; };
+		B8AB85042B089CA400361F86 /* SwingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingItem.swift; sourceTree = "<group>"; };
+		B8AB85062B089D2F00361F86 /* SwingAnalyze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingAnalyze.swift; sourceTree = "<group>"; };
 		B8BC891B2AFA6EF900DE6F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSummary.swift; sourceTree = "<group>"; };
 		B8C36C512AFA74AD00671129 /* MatchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchItem.swift; sourceTree = "<group>"; };
@@ -249,8 +255,9 @@
 		B877E6FB2AF8F9B400BF347E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B8A885042AF901270041F092 /* SwingRecordViewModelPhone.swift */,
+				B8A885042AF901270041F092 /* SwingRecordManagerPhone.swift */,
 				B84C96EC2B0350B5001106C6 /* User.swift */,
+				B8AB85062B089D2F00361F86 /* SwingAnalyze.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,8 +290,10 @@
 			isa = PBXGroup;
 			children = (
 				B877E7022AF8F9FD00BF347E /* SwingView.swift */,
+				B8AB85042B089CA400361F86 /* SwingItem.swift */,
 				B8A885022AF900740041F092 /* SwingRecordView.swift */,
 				B8A885092AF9020B0041F092 /* AVPreview.swift */,
+				B8AB85022B089B1200361F86 /* SwingTrendChart.swift */,
 			);
 			path = Swing;
 			sourceTree = "<group>";
@@ -647,15 +656,18 @@
 				B8A8850C2AF9024C0041F092 /* VideoError.swift in Sources */,
 				B8C36C542AFAA18900671129 /* Date&Time.swift in Sources */,
 				B8AAD0662B04921900D9213C /* SummaryBoxView.swift in Sources */,
+				B8AB85072B089D2F00361F86 /* SwingAnalyze.swift in Sources */,
 				B84C96EB2B035090001106C6 /* UserImage.swift in Sources */,
 				B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */,
 				B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */,
-				B8A885052AF901270041F092 /* SwingRecordViewModelPhone.swift in Sources */,
+				B8A885052AF901270041F092 /* SwingRecordManagerPhone.swift in Sources */,
 				B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */,
+				B8AB85032B089B1200361F86 /* SwingTrendChart.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
 				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,
 				B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */,
 				B8A885082AF901C70041F092 /* AVAuthorizationChecker.swift in Sources */,
+				B8AB85052B089CA400361F86 /* SwingItem.swift in Sources */,
 				B8C36C4F2AFA73DD00671129 /* MatchSummary.swift in Sources */,
 				B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */,
 				B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */,
