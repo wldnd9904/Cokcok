@@ -79,11 +79,11 @@ struct Summary: View {
         .padding()
         .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
         .toolbar{
-            UserImage(user:User.demo, width: 30, height: 30)
-                .padding()
-                .onTapGesture {
-                    showMyPage.toggle()
-                }
+            Button {
+                showMyPage.toggle()
+            } label: {
+                Label("사용자 프로필", systemImage: "person.crop.circle")
+            }
         }
     }
 }

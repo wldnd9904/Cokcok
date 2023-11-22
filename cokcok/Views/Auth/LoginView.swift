@@ -15,13 +15,14 @@ struct LoginView: View {
 
     var body: some View {
         ZStack{
-            Color(red:46/255, green:204/255, blue: 113/255)
             VStack {
+                Spacer()
                 Spacer()
                 
                 Text("COKCOK")
-                    .font(.system(size: 50, weight: .black, design: .default))
-                    .foregroundColor(.white)
+                    .font(.system(size: 70, weight: .black, design: .default))
+                    .foregroundColor(
+                        Color(red:46/255, green:204/255, blue: 113/255))
                 
                 Spacer()
                 
@@ -32,10 +33,9 @@ struct LoginView: View {
                     HStack{
                         Image("google")
                             .resizable()
-                            .foregroundColor(.white)
                             .frame(width:25,height:25)
-                            .padding(.top,7)
                         Text("Google로 로그인")
+                            .frame(width:150)
                     }
                 }
                 .font(.headline)
@@ -44,6 +44,10 @@ struct LoginView: View {
                 .frame(width: 240, height: 50)
                 .background(.white)
                 .cornerRadius(15)
+                .overlay{
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color(red:31/255, green:31/255, blue: 31/255), lineWidth: 0.5)
+                }
                 
                 Button {
                     isShowingProgressView = true
@@ -52,11 +56,9 @@ struct LoginView: View {
                     HStack{
                         Image("kakao")
                             .resizable()
-                            .foregroundColor(.white)
                             .frame(width:25,height:25)
-                            .padding(.top,7)
                         Text("카카오로 로그인")
-                            .padding(.trailing,3)
+                            .frame(width:150)
                     }
                 }
                 .font(.headline)
@@ -72,8 +74,11 @@ struct LoginView: View {
                 } label:{
                     HStack{
                         Image(systemName: "apple.logo")
-                            .scaleEffect(1.5)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width:25,height:25)
                         Text(" Apple로 로그인")
+                            .frame(width:150)
                     }
                 }
                 .font(.headline)
@@ -84,6 +89,7 @@ struct LoginView: View {
                 .cornerRadius(15.0)
                 
                 
+                Spacer()
                 Spacer()
             }
         }
