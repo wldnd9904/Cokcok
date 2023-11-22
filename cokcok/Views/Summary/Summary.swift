@@ -16,6 +16,7 @@ struct Row: Identifiable, Hashable {
 }
 struct Summary: View {
     @State var path: [String] = []
+    @Binding var showMyPage:Bool
     var columns = [
         GridItem(.adaptive(minimum: 180, maximum: 300), spacing: 8)
     ]
@@ -80,6 +81,9 @@ struct Summary: View {
         .toolbar{
             UserImage(user:User.demo, width: 30, height: 30)
                 .padding()
+                .onTapGesture {
+                    showMyPage.toggle()
+                }
         }
     }
 }
@@ -114,7 +118,7 @@ private struct SummaryValueView: View {
 
 #Preview {
     NavigationStack{
-        Summary()
+        Summary(showMyPage: .constant(false))
             .navigationTitle("요약")
     }
 }
