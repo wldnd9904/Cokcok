@@ -34,11 +34,18 @@ class DataManager {
         }
     }
     // CSV로 저장하는 함수
-    func saveMotionDataToCSV(_ motionData: [CMDeviceMotion], filePath: URL) throws {
+    func saveMotionDataToCSV(_ motionData: [CMDeviceMotion], filePath: URL, xyReversed:Bool = false) throws {
         var csvText = "Timestamp,AccelerationX,AccelerationY,AccelerationZ,Pitch,Yaw,Roll,RRX,RRY,RRZ\n"
         for snapshot in motionData {
-            let newLine = "\(snapshot.timestamp),\(snapshot.userAcceleration.x),\(snapshot.userAcceleration.y),\(snapshot.userAcceleration.z),\(snapshot.attitude.pitch),\(snapshot.attitude.yaw),\(snapshot.attitude.roll),\(snapshot.rotationRate.x),\(snapshot.rotationRate.y),\(snapshot.rotationRate.z)\n"
-            csvText.append(newLine)
+            if xyReversed {
+                // x, y, pitch, yaw, rotationRate.x, rotationRate.y 등을 반전
+                let newLine = "\(snapshot.timestamp),\(-snapshot.userAcceleration.x),\(-snapshot.userAcceleration.y),\(snapshot.userAcceleration.z),\(-snapshot.attitude.pitch),\(-snapshot.attitude.yaw),\(snapshot.attitude.roll),\(-snapshot.rotationRate.x),\(-snapshot.rotationRate.y),\(snapshot.rotationRate.z)\n"
+                csvText.append(newLine)
+            } else {
+                // 반전하지 않음
+                let newLine = "\(snapshot.timestamp),\(snapshot.userAcceleration.x),\(snapshot.userAcceleration.y),\(snapshot.userAcceleration.z),\(snapshot.attitude.pitch),\(snapshot.attitude.yaw),\(snapshot.attitude.roll),\(snapshot.rotationRate.x),\(snapshot.rotationRate.y),\(snapshot.rotationRate.z)\n"
+                csvText.append(newLine)
+            }
         }
 
         do {

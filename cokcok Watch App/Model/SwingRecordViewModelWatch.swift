@@ -10,6 +10,7 @@ import WatchConnectivity
 import CoreMotion
 import HealthKit
 import SwiftUI
+import WatchKit
 
 enum SwingRecordState {
     case idle, running, saving, sending, sent, saved, error, ended
@@ -83,7 +84,7 @@ class SwingRecordViewModelWatch: NSObject, ObservableObject {
                 return
             }
             do {
-                try DataManager.shared.saveMotionDataToCSV(self.recordedMotion, filePath: tmpFileURL.appending(path:"swingData.csv"))
+                try DataManager.shared.saveMotionDataToCSV(self.recordedMotion, filePath: tmpFileURL.appending(path:"swingData.csv"), xyReversed: WKInterfaceDevice.current().crownOrientation == .left)
             } catch {
                 self.state = .error
                 return

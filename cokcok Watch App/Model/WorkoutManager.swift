@@ -8,6 +8,7 @@
 import Foundation
 import HealthKit
 import CoreMotion
+import WatchKit
 
 enum WorkoutState {
     case idle, running, pause, saving1, saving2, sending, sent, saved, error, ended
@@ -266,7 +267,7 @@ extension WorkoutManager {
         do {
             try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
             try DataManager.shared.saveToJSONFile(matchSummary, to: directoryURL.appending(path:"matchSummary.json"))
-            try DataManager.shared.saveMotionDataToCSV(self.recordedMotion, filePath: directoryURL.appending(path:"motionData.csv"))
+            try DataManager.shared.saveMotionDataToCSV(self.recordedMotion, filePath: directoryURL.appending(path:"motionData.csv"), xyReversed: WKInterfaceDevice.current().crownOrientation == .left)
         } catch {
             self.state = .error
             return
