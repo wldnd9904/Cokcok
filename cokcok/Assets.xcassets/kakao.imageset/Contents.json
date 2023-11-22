@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "kakao_login_medium_narrow.png",
+      "filename" : "kakao.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "kakao_login_large_narrow.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

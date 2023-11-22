@@ -67,7 +67,7 @@ struct ContentView : View {
             #endif
         }
         .sheet(isPresented: $showMyPage, content: {
-            MyPage()
+            MyPage(isPresented: $showMyPage)
         })
     }
 }

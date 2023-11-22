@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "appleid_button@1x.png",
+      "filename" : "google.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "appleid_button@2x-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
