@@ -28,7 +28,7 @@ enum SwingRecordState {
     }
 }
 
-class SwingRecordViewModelWatch: NSObject, ObservableObject {
+class SwingRecordManagerWatch: NSObject, ObservableObject {
     var wcsession: WCSession
     var hksession: HKWorkoutSession?
     var motionManager: CMMotionManager
@@ -36,6 +36,7 @@ class SwingRecordViewModelWatch: NSObject, ObservableObject {
     let healthStore = HKHealthStore()
     var recordedMotion: [CMDeviceMotion] = []
     
+    @Published var isReachable: Bool = false
     @Published var state: SwingRecordState = .idle
     @Published var livePreviewImageView: UIImage = UIImage()
     
@@ -46,9 +47,15 @@ class SwingRecordViewModelWatch: NSObject, ObservableObject {
         self.wcsession = session
         super.init()
         self.wcsession.delegate = self
+        self.isReachable = wcsession.isReachable
         session.activate()
+        self.wcsession.sendMessage(["message":"swingrecord"], replyHandler: nil)
+        print("스윙레코드매니저 생성됨")
     }
-
+    deinit{
+        self.wcsession.delegate = nil
+        print("스윙레코드매니저 제거됨")
+    }
     func startRecording() {
         if self.state != .idle { return }
         if(self.wcsession.isReachable) {
@@ -89,30 +96,52 @@ class SwingRecordViewModelWatch: NSObject, ObservableObject {
                 self.state = .error
                 return
             }
+            // iOS 앱으로 파일 전송
+            self.state = .sending
+            self.wcsession.transferFile(tmpFileURL.appending(path:"swingData.csv"), metadata: nil)
         }
     }
 }
 
 // MARK: - 애플워치 세션 델리게이트
-extension SwingRecordViewModelWatch: WCSessionDelegate {
+extension SwingRecordManagerWatch: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let data = message["preview"] as? Data, let image = UIImage(data: data) {
+            print("프레임 받음")
+            self.livePreviewImageView = image
+        }
+    }
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         DispatchQueue.main.async {
-            if let data = message["preview"] as? Data, let image = UIImage(data: data) {
-                self.livePreviewImageView = image
-            }
             switch(message["message"] as? String) {
-            case "start" : self.startRecording()
-            case "stop" : self.stopRecording()
-            default: break
+            case "start" :
+                self.startRecording()
+                replyHandler(["result": "ok"])
+            case "stop" :
+                self.stopRecording()
+                replyHandler(["result": "ok"])
+            case "check" :
+                replyHandler(["result": "ok"])
+            case "recieved" :
+                if self.state == .sending {
+                    self.state = .idle
+                    replyHandler(["result": "ok"])
+                }
+            default:
+                replyHandler(["result": "no"])
+                
             }
         }
+    }
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        self.isReachable = session.isReachable
     }
 }
 
 // MARK: - 헬스킷 워크아웃 세션 
-extension SwingRecordViewModelWatch {
+extension SwingRecordManagerWatch {
     func startHKSession() throws {
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .badminton

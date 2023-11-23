@@ -40,7 +40,7 @@
 		B8A8850C2AF9024C0041F092 /* VideoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A8850B2AF9024C0041F092 /* VideoError.swift */; };
 		B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A8850E2AF9052E0041F092 /* AVCaptureSession+AddIO.swift */; };
 		B8A885172AF90B0E0041F092 /* SwingRecordWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885162AF90B0E0041F092 /* SwingRecordWatchView.swift */; };
-		B8A885192AF90E230041F092 /* SwingRecordViewModelWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885182AF90E230041F092 /* SwingRecordViewModelWatch.swift */; };
+		B8A885192AF90E230041F092 /* SwingRecordManagerWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A885182AF90E230041F092 /* SwingRecordManagerWatch.swift */; };
 		B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B002AF62DB600A220C7 /* cokcokApp.swift */; };
 		B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A93B022AF62DB600A220C7 /* ContentView.swift */; };
 		B8A93B052AF62DB700A220C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A93B042AF62DB700A220C7 /* Assets.xcassets */; };
@@ -158,7 +158,7 @@
 		B8A8850B2AF9024C0041F092 /* VideoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoError.swift; sourceTree = "<group>"; };
 		B8A8850E2AF9052E0041F092 /* AVCaptureSession+AddIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCaptureSession+AddIO.swift"; sourceTree = "<group>"; };
 		B8A885162AF90B0E0041F092 /* SwingRecordWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordWatchView.swift; sourceTree = "<group>"; };
-		B8A885182AF90E230041F092 /* SwingRecordViewModelWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordViewModelWatch.swift; sourceTree = "<group>"; };
+		B8A885182AF90E230041F092 /* SwingRecordManagerWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordManagerWatch.swift; sourceTree = "<group>"; };
 		B8A93AFD2AF62DB600A220C7 /* cokcok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cokcok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A93B002AF62DB600A220C7 /* cokcokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cokcokApp.swift; sourceTree = "<group>"; };
 		B8A93B022AF62DB600A220C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */,
-				B8A885182AF90E230041F092 /* SwingRecordViewModelWatch.swift */,
+				B8A885182AF90E230041F092 /* SwingRecordManagerWatch.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -766,7 +766,7 @@
 				B89B63682B07241A009B46EA /* DataManager.swift in Sources */,
 				B840642B2AFF73BD00C46D41 /* ControlsView.swift in Sources */,
 				B840642E2AFF73BD00C46D41 /* ActivityRingsView.swift in Sources */,
-				B8A885192AF90E230041F092 /* SwingRecordViewModelWatch.swift in Sources */,
+				B8A885192AF90E230041F092 /* SwingRecordManagerWatch.swift in Sources */,
 				B8A885172AF90B0E0041F092 /* SwingRecordWatchView.swift in Sources */,
 				B84064282AFF73BD00C46D41 /* SummaryView.swift in Sources */,
 				B840642F2AFF73BD00C46D41 /* ElapsedTimeView.swift in Sources */,

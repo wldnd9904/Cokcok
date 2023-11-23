@@ -38,6 +38,8 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
     @Published var state: SwingRecordManagerPhoneState = .idle
     @Published var errorMessage: String = ""
     @Published var isReachable: Bool = false
+    @Published var isButtonActivated: Bool = true
+    
     let wcsession: WCSession
     let avsession: AVCaptureSession
     var folderName: String?
@@ -61,6 +63,7 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
         self.wcsession.delegate = self
         self.videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
         self.wcsession.activate()
+        self.isReachable = self.wcsession.isReachable
         
         Task(priority: .background) {
             switch await AVAuthorizationChecker.checkCaptureAuthorizationStatus() {
@@ -86,6 +89,7 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
     func startRecording() {
         if self.state != .idle { return }
         guard wcsession.isReachable else {
+            self.isReachable = false
             print("Cannot find reachable Apple Watch")
             errorMessage = "Cannot find reachable Apple Watch"
             return
@@ -95,42 +99,82 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
             errorMessage = "Cannot find movie file output"
             return
         }
-        self.wcsession.sendMessage(["message":"start"], replyHandler: nil)
-        self.state = .running
-        
-        // Documents 디렉토리 경로 가져오기
-        let fileManager = FileManager.default
-        folderName = "swing-\(Date())"
-        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            print("Cannot access local file domain")
-            errorMessage = "Cannot access local file domain"
-            return
-        }
-        do {
-            // 폴더 경로 설정
-            let folderPath = documentsDirectory.appendingPathComponent(folderName!)
-            try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true, attributes: nil)
-            let filePath = folderPath.appendingPathComponent("Video.mp4")
-            errorMessage = "저장 경로: \(filePath)"
-            // 녹화 시작
-            output.startRecording(to: filePath, recordingDelegate: self)
-        } catch {
-            print("Error creating folder or starting recording: \(error)")
-            errorMessage = "Error creating folder or starting recording: \(error)"
-        }
+        self.isButtonActivated = false
+        //상태 체크
+        self.wcsession.sendMessage(["message":"check"], replyHandler: { checkResponse in
+            self.wcsession.sendMessage(["message":"start"], replyHandler: { startResponse in
+                DispatchQueue.main.async {
+                    self.state = .running
+                    
+                    // Documents 디렉토리 경로 가져오기
+                    let fileManager = FileManager.default
+                    self.folderName = "swing-\(Date())"
+                    guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                        print("Cannot access local file domain")
+                        return
+                    }
+                    do {
+                        // 폴더 경로 설정
+                        let folderPath = documentsDirectory.appendingPathComponent(self.folderName!)
+                        try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true, attributes: nil)
+                        let filePath = folderPath.appendingPathComponent("Video.mp4")
+                        // 녹화 시작
+                        output.startRecording(to: filePath, recordingDelegate: self)
+                    } catch {
+                        print("Error creating folder or starting recording: \(error)")
+                    }
+                    self.isButtonActivated = true
+                }
+                //스타트 실패 시
+            }, errorHandler: { startError in
+                DispatchQueue.main.async{
+                    self.state = .error
+                    self.isButtonActivated = true
+                }
+            })
+            //체크 실패 시
+        }, errorHandler: {  checkError in
+            DispatchQueue.main.async{
+                self.state = .error
+                self.isReachable = false
+                self.isButtonActivated = true
+            }
+        })
     }
     
     func stopRecording() {
         if self.state != .running { return }
-        if(self.wcsession.isReachable) {
-            self.wcsession.sendMessage(["message":"stop"], replyHandler: nil)
+        guard self.wcsession.isReachable else {
+            self.isReachable = false
+            return
         }
+        self.isButtonActivated = false
         self.state = .saving
         guard let output = self.avsession.movieFileOutput else {
             print("Cannot find movie file output")
             return
         }
         output.stopRecording()
+        self.wcsession.sendMessage(["message":"check"], replyHandler: { checkResponse in
+            DispatchQueue.main.async{
+                self.state = .recieving
+                self.wcsession.sendMessage(["message":"stop"], replyHandler: {stopResponse in
+                    //스탑 실패 시
+                }, errorHandler: { startError in
+                    DispatchQueue.main.async{
+                        self.state = .error
+                        self.isButtonActivated = true
+                    }
+                })
+            }
+            //체크 실패 시
+        }, errorHandler: {  checkError in
+            DispatchQueue.main.async{
+                self.state = .error
+                self.isReachable = false
+                self.isButtonActivated = true
+            }
+        })
     }
 }
 
@@ -141,8 +185,10 @@ extension SwingRecordManagerPhone: WCSessionDelegate {
     func sessionDidDeactivate(_ session: WCSession) {    }
     
     func sessionReachabilityDidChange(_ session: WCSession) {
-        withAnimation{
-            self.isReachable = session.isReachable
+        DispatchQueue.main.async {
+            withAnimation{
+                self.isReachable = session.isReachable
+            }
         }
     }
     
@@ -152,7 +198,29 @@ extension SwingRecordManagerPhone: WCSessionDelegate {
             switch(message["message"] as? String) {
                 case "start" : self.startRecording()
                 case "stop" : self.stopRecording()
+                case "swingrecord" : self.isReachable = true
                 default: break
+            }
+        }
+    }
+    //애플워치로부터 스윙 데이터 수신
+    func session(_ session: WCSession, didReceive file: WCSessionFile) {
+        guard self.state == .recieving else {
+            return
+        }
+        DispatchQueue.main.async {
+            let fileManager = FileManager.default
+            let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+            let folderPath = documentsURL?.appendingPathComponent(self.folderName!)
+            let destinationURL = folderPath?.appendingPathComponent(file.fileURL.lastPathComponent)
+            do {
+                // 수신된 파일을 앱 내의 원하는 위치로 이동
+                try fileManager.moveItem(at: file.fileURL, to: destinationURL!)
+                print("Received file at: \(destinationURL!.path)")
+                self.state = .sending
+            } catch {
+                print("Error moving file: \(error.localizedDescription)")
+                self.state = .error
             }
         }
     }

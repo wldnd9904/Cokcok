@@ -2,7 +2,7 @@ import SwiftUI
 import CoreMotion
 
 struct SwingRecordWatchView: View {
-    @StateObject var model = SwingRecordViewModelWatch()
+    @StateObject var model = SwingRecordManagerWatch()
     var body: some View {
         ZStack{
             Image(uiImage: model.livePreviewImageView)
