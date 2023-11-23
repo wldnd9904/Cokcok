@@ -7,10 +7,12 @@
 
 import Foundation
 
-func formatDateString(for date: Date) -> String {
+func formatDateString(for date: Date, toFullDate:Bool = false) -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd" // 입력된 날짜 포맷
-    
+    dateFormatter.dateFormat = "yyyy/MM/dd" // 입력된 날짜 포맷
+    if toFullDate {
+        return dateFormatter.string(from: date)
+    }
     // 한글 로케일 설정
     dateFormatter.locale = Locale(identifier: "ko_KR")
     

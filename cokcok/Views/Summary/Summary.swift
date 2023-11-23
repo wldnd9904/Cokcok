@@ -15,6 +15,7 @@ struct Row: Identifiable, Hashable {
     var color: Color
 }
 struct Summary: View {
+    @EnvironmentObject var modelData: ModelData
     @State var path: [String] = []
     @Binding var showMyPage:Bool
     var columns = [
@@ -40,41 +41,12 @@ struct Summary: View {
                     }
                 }.padding(.bottom)
             }
-                
-                SectionTitle(title: "경기 분석")
-                RecentMatch()
-                
-                SectionTitle(title: "업적")
-            ScrollView(.horizontal, showsIndicators:false){
-                HStack{
-                    VStack{
-                        MedalView(medalType: "figure.badminton", medalColor: .brown)
-                        Text("경기 수").font(.subheadline).bold()
-                        Text("31 / 50").bold()
-                            .padding(.bottom)
-                    }
-                    .background(.white)
-                    .cornerRadius(10)
-
-                    VStack{
-                        MedalView(medalType: "calendar", medalColor:  Color(UIColor(red: 0.60, green: 0.75, blue: 1.00, alpha: 1.00)))
-                        Text("11월 운동 일수")
-                        Text("29 / 31").bold()
-                            .padding(.bottom)
-                    }
-                    .background(.white)
-                    .cornerRadius(10)
-                    
-                    VStack{
-                        MedalView(medalType: "flame", medalColor:  .yellow)
-                        Text("최장 연속 득점")
-                        Text("15").bold()
-                            .padding(.bottom)
-                    }
-                    .background(.white)
-                    .cornerRadius(10)
-                }
-            }
+            
+            SectionTitle(title: "경기 분석")
+            RecentMatch()
+            
+            SectionTitle(title: "업적")
+            AchievementRow(achievements: modelData.achievements)
         }
         .padding()
         .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
@@ -119,6 +91,7 @@ private struct SummaryValueView: View {
 #Preview {
     NavigationStack{
         Summary(showMyPage: .constant(false))
+            .environmentObject(ModelData())
             .navigationTitle("요약")
     }
 }

@@ -15,10 +15,30 @@ import AuthenticationServices
 import SwiftUI
 import CryptoKit
 
+enum AuthType: String {
+    case google = "Google"
+    case kakao = "카카오"
+    case apple = "Apple"
+    var image: Image {
+        switch(self){
+        case .apple: 
+            Image(systemName: "apple.logo")
+                .resizable()
+        case .google:
+            Image("google")
+                .resizable()
+        case .kakao:
+            Image("kakao")
+                .resizable()
+        }
+    }
+}
 
 class AuthenticationManager: NSObject, ObservableObject {
     
     @Published var signState: signState = .signOut
+    var email:String?
+    var authType: AuthType?
     var currentNonce: String?
     var window: UIWindow?
     
@@ -55,6 +75,8 @@ class AuthenticationManager: NSObject, ObservableObject {
             
             if result != nil {
                 self.signState = .signIn
+                self.email = result?.user.email
+                self.authType = .kakao
                 print("사용자 이메일: \(String(describing: result?.user.email))")
                 print("사용자 이름: \(String(describing: result?.user.displayName))")
                 
@@ -102,11 +124,13 @@ class AuthenticationManager: NSObject, ObservableObject {
         let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         
         // 3
-        Auth.auth().signIn(with: credential) { (_, error) in
+        Auth.auth().signIn(with: credential) { (result, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
                 self.signState = .signIn
+                self.email = result?.user.email
+                self.authType = .google
             }
         }
     }
@@ -123,6 +147,8 @@ class AuthenticationManager: NSObject, ObservableObject {
             // 2
             try Auth.auth().signOut()
             self.signState = .signOut
+            self.email = nil
+            self.authType = nil
         } catch {
             print(error.localizedDescription)
         }
@@ -280,6 +306,8 @@ extension AuthenticationManager: ASAuthorizationControllerDelegate {
                     return
                 }
                 self.signState = .signIn
+                self.email = authResult?.user.email
+                self.authType = .apple
             }
         }
     }

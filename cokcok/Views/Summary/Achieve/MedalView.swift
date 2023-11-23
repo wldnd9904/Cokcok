@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MedalView: View {
+    
     var medalType: String
     var medalColor: Color
     @State var angle: Double = 0
@@ -55,10 +56,10 @@ struct MedalView: View {
 
 #Preview {
     VStack {
-        MedalView(medalType: "동메달", medalColor: .brown)
-        MedalView(medalType: "은메달", medalColor: .gray)
-        MedalView(medalType: "금메달", medalColor: .yellow)
-        MedalView(medalType: "에메랄드메달", medalColor: Color(UIColor(red: 0.31, green: 0.78, blue: 0.47, alpha: 1.00)))
-        MedalView(medalType: "다이아몬드메달",medalColor: Color(UIColor(red: 0.60, green: 0.75, blue: 1.00, alpha: 1.00)))
-    }.background(.thinMaterial)
+        MedalView(medalType: "person", medalColor: .bronze)
+        MedalView(medalType: "person", medalColor: .silver)
+        MedalView(medalType: "person", medalColor: .gold)
+        MedalView(medalType: "person", medalColor:.emerald)
+        MedalView(medalType: "person",medalColor:.diamond)
+    }
 }

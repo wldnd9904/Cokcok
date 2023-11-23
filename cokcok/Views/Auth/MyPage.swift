@@ -8,33 +8,6 @@
 import SwiftUI
 
 struct MyPage: View {
-    enum Hand: String, CaseIterable, Identifiable {
-        var id: String {rawValue}
-        case left = "왼손"
-        case right = "오른손"
-    }
-    enum Sex: String, CaseIterable, Identifiable {
-        var id: String {rawValue}
-        case male = "남성"
-        case female = "여성"
-        case etc = "기타"
-    }
-    enum Grade: String, CaseIterable, Identifiable {
-        var id: String {rawValue}
-        case jagang = "자강조"
-        case a = "A조"
-        case b = "B조"
-        case c = "C조"
-        case d = "D조"
-        case beginner = "초심"
-    }
-    enum ColorTheme: String, CaseIterable, Identifiable {
-        var id: String {rawValue}
-        case light = "밝은 모드"
-        case dark = "어두운 모드"
-        case system = "시스템 설정에 맞춤"
-    }
-    
     @EnvironmentObject var authManager: AuthenticationManager
     @Binding var isPresented: Bool
     @State var editMode:Bool = false
