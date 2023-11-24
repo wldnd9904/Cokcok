@@ -16,8 +16,8 @@ struct Row: Identifiable, Hashable {
 }
 struct Summary: View {
     @EnvironmentObject var modelData: ModelData
-    @State var path: [String] = []
     @Binding var showMyPage:Bool
+    @State var selectedAchievement:Achievement?
     var columns = [
         GridItem(.adaptive(minimum: 180, maximum: 300), spacing: 8)
     ]
@@ -39,16 +39,40 @@ struct Summary: View {
                             SummaryValueView(value: row.value, unit: row.unit)
                         }.groupBoxStyle(SummaryGroupBoxStyle(color: row.color, destination: EmptyView()))
                     }
-                }.padding(.bottom)
+                }
             }
+            .cornerRadius(10)
             
             SectionTitle(title: "경기 분석")
+                .padding(.top)
             RecentMatch()
             
-            SectionTitle(title: "업적")
-            AchievementRow(achievements: modelData.achievements)
+            HStack{
+                SectionTitle(title: "최근 달성 업적")
+                Spacer()
+                NavigationLink(destination:AchievementsView(achievements:modelData.achievements)
+                    .navigationTitle("전체 업적")
+                ){Text("더보기")}
+            }
+            .padding(.top)
+            AchievementRow(achievements: modelData.achievements){item in
+                selectedAchievement = item
+            }
+            .cornerRadius(10)
         }
         .padding()
+        .overlay{
+            if(selectedAchievement != nil){
+                Color.black
+                    .opacity(0.2)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        selectedAchievement = nil
+                    }
+                AchievementDetail(item: selectedAchievement!)
+            }
+            
+        }
         .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
         .toolbar{
             Button {
@@ -87,11 +111,10 @@ private struct SummaryValueView: View {
 
 
 
-
 #Preview {
     NavigationStack{
         Summary(showMyPage: .constant(false))
-            .environmentObject(ModelData())
             .navigationTitle("요약")
     }
+    .environmentObject(ModelData())
 }

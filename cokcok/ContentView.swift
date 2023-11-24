@@ -74,4 +74,5 @@ struct ContentView : View {
 #Preview {
     ContentView()
         .environmentObject(AuthenticationManager())
+        .environmentObject(ModelData())
 }

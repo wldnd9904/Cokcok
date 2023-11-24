@@ -1,19 +1,20 @@
 //
-//  AchievementRow.swift
+//  AchievementGrid.swift
 //  cokcok
 //
-//  Created by 최지웅 on 11/23/23.
+//  Created by 최지웅 on 11/24/23.
 //
+
 
 import SwiftUI
 
-struct AchievementRow: View {
-    var rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+struct AchievementGrid: View {
+    var cols: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     let achievements:[Achievement]
     var onTap: ((_ item:Achievement) -> Void)?
     var body: some View {
-        ScrollView(.horizontal, showsIndicators:false){
-            LazyHGrid(rows: rows){
+        ScrollView(showsIndicators:false){
+            LazyVGrid(columns: cols){
                 ForEach(achievements) { item in
                     ZStack{
                         AchievementItem(item: item)
@@ -24,7 +25,8 @@ struct AchievementRow: View {
                                     onTap!(item)
                                 }
                             }
-                    }
+                    }.scaleEffect(0.85)
+                        .frame(width:120,height:180)
                 }
             }
         }
@@ -32,5 +34,6 @@ struct AchievementRow: View {
 }
 
 #Preview {
-    AchievementRow(achievements: generateRandomAchievements(count: 10))
+    AchievementGrid(achievements: generateRandomAchievements(count: 10))
+        .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
 }

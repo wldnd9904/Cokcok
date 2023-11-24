@@ -62,10 +62,15 @@ struct AchievementItem: View {
         ZStack{
             VStack{
                 MedalView(medalType: item.symbol, medalColor: medalColor)
-                Text("\(item.name)")
-                    .font(.headline)
-                Text("\(item.currentCnt)/\(nextCnt) \(item.unit)")
-                    .font(.subheadline)
+                if((item.month) != nil) {
+                    Text("\(Calendar.current.component(.month, from: item.month!))월 \(item.name)")
+                        .font(.headline)
+                } else {
+                    Text("\(item.name)")
+                        .font(.headline)
+                }
+                (Text("\(item.currentCnt)").font(.system(size: 20, weight: .bold, design: .rounded)) + Text(" \(item.unit)").font(.system(size: 14, weight: .semibold, design: .rounded)))
+                    .padding(.bottom,2)
                 if(achieveDate != nil) {
                     Text("달성일: " + formatDateString(for:achieveDate!, toFullDate: true))
                         .font(.caption2)
@@ -94,7 +99,11 @@ struct AchievementItem: View {
 }
 
 #Preview {
-    AchievementItem(item:generateRandomAchievements(count: 1)[0])
+    VStack{
+        AchievementItem(item:generateRandomAchievements(count: 1)[0])
+        AchievementItem(item:generateRandomAchievements(count: 1)[0])
+    }
         .frame(width:500,height:1000)
         .background(.thinMaterial)
+        
 }

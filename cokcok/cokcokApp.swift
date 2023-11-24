@@ -30,6 +30,7 @@ struct cokcokApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(ModelData())
                 .environmentObject(authManager)
                 .onOpenURL { url in // 뷰가 속한 Window에 대한 URL을 받았을 때 호출할 Handler를 등록하는 함수
                     if AuthApi.isKakaoTalkLoginUrl(url) {
