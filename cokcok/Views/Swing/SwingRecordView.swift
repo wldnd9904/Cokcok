@@ -12,70 +12,72 @@ struct SwingRecordView: View {
     @StateObject var model = SwingRecordManagerPhone()
     let dismiss: () -> Void
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
-            if(!model.isReachable || model.state == .error) {
-                HStack{
-                    Spacer()
-                    VStack{
-                        if !model.isReachable {
-                            Text("애플워치가 연결되지 않았습니다.")
-                            Button(action: {
-                                HKHealthStore().startWatchApp(with: HKWorkoutConfiguration(), completion: {_,_ in })
-                            }) {
-                                Text("애플워치에서 콕콕 앱 열기")
+        ZStack {
+            Text("카메라를 사용할 수 없습니다.")
+            model.preview
+                .ignoresSafeArea()
+            VStack {
+                Spacer()
+                HStack(spacing:20){
+                    Button(action: {
+                        model.state == .running ? model.stopRecording(): model.startRecording()
+                    }){
+                        Image(systemName: model.state == .running ? "stop.circle" : "record.circle")
+                    }
+                    .disabled(!model.isReachable || model.state == .error)
+                    Button(action: {
+                        model.switchCameraInput()
+                    }) {
+                        Image(systemName: "arrow.triangle.2.circlepath.camera")
+                    }
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "xmark.circle")
+                    }
+                    .foregroundColor(model.isButtonActivated ? .red : .gray)
+                }
+                .disabled(!model.isButtonActivated)
+                .padding(10)
+                .font(.title)
+                .background(.white)
+                .cornerRadius(30)
+                .shadow(radius: 3)
+            }
+            
+            VStack(alignment: .center, spacing: 0) {
+                if(!model.isReachable || model.state == .error) {
+                    HStack{
+                        Spacer()
+                        VStack{
+                            
+                            if !model.isReachable {
+                                Text("애플워치가 연결되지 않았습니다.")
+                                Button(action: {
+                                    model.startCokcokWatchApp()
+                                }) {
+                                    Text("애플워치에서 콕콕 열기")
+                                }
+                            }
+                            if model.state == .error {
+                                Text("녹화 과정에서 오류가 발생했습니다.")
                             }
                         }
-                        if model.state == .error {
-                            Text("녹화 과정에서 오류가 발생했습니다.")
-                        }
+                        .padding(.bottom, 7)
+                        Spacer()
                     }
-                    .padding(.bottom, 7)
-                    Spacer()
+                    .background(Color(red: 238/255, green: 126/255, blue: 115/255))
                 }
-                .background(.red.opacity(0.7))
-            }
-            if(model.state != .idle) {
-                HStack{
-                    Spacer()
-                    Text(model.state.message)
-                        .padding(3)
-                    Spacer()
-                }
-                .background(.yellow.opacity(0.7))
-            }
-            ZStack {
-                VStack{
-                    Text("카메라를 사용할 수 없습니다.")
-                }
-                model.preview
-                VStack {
-                    Spacer()
-                    HStack(spacing:20){
-                        Button(action: {
-                            model.state == .running ? model.stopRecording(): model.startRecording()
-                        }){
-                            Image(systemName: model.state == .running ? "stop.circle" : "record.circle")
-                        }
-                        .disabled(!model.isReachable || model.state == .error)
-                        Button(action: {
-                            model.switchCameraInput()
-                        }) {
-                            Image(systemName: "arrow.triangle.2.circlepath.camera")
-                        }
-                        Button(action: {
-                            dismiss()
-                        }) {
-                            Image(systemName: "xmark.circle")
-                        }
-                        .foregroundColor(model.isButtonActivated ? .red : .gray)
+                if(model.state != .idle) {
+                    HStack{
+                        Spacer()
+                        Text(model.state.message)
+                            .padding(3)
+                        Spacer()
                     }
-                    .disabled(!model.isButtonActivated)
-                    .padding(10)
-                    .font(.title)
-                    .background(.white)
-                    .cornerRadius(30)
-                    .shadow(radius: 3)
+                    .background(Color(red:249/255, green: 221/255, blue:102/255))
                 }
+                Spacer()
             }
             .animation(.easeIn, value: model.state)
         }

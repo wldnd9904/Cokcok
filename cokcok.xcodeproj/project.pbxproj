@@ -78,6 +78,10 @@
 		B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C512AFA74AD00671129 /* MatchItem.swift */; };
 		B8C36C542AFAA18900671129 /* Date&Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C532AFAA18900671129 /* Date&Time.swift */; };
 		B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C552AFABB2A00671129 /* ScoreChart.swift */; };
+		B8CDA7E72B159EA800746B1B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B8CDA7E62B159EA800746B1B /* Alamofire */; };
+		B8CDA7E92B15A08300746B1B /* TransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7E82B15A08300746B1B /* TransportManager.swift */; };
+		B8CDA7EA2B15A08300746B1B /* TransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7E82B15A08300746B1B /* TransportManager.swift */; };
+		B8CDA7EC2B15AA1B00746B1B /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,6 +205,8 @@
 		B8C36C512AFA74AD00671129 /* MatchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchItem.swift; sourceTree = "<group>"; };
 		B8C36C532AFAA18900671129 /* Date&Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date&Time.swift"; sourceTree = "<group>"; };
 		B8C36C552AFABB2A00671129 /* ScoreChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreChart.swift; sourceTree = "<group>"; };
+		B8CDA7E82B15A08300746B1B /* TransportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportManager.swift; sourceTree = "<group>"; };
+		B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8AB851B2B08E2E100361F86 /* GoogleSignInSwift in Frameworks */,
+				B8CDA7E72B159EA800746B1B /* Alamofire in Frameworks */,
 				B8AB85162B08E29A00361F86 /* FirebaseAuth in Frameworks */,
 				B804F3462B0C94150088B4EF /* KakaoSDKUser in Frameworks */,
 				B8AB85192B08E2E100361F86 /* GoogleSignIn in Frameworks */,
@@ -386,6 +393,7 @@
 			children = (
 				B8A93B6E2AF63D7800A220C7 /* WorkoutManager.swift */,
 				B8A885182AF90E230041F092 /* SwingRecordManagerWatch.swift */,
+				B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -403,6 +411,7 @@
 			children = (
 				B89B63662B0723B8009B46EA /* DataManager.swift */,
 				B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */,
+				B8CDA7E82B15A08300746B1B /* TransportManager.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -514,6 +523,7 @@
 				B804F3412B0C94150088B4EF /* KakaoSDKAuth */,
 				B804F3432B0C94150088B4EF /* KakaoSDKCommon */,
 				B804F3452B0C94150088B4EF /* KakaoSDKUser */,
+				B8CDA7E62B159EA800746B1B /* Alamofire */,
 			);
 			productName = cokcok;
 			productReference = B8A93AFD2AF62DB600A220C7 /* cokcok.app */;
@@ -655,6 +665,7 @@
 				B8AB85142B08E29A00361F86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B8AB85172B08E2E100361F86 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				B804F3402B0C94150088B4EF /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				B8CDA7E52B159EA800746B1B /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = B8A93AFE2AF62DB600A220C7 /* Products */;
 			projectDirPath = "";
@@ -763,6 +774,7 @@
 				B8AB850A2B08DC9F00361F86 /* LoginView.swift in Sources */,
 				B8A8850A2AF9020B0041F092 /* AVPreview.swift in Sources */,
 				B804F3492B0DC0970088B4EF /* MyPage.swift in Sources */,
+				B8CDA7E92B15A08300746B1B /* TransportManager.swift in Sources */,
 				B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */,
 				B84C96ED2B0350B5001106C6 /* User.swift in Sources */,
 				B84C96EF2B0356B3001106C6 /* RecentSwing.swift in Sources */,
@@ -795,10 +807,12 @@
 				B84064292AFF73BD00C46D41 /* Counter2.swift in Sources */,
 				B8A93B6F2AF63D7800A220C7 /* WorkoutManager.swift in Sources */,
 				B8516CA62B0F973800C2DFAA /* DataManager.swift in Sources */,
+				B8CDA7EC2B15AA1B00746B1B /* PathManager.swift in Sources */,
 				B840642D2AFF73BD00C46D41 /* ScoreView.swift in Sources */,
 				B840642B2AFF73BD00C46D41 /* ControlsView.swift in Sources */,
 				B840642E2AFF73BD00C46D41 /* ActivityRingsView.swift in Sources */,
 				B8A885192AF90E230041F092 /* SwingRecordManagerWatch.swift in Sources */,
+				B8CDA7EA2B15A08300746B1B /* TransportManager.swift in Sources */,
 				B8A885172AF90B0E0041F092 /* SwingRecordWatchView.swift in Sources */,
 				B84064282AFF73BD00C46D41 /* SummaryView.swift in Sources */,
 				B840642F2AFF73BD00C46D41 /* ElapsedTimeView.swift in Sources */,
@@ -1370,6 +1384,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		B8CDA7E52B159EA800746B1B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1402,6 +1424,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B8AB85172B08E2E100361F86 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		B8CDA7E62B159EA800746B1B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8CDA7E52B159EA800746B1B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -10,6 +10,7 @@ import WatchConnectivity
 import AVFoundation
 import UIKit
 import SwiftUI
+import HealthKit
 
 enum SwingRecordManagerPhoneState {
     case idle, running, saving, recieving, sending, sent,  error
@@ -187,7 +188,9 @@ extension SwingRecordManagerPhone: WCSessionDelegate {
     func sessionReachabilityDidChange(_ session: WCSession) {
         DispatchQueue.main.async {
             withAnimation{
-                self.isReachable = session.isReachable
+                if(self.state == .idle){
+                    self.isReachable = session.isReachable
+                }
             }
         }
     }
@@ -224,35 +227,15 @@ extension SwingRecordManagerPhone: WCSessionDelegate {
             }
         }
     }
-    //애플워치로부터 스트림 데이터 수신(사용안함)
-    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
-        // 데이터를 파일로 저장
-        DispatchQueue.main.async {
-            // Documents 디렉토리 경로 가져오기
-            guard let folderName = self.folderName else {
-                return
-            }
-            guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-                print("Cannot access local file domain")
-                return
-            }
-            // 폴더 경로 설정
-            let folderPath = documentsDirectory.appendingPathComponent(folderName)
-            
-            // 폴더가 존재하지 않는 경우 생성
-            do {
-                try FileManager.default.createDirectory(at: folderPath, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                print("Failed Creating Directory")
-            }
-            // 모션 파일 경로 설정
-            let filePath = folderPath.appendingPathComponent("MotionData.json")
-            do {
-                try messageData.write(to: filePath)
-                print("Received data saved to \(filePath)")
-            } catch {
-                print("Error saving received data: \(error)")
-            }
+    //애플워치 앱 열기
+    func startCokcokWatchApp(){
+        let workoutConfiguration = HKWorkoutConfiguration()
+        workoutConfiguration.activityType = .badminton
+        workoutConfiguration.locationType = .indoor
+        if WCSession.isSupported(), WCSession.default.activationState == .activated , WCSession.default.isWatchAppInstalled{
+            HKHealthStore().startWatchApp(with: workoutConfiguration, completion: { (success, error) in
+                print(error.debugDescription)
+            })
         }
     }
 }
@@ -319,4 +302,9 @@ extension SwingRecordManagerPhone {
         }
         avsession.commitConfiguration()
     }
+}
+
+// MARK: - 통신부
+extension SwingRecordManagerPhone {
+    
 }
