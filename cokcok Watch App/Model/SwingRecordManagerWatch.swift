@@ -12,18 +12,26 @@ import HealthKit
 import SwiftUI
 import WatchKit
 
-enum SwingRecordState {
-    case idle, running, saving, sending, sent, saved, error, ended
+enum SwingRecordState: Equatable {
+    case idle, running, saving, sending, sent, saved, error(String), ended
     var message: String {
         switch(self) {
         case .idle:"대기"
         case .running:"스윙 기록 중"
         case .saving:"데이터 저장 중"
-        case .sending:"iPhone으로 데이터를 전송하는 중"
+        case .sending:"아이폰으로\n데이터를 전송하는 중"
         case .sent:"전송 완료"
-        case .saved:"전송 실패. iPhone을 확인해주세요." 
-        case .error:"오류가 발생했습니다. 처음으로 돌아갑니다."
-        case .ended:"경기 기록 종료"
+        case .saved:"전송 실패."
+        case .error(let detail):"오류: \(detail)."
+        case .ended:"기록 종료"
+        }
+    }
+    func isError() -> Bool {
+        switch(self){
+        case .error(_):
+             return true
+        default:
+            return false
         }
     }
 }
@@ -50,12 +58,10 @@ class SwingRecordManagerWatch: NSObject, ObservableObject {
         self.isReachable = wcsession.isReachable
         session.activate()
         self.wcsession.sendMessage(["message":"swingrecord"], replyHandler: nil)
-        print("스윙레코드매니저 생성됨")
     }
     deinit{
         self.wcsession.sendMessage(["message":"startview"], replyHandler: nil)
         self.wcsession.delegate = nil
-        print("스윙레코드매니저 제거됨")
     }
     func startRecording() {
         if self.state != .idle { return }
@@ -71,7 +77,7 @@ class SwingRecordManagerWatch: NSObject, ObservableObject {
         self.recordedMotion.removeAll()
         self.motionManager.startDeviceMotionUpdates(to: self.queue) { (data: CMDeviceMotion?, error: Error?) in
             guard let data = data else {
-                print("Error: \(error!)")
+                self.state = .error("데이터 기록 실패")
                 return
             }
             self.recordedMotion.append(data)
@@ -85,16 +91,15 @@ class SwingRecordManagerWatch: NSObject, ObservableObject {
         self.state = .saving
         self.motionManager.stopDeviceMotionUpdates()
         endHKSession()
-        print(self.recordedMotion.count)
         DispatchQueue.main.async {
             guard let tmpFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-                self.state = .error
+                self.state = .error("데이터 저장 실패")
                 return
             }
             do {
                 try DataManager.shared.saveMotionDataToCSV(self.recordedMotion, filePath: tmpFileURL.appending(path:"swingData.csv"), xyReversed: WKInterfaceDevice.current().crownOrientation == .left)
             } catch {
-                self.state = .error
+                self.state = .error("데이터 전송 실패")
                 return
             }
             // iOS 앱으로 파일 전송
@@ -109,9 +114,16 @@ extension SwingRecordManagerWatch: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     }
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if let data = message["preview"] as? Data, let image = UIImage(data: data) {
-            print("프레임 받음")
-            self.livePreviewImageView = image
+        DispatchQueue.main.async {
+            if let data = message["preview"] as? Data, let image = UIImage(data: data) {
+                self.livePreviewImageView = image
+            }
+            switch(message["message"] as? String) {
+            case "received" :
+                self.state = .ended
+            default:
+                break
+            }
         }
     }
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
@@ -141,7 +153,7 @@ extension SwingRecordManagerWatch: WCSessionDelegate {
     }
 }
 
-// MARK: - 헬스킷 워크아웃 세션 
+// MARK: - 헬스킷 워크아웃 세션
 extension SwingRecordManagerWatch {
     func startHKSession() throws {
         let configuration = HKWorkoutConfiguration()

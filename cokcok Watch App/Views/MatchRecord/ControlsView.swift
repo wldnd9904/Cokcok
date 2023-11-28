@@ -19,6 +19,7 @@ struct ControlsView: View {
                     workoutManager.startWorkout()
                 }
             }
+            .ignoresSafeArea()
         }
         else {
             HStack {

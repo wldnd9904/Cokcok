@@ -17,7 +17,7 @@ enum SwingRecordManagerPhoneState: Equatable {
     var message: String {
         switch(self) {
         case .idle:"대기"
-        case .running:"경기 기록 중"
+        case .running:"스윙 기록 중"
         case .saving:"영상을 저장하는 중"
         case .receiving:"손목 데이터 수신 중"
         case .sending:"영상과 손목 데이터를 서버에 전송하는 중"

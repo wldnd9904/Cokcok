@@ -578,6 +578,8 @@
 			dependencies = (
 			);
 			name = "cokcok Watch App";
+			packageProductDependencies = (
+			);
 			productName = "cokcok Watch App";
 			productReference = B8A93B232AF62DB700A220C7 /* cokcok Watch App.app */;
 			productType = "com.apple.product-type.application";
@@ -995,8 +997,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "cokcok-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "경기 중의 운동 정보를 저장합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "애플워치를 통해 기록된 경기 중의 운동 정보가 피트니스 앱에 등록됩니다.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.uos.cokcok;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1027,8 +1032,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "cokcok-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = cokcok;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "경기 중의 운동 정보를 저장합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "애플워치를 통해 기록된 경기 중의 운동 정보가 피트니스 앱에 등록됩니다.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.uos.cokcok;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
