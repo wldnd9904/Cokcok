@@ -19,8 +19,8 @@ enum SwingRecordManagerPhoneState: Equatable {
         case .idle:"대기"
         case .running:"경기 기록 중"
         case .saving:"영상을 저장하는 중"
-        case .sending:"영상과 손목 데이터를 서버에 전송하는 중"
         case .receiving:"손목 데이터 수신 중"
+        case .sending:"영상과 손목 데이터를 서버에 전송하는 중"
         case .sent:"전송 완료"
         case .error(let detail):"오류: \(detail)."
         }
@@ -31,14 +31,6 @@ enum SwingRecordManagerPhoneState: Equatable {
              return true
         default:
             return false
-        }
-    }
-    func errorMessage() -> String? {
-        switch(self){
-        case .error(let msg):
-             return msg
-        default:
-            return nil
         }
     }
 }
@@ -59,7 +51,7 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
     
     let wcsession: WCSession
     let avsession: AVCaptureSession
-    var folderName: String?
+    var folderName: String
     
     var prevTimestamp:Double = 0
     var minFrameInterval:Double = 0.08
@@ -75,6 +67,7 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
         self.avsession.sessionPreset = .medium
         self.wcsession = WCSession.default
         self.videoOutput = AVCaptureVideoDataOutput()
+        self.folderName = "swing-\(Date())"
         super.init()
         self.avsession.addOutput(videoOutput)
         self.wcsession.delegate = self
@@ -121,14 +114,13 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
                     
                     // Documents 디렉토리 경로 가져오기
                     let fileManager = FileManager.default
-                    self.folderName = "swing-\(Date())"
                     guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
                         print("Cannot access local file domain")
                         return
                     }
                     do {
                         // 폴더 경로 설정
-                        let folderPath = documentsDirectory.appendingPathComponent(self.folderName!)
+                        let folderPath = documentsDirectory.appendingPathComponent(self.folderName)
                         try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true, attributes: nil)
                         let filePath = folderPath.appendingPathComponent("Video.mp4")
                         // 녹화 시작
@@ -168,9 +160,12 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
             return
         }
         output.stopRecording()
+        self.state = .receiving
         self.wcsession.sendMessage(["message":"check"], replyHandler: { checkResponse in
             DispatchQueue.main.async{
-                self.state = self.fileReceived ? .receiving : .sending
+                if(self.fileReceived) {
+                    self.uploadSwing()
+                }
                 self.wcsession.sendMessage(["message":"stop"], replyHandler: {stopResponse in
                     //스탑 실패 시
                 }, errorHandler: { startError in
@@ -221,23 +216,19 @@ extension SwingRecordManagerPhone: WCSessionDelegate {
     }
     //애플워치로부터 스윙 데이터 수신
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
-        //상태가 receiving이 아니어도 적절한 폴더 있으면 저장
-        guard let folderName = self.folderName else {
-            return
-        }
+        //상태가 receiving이 아니어도 저장
         DispatchQueue.main.async {
             let fileManager = FileManager.default
             let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-            let folderPath = documentsURL?.appendingPathComponent(folderName)
+            let folderPath = documentsURL?.appendingPathComponent(self.folderName)
             let destinationURL = folderPath?.appendingPathComponent(file.fileURL.lastPathComponent)
             do {
                 try fileManager.moveItem(at: file.fileURL, to: destinationURL!)
                 print("Received file at: \(destinationURL!.path)")
                 // 다 받았을 때 수신중이었다면 바로 전송
                 self.fileReceived = true
-                if(self.state == .receiving) {
-                    self.state = .sending
-                }
+                self.wcsession.sendMessage(["message":"received"], replyHandler: nil)
+                self.uploadSwing()
             } catch {
                 print("Error moving file: \(error.localizedDescription)")
                 self.state = .error("데이터 저장 실패")
@@ -323,5 +314,14 @@ extension SwingRecordManagerPhone {
 
 // MARK: - 통신부
 extension SwingRecordManagerPhone {
-    
+    func uploadSwing(){
+        guard self.state == .receiving else {
+            return
+        }
+        self.state = .sending
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            // Your code here
+            self.state = .sent
+        }
+    }
 }
