@@ -23,19 +23,18 @@ struct AchievementsView: View {
     }
     var body: some View {
         ScrollView(showsIndicators:false){
-            VStack{
-                SectionTitle(title: "일반 업적")
-                AchievementGrid(achievements: achievementsWithoutMonth){item in
-                    selectedAchievement = item
+            LazyVStack(pinnedViews:[.sectionHeaders]){
+                Section(header:SectionTitle(title: "일반 업적")){
+                    AchievementGrid(achievements: achievementsWithoutMonth){item in
+                        selectedAchievement = item
+                    }
                 }
                 ForEach(groupedByMonth.keys.sorted().reversed(), id:\.timeIntervalSince1970){ key in
-                    VStack{
-                        SectionTitle(title: "\(Calendar.current.component(.year, from: key)%100)년 \(Calendar.current.component(.month, from: key))월 업적")
-                            .padding(.top)
-                        AchievementGrid(achievements: groupedByMonth[key]!){item in
-                            selectedAchievement = item
+                    Section(header:SectionTitle(title: "\(Calendar.current.component(.year, from: key)%100)년 \(Calendar.current.component(.month, from: key))월 업적")) {
+                            AchievementGrid(achievements: groupedByMonth[key]!){item in
+                                selectedAchievement = item
+                            }
                         }
-                    }
                 }
             }
             .padding()
@@ -58,14 +57,28 @@ struct AchievementsView: View {
 private struct SectionTitle: View {
     let title: String
     var body: some View {
-        HStack{
-            Text(title)
-                .bold().font(.title2)
-            Spacer()
+        ZStack{
+            LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(.systemGroupedBackground).opacity(1.0),
+                        Color(.systemGroupedBackground).opacity(0.0)
+                    ]),
+                    startPoint: .center,
+                    endPoint: .bottom
+                )
+            HStack{
+                Text(title)
+                    .bold().font(.title2)
+                    .padding(.vertical)
+                Spacer()
+            }
         }
     }
 }
 #Preview {
-        AchievementsView(achievements:generateRandomAchievements(count: 50))
+    NavigationStack{
+        AchievementsView(achievements:generateRandomAchievements(count: 200))
             .environmentObject(ModelData())
+            .navigationTitle("전체 업적")
+    }
 }
