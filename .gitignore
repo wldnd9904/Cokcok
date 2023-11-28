@@ -4,3 +4,4 @@ playground.xcworkspace
 Contents.swift
 *.xcplayground
 xcschememanagement.plist
+GoogleService-Info.plist
