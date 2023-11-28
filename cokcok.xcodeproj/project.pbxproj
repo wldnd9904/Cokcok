@@ -13,6 +13,8 @@
 		B804F3462B0C94150088B4EF /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = B804F3452B0C94150088B4EF /* KakaoSDKUser */; };
 		B804F3492B0DC0970088B4EF /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B804F3482B0DC0970088B4EF /* MyPage.swift */; };
 		B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */; };
+		B8229FC72B1631E7009D039E /* NewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8229FC62B1631E7009D039E /* NewUserView.swift */; };
+		B8229FC92B164B14009D039E /* NewUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8229FC82B164B14009D039E /* NewUserManager.swift */; };
 		B84064272AFF73BD00C46D41 /* MetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840641E2AFF73BD00C46D41 /* MetricsView.swift */; };
 		B84064282AFF73BD00C46D41 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840641F2AFF73BD00C46D41 /* SummaryView.swift */; };
 		B84064292AFF73BD00C46D41 /* Counter2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84064202AFF73BD00C46D41 /* Counter2.swift */; };
@@ -141,6 +143,8 @@
 		B804F3472B0D0CF30088B4EF /* cokcok.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cokcok.entitlements; sourceTree = "<group>"; };
 		B804F3482B0DC0970088B4EF /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
 		B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetail.swift; sourceTree = "<group>"; };
+		B8229FC62B1631E7009D039E /* NewUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserView.swift; sourceTree = "<group>"; };
+		B8229FC82B164B14009D039E /* NewUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserManager.swift; sourceTree = "<group>"; };
 		B840641E2AFF73BD00C46D41 /* MetricsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetricsView.swift; sourceTree = "<group>"; };
 		B840641F2AFF73BD00C46D41 /* SummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		B84064202AFF73BD00C46D41 /* Counter2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counter2.swift; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 				B8AB850B2B08DCBA00361F86 /* ModelData.swift */,
 				B8AB852A2B08E57300361F86 /* AuthenticationManager.swift */,
 				B8516CA22B0F8BDA00C2DFAA /* Achievement.swift */,
+				B8229FC82B164B14009D039E /* NewUserManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 			children = (
 				B8AB85092B08DC9F00361F86 /* LoginView.swift */,
 				B804F3482B0DC0970088B4EF /* MyPage.swift */,
+				B8229FC62B1631E7009D039E /* NewUserView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -755,12 +761,14 @@
 				B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */,
 				B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */,
 				B8A885052AF901270041F092 /* SwingRecordManagerPhone.swift in Sources */,
+				B8229FC92B164B14009D039E /* NewUserManager.swift in Sources */,
 				B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */,
 				B8AB85032B089B1200361F86 /* SwingTrendChart.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
 				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,
 				B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */,
 				B8516CA52B0F95E100C2DFAA /* Color+.swift in Sources */,
+				B8229FC72B1631E7009D039E /* NewUserView.swift in Sources */,
 				B8516CA82B0F97A800C2DFAA /* AchievementRow.swift in Sources */,
 				B86978322B10D13100442933 /* AchievementGrid.swift in Sources */,
 				B8516CAB2B0FA13C00C2DFAA /* AchievementItem.swift in Sources */,

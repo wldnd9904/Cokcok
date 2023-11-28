@@ -30,10 +30,11 @@ enum Grade: String, CaseIterable, Identifiable {
 
 public struct User:Identifiable {
     public var id: UUID
-    var name: String
+    var email: String
+    var authType: AuthType
     var hand: Hand
     var sex: Sex
     var grade: Grade 
-    var years_played: Int
-    static let demo = User(id: UUID(), name: "손흥민", hand: .left, sex: .male, grade: .c, years_played: 4)
+    var years: Int
+    static let demo = User(id: UUID(), email:"heung@never.com", authType: .kakao, hand: .left, sex: .male, grade: .c, years: 4)
 }
