@@ -12,7 +12,7 @@ struct Matches: View {
     let randomMatchSummaries = generateRandomMatchSummaries(count: 10)
     
     var body: some View {
-        ScrollView{
+        ScrollView(showsIndicators: false){
             ForEach(randomMatchSummaries.sorted{$0.startDate > $1.startDate}, id: \.id) { match in
                 NavigationLink(destination: MatchDetail(match:match).navigationTitle(formatDateWithDay(match.startDate))){
                     MatchItem(match: match)
@@ -20,6 +20,7 @@ struct Matches: View {
                 }
             }
         }
+        .background(Color(.systemGroupedBackground))
     }
 }
 

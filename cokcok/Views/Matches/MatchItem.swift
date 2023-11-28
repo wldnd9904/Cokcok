@@ -51,7 +51,7 @@ struct MatchItem: View {
         }
         .frame(maxWidth: .infinity) // 최대 너비 제한
         .padding(15)
-        .background(.thinMaterial)
+        .background(.white)
         .cornerRadius(10)
     }
 }

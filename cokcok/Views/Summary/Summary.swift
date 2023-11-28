@@ -16,7 +16,7 @@ struct Row: Identifiable, Hashable {
 }
 struct Summary: View {
     @EnvironmentObject var modelData: ModelData
-    @Binding var showMyPage:Bool
+    @State var showMyPage:Bool = false
     @State var selectedAchievement:Achievement?
     var columns = [
         GridItem(.adaptive(minimum: 180, maximum: 300), spacing: 8)
@@ -71,7 +71,6 @@ struct Summary: View {
                     }
                 AchievementDetail(item: selectedAchievement!)
             }
-            
         }
         .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
         .toolbar{
@@ -81,6 +80,9 @@ struct Summary: View {
                 Label("사용자 프로필", systemImage: "person.crop.circle")
             }
         }
+        .sheet(isPresented: $showMyPage, content: {
+            MyPage(isPresented: $showMyPage)
+        })
     }
 }
 
@@ -113,7 +115,7 @@ private struct SummaryValueView: View {
 
 #Preview {
     NavigationStack{
-        Summary(showMyPage: .constant(false))
+        Summary()
             .navigationTitle("요약")
     }
     .environmentObject(ModelData())

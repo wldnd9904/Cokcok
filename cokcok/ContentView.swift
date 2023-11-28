@@ -15,7 +15,6 @@ private enum Tab:Hashable {
 struct ContentView : View {
     @EnvironmentObject var authManager: AuthenticationManager
     @State private var selectedTab: Tab = .summary
-    @State private var showMyPage:Bool = false
     var body: some View {
         VStack{
             if(authManager.signState == .signIn) {
@@ -31,7 +30,7 @@ struct ContentView : View {
                     .tag(Tab.swing)
                     
                     NavigationStack{
-                        Summary(showMyPage:$showMyPage)
+                        Summary()
                             .navigationTitle("요약")
                     }
                     .tabItem {
@@ -66,9 +65,6 @@ struct ContentView : View {
             authManager.signState = .signIn
             #endif
         }
-        .sheet(isPresented: $showMyPage, content: {
-            MyPage(isPresented: $showMyPage)
-        })
     }
 }
 #Preview {

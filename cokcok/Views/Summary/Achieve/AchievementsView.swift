@@ -22,23 +22,24 @@ struct AchievementsView: View {
     })
     }
     var body: some View {
-        ScrollView(showsIndicators: false){
-            SectionTitle(title: "일반 업적")
-            AchievementGrid(achievements: achievementsWithoutMonth){item in
-                selectedAchievement = item
-            }
-            ForEach(groupedByMonth.keys.sorted().reversed(), id:\.timeIntervalSince1970){ key in
-                VStack{
-                    SectionTitle(title: "\(Calendar.current.component(.year, from: key)%100)년 \(Calendar.current.component(.month, from: key))월 업적")
-                        .padding(.top)
-                    AchievementGrid(achievements: groupedByMonth[key]!){item in
-                        selectedAchievement = item
+        ScrollView(showsIndicators:false){
+            VStack{
+                SectionTitle(title: "일반 업적")
+                AchievementGrid(achievements: achievementsWithoutMonth){item in
+                    selectedAchievement = item
+                }
+                ForEach(groupedByMonth.keys.sorted().reversed(), id:\.timeIntervalSince1970){ key in
+                    VStack{
+                        SectionTitle(title: "\(Calendar.current.component(.year, from: key)%100)년 \(Calendar.current.component(.month, from: key))월 업적")
+                            .padding(.top)
+                        AchievementGrid(achievements: groupedByMonth[key]!){item in
+                            selectedAchievement = item
+                        }
                     }
                 }
             }
+            .padding()
         }
-        .padding()
-        
         //오버레이
         .overlay{
             if(selectedAchievement != nil){
@@ -65,9 +66,6 @@ private struct SectionTitle: View {
     }
 }
 #Preview {
-    NavigationStack{
         AchievementsView(achievements:generateRandomAchievements(count: 50))
             .environmentObject(ModelData())
-            .navigationTitle("도전 과제")
-    }
 }
