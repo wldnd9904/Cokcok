@@ -24,7 +24,8 @@ struct SwingRecordView: View {
                     }){
                         Image(systemName: model.state == .running ? "stop.circle" : "record.circle")
                     }
-                    .disabled(!model.isReachable || model.state == .error)
+                    .disabled(!model.isReachable ||
+                              model.state.isError())
                     Button(action: {
                         model.switchCameraInput()
                     }) {
@@ -45,12 +46,11 @@ struct SwingRecordView: View {
                 .shadow(radius: 3)
             }
             
-            VStack(alignment: .center, spacing: 0) {
-                if(!model.isReachable || model.state == .error) {
+            VStack(alignment: .center) {
+                if(!model.isReachable || model.state.isError()) {
                     HStack{
                         Spacer()
                         VStack{
-                            
                             if !model.isReachable {
                                 Text("애플워치가 연결되지 않았습니다.")
                                 Button(action: {
@@ -58,9 +58,6 @@ struct SwingRecordView: View {
                                 }) {
                                     Text("애플워치에서 콕콕 열기")
                                 }
-                            }
-                            if model.state == .error {
-                                Text("녹화 과정에서 오류가 발생했습니다.")
                             }
                         }
                         .padding(.bottom, 7)

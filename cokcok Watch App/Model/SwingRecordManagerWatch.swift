@@ -53,6 +53,7 @@ class SwingRecordManagerWatch: NSObject, ObservableObject {
         print("스윙레코드매니저 생성됨")
     }
     deinit{
+        self.wcsession.sendMessage(["message":"startview"], replyHandler: nil)
         self.wcsession.delegate = nil
         print("스윙레코드매니저 제거됨")
     }

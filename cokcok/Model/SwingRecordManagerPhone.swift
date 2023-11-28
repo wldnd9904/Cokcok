@@ -12,17 +12,33 @@ import UIKit
 import SwiftUI
 import HealthKit
 
-enum SwingRecordManagerPhoneState {
-    case idle, running, saving, recieving, sending, sent,  error
+enum SwingRecordManagerPhoneState: Equatable {
+    case idle, running, saving, receiving, sending, sent, error(String)
     var message: String {
         switch(self) {
         case .idle:"대기"
         case .running:"경기 기록 중"
         case .saving:"영상을 저장하는 중"
         case .sending:"영상과 손목 데이터를 서버에 전송하는 중"
-        case .recieving:"손목 데이터 수신 중"
+        case .receiving:"손목 데이터 수신 중"
         case .sent:"전송 완료"
-        case .error:"오류가 발생했습니다. 처음으로 돌아갑니다."
+        case .error(let detail):"오류: \(detail)."
+        }
+    }
+    func isError() -> Bool {
+        switch(self){
+        case .error(_):
+             return true
+        default:
+            return false
+        }
+    }
+    func errorMessage() -> String? {
+        switch(self){
+        case .error(let msg):
+             return msg
+        default:
+            return nil
         }
     }
 }
@@ -37,9 +53,9 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
     
     @Published var preview: AVPreview?
     @Published var state: SwingRecordManagerPhoneState = .idle
-    @Published var errorMessage: String = ""
     @Published var isReachable: Bool = false
     @Published var isButtonActivated: Bool = true
+    var fileReceived: Bool = false
     
     let wcsession: WCSession
     let avsession: AVCaptureSession
@@ -91,13 +107,9 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
         if self.state != .idle { return }
         guard wcsession.isReachable else {
             self.isReachable = false
-            print("Cannot find reachable Apple Watch")
-            errorMessage = "Cannot find reachable Apple Watch"
             return
         }
         guard let output = avsession.movieFileOutput else {
-            print("Cannot find movie file output")
-            errorMessage = "Cannot find movie file output"
             return
         }
         self.isButtonActivated = false
@@ -129,14 +141,14 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
                 //스타트 실패 시
             }, errorHandler: { startError in
                 DispatchQueue.main.async{
-                    self.state = .error
+                    self.state = .error("녹화 시작 실패")
                     self.isButtonActivated = true
                 }
             })
             //체크 실패 시
         }, errorHandler: {  checkError in
             DispatchQueue.main.async{
-                self.state = .error
+                self.state = .error("애플워치 통신 실패")
                 self.isReachable = false
                 self.isButtonActivated = true
             }
@@ -152,18 +164,18 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
         self.isButtonActivated = false
         self.state = .saving
         guard let output = self.avsession.movieFileOutput else {
-            print("Cannot find movie file output")
+            self.state = .error("동영상 저장 실패")
             return
         }
         output.stopRecording()
         self.wcsession.sendMessage(["message":"check"], replyHandler: { checkResponse in
             DispatchQueue.main.async{
-                self.state = .recieving
+                self.state = self.fileReceived ? .receiving : .sending
                 self.wcsession.sendMessage(["message":"stop"], replyHandler: {stopResponse in
                     //스탑 실패 시
                 }, errorHandler: { startError in
                     DispatchQueue.main.async{
-                        self.state = .error
+                        self.state = .error("녹화 종료 실패")
                         self.isButtonActivated = true
                     }
                 })
@@ -171,7 +183,7 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
             //체크 실패 시
         }, errorHandler: {  checkError in
             DispatchQueue.main.async{
-                self.state = .error
+                self.state = .error("애플워치 통신 실패")
                 self.isReachable = false
                 self.isButtonActivated = true
             }
@@ -202,28 +214,33 @@ extension SwingRecordManagerPhone: WCSessionDelegate {
                 case "start" : self.startRecording()
                 case "stop" : self.stopRecording()
                 case "swingrecord" : self.isReachable = true
+                case "startview" : self.isReachable = false
                 default: break
             }
         }
     }
     //애플워치로부터 스윙 데이터 수신
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
-        guard self.state == .recieving else {
+        //상태가 receiving이 아니어도 적절한 폴더 있으면 저장
+        guard let folderName = self.folderName else {
             return
         }
         DispatchQueue.main.async {
             let fileManager = FileManager.default
             let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-            let folderPath = documentsURL?.appendingPathComponent(self.folderName!)
+            let folderPath = documentsURL?.appendingPathComponent(folderName)
             let destinationURL = folderPath?.appendingPathComponent(file.fileURL.lastPathComponent)
             do {
-                // 수신된 파일을 앱 내의 원하는 위치로 이동
                 try fileManager.moveItem(at: file.fileURL, to: destinationURL!)
                 print("Received file at: \(destinationURL!.path)")
-                self.state = .sending
+                // 다 받았을 때 수신중이었다면 바로 전송
+                self.fileReceived = true
+                if(self.state == .receiving) {
+                    self.state = .sending
+                }
             } catch {
                 print("Error moving file: \(error.localizedDescription)")
-                self.state = .error
+                self.state = .error("데이터 저장 실패")
             }
         }
     }
