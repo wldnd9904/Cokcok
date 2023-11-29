@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct NewUserView: View {
-    @StateObject var manager: NewUserManager = NewUserManager(id: "sdf", email: "heung@never.com", authType: .kakao)
+    @StateObject var manager: NewUserManager
+    @State var selectedGrade: Grade = .beginner
+    @State var selectedYear: Int = 0
     var body: some View {
         VStack(alignment: .center){
             if(manager.showMessage){
@@ -21,18 +23,38 @@ struct NewUserView: View {
                     switch(manager.question){
                     case .gender:
                         HStack{
-                            Selection(text: "남성", onSelect: manager.next, color:.blue)
-                            Selection(text: "여성", onSelect: manager.next, color:.red)
-                            Selection(text: "기타", onSelect: manager.next, color:.black)
+                            Selection(text: "남성", onSelect:{
+                                manager.next{
+                                    manager.sex = .male
+                                }
+                            }, color:.blue)
+                            Selection(text: "여성", onSelect:{
+                                manager.next{
+                                    manager.sex = .female
+                                }
+                            }, color:.red)
+                            Selection(text: "기타", onSelect:{
+                                manager.next{
+                                    manager.sex = .etc
+                                }
+                            }, color:.black)
                         }
                     case .hand:
                         HStack{
-                            Selection(text: "왼손", onSelect: manager.next, color:.blue)
-                            Selection(text: "오른손",onSelect: manager.next, color:.red)
+                            Selection(text: "왼손",  onSelect:{
+                                manager.next{
+                                    manager.hand = .left
+                                }
+                            }, color:.blue)
+                            Selection(text: "오른손", onSelect:{
+                                manager.next{
+                                    manager.hand = .right
+                                }
+                            }, color:.red)
                         }
                     case .year:
                         HStack{
-                            Picker("", selection: $manager.selected) {
+                            Picker("", selection: $selectedYear) {
                                 Text("1년 미만").tag(0)
                                 ForEach(1...20, id: \.self) {
                                     Text("\($0)년").tag($0)
@@ -41,27 +63,30 @@ struct NewUserView: View {
                             }
                             .frame(width:150, height:100)
                             .pickerStyle(.wheel)
-                            Button("선택", action:manager.next)
+                            Button("선택", action:{
+                                manager.next{
+                                    manager.years = selectedYear
+                            }})
                                 .buttonStyle(.bordered)
                                 .tint(.blue)
                         }
                     case .grade:
                         HStack{
-                            Picker("", selection: $manager.selected) {
-                                Text("초심").tag(0)
-                                Text("D급").tag(1)
-                                Text("C급").tag(2)
-                                Text("B급").tag(3)
-                                Text("A급").tag(4)
-                                Text("자강조").tag(5)
+                            Picker("", selection: $selectedGrade) {
+                                ForEach(Grade.allCases){
+                                    Text($0.rawValue).tag($0)
+                                }
                             }
                             .frame(width:150, height:100)
                             .pickerStyle(.wheel)
-                            Button("선택", action:manager.next)
+                            Button("선택", action:{
+                                manager.next{
+                                    manager.grade = selectedGrade
+                            }})
                                 .buttonStyle(.bordered)
                                 .tint(.blue)
                         }
-                    case .done:Button("시작하기"){}
+                    case .done:Button("시작하기"){manager.done()}
                     default:Text("")
                     }
                     if(manager.question.rawValue > 2) {
@@ -94,5 +119,6 @@ struct Selection: View {
 }
 
 #Preview {
-    NewUserView()
+    NewUserView(manager: NewUserManager(id: "sdf", email: "heung@never.com", authType: .kakao){user in
+    print(user)})
 }

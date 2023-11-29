@@ -19,22 +19,22 @@ enum Sex: String, CaseIterable, Identifiable {
 }
 enum Grade: String, CaseIterable, Identifiable {
     var id: String {rawValue}
-    case jagang = "자강조"
-    case a = "A조"
-    case b = "B조"
-    case c = "C조"
-    case d = "D조"
     case beginner = "초심"
+    case d = "D조"
+    case c = "C조"
+    case b = "B조"
+    case a = "A조"
+    case jagang = "자강"
 }
 
 
 public struct User:Identifiable {
-    public var id: UUID
+    public var id: String
     var email: String
     var authType: AuthType
     var hand: Hand
     var sex: Sex
     var grade: Grade 
     var years: Int
-    static let demo = User(id: UUID(), email:"heung@never.com", authType: .kakao, hand: .left, sex: .male, grade: .c, years: 4)
+    static let demo = User(id: "gdgdd", email:"heung@never.com", authType: .kakao, hand: .left, sex: .male, grade: .c, years: 4)
 }

@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+
 
 struct LoginView: View {
-    @EnvironmentObject var authManager: AuthenticationManager
+    var authManager:AuthenticationManager
     @State var isShowingProgressView = false                   // 로그인 비동기 ProgressView
     @State var isShowingAlert: Bool = false                     // 로그인 완료 Alert
     @Environment(\.window) var window: UIWindow?
-
+    
     var body: some View {
         ZStack{
             VStack {
@@ -92,12 +94,17 @@ struct LoginView: View {
                 Spacer()
                 Spacer()
             }
+            if(isShowingProgressView){
+                Color.black.opacity(0.2).ignoresSafeArea()
+                ProgressView()
+            }
         }
         .ignoresSafeArea(.all)
     }
 }
 
 #Preview {
-    LoginView()
-        .environmentObject(AuthenticationManager())
+    LoginView(authManager: AuthenticationManager{ uid, email, authType in
+        print(uid, email, authType)
+    })
 }

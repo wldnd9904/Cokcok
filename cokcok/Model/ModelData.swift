@@ -13,17 +13,17 @@ enum ColorTheme: String, CaseIterable, Identifiable {
     case dark = "어두운 모드"
     case system = "시스템 설정에 맞춤"
 }
+enum signState {
+    case signIn
+    case signOut
+}
 
 final class ModelData: ObservableObject {
-    var user:User?
-    var swings:[SwingAnalyze]
-    var matches:[MatchSummary]
-    var achievements:[Achievement]
-    var theme: ColorTheme = .system
-    init() {
-        self.user = User.demo
-        self.swings = generateRandomSwingData(count: 10)
-        self.matches = generateRandomMatchSummaries(count: 10)
-        self.achievements = generateRandomAchievements(count: 10)
-    }
+    @Published var signState: signState = .signOut
+    var uid: String = ""
+    @Published var user:User?
+    @Published var swings:[SwingAnalyze] = []
+    @Published var matches:[MatchSummary] = []
+    @Published var achievements:[Achievement] = []
+    @Published var theme: ColorTheme = .system
 }

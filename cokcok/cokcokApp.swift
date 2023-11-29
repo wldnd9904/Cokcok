@@ -22,7 +22,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct cokcokApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var authManager:AuthenticationManager = AuthenticationManager()
     init() {
         // Kakao SDK 초기화
         KakaoSDK.initSDK(appKey: "3355c78c4e56c0163218ff807374401a")
@@ -31,7 +30,6 @@ struct cokcokApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(ModelData())
-                .environmentObject(authManager)
                 .onOpenURL { url in // 뷰가 속한 Window에 대한 URL을 받았을 때 호출할 Handler를 등록하는 함수
                     if AuthApi.isKakaoTalkLoginUrl(url) {
                         _ = AuthController.handleOpenUrl(url: url)

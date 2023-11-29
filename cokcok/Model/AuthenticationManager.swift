@@ -35,17 +35,24 @@ enum AuthType: String {
 }
 
 class AuthenticationManager: NSObject, ObservableObject {
-    
-    @Published var signState: signState = .signOut
+    @Published var signState: signState = .signOut {
+        didSet(oldVal){
+            onLogin(uid,email,authType)
+        }
+    }
+    let onLogin: (String?, String?, AuthType?) -> Void
+    var uid:String?
     var email:String?
     var authType: AuthType?
     var currentNonce: String?
     var window: UIWindow?
-    
-
-    enum signState {
-        case signIn
-        case signOut
+    init(onLogin: @escaping (String?, String?, AuthType?) -> Void, uid: String? = nil, email: String? = nil, authType: AuthType? = nil, currentNonce: String? = nil, window: UIWindow? = nil) {
+        self.onLogin = onLogin
+        self.uid = uid
+        self.email = email
+        self.authType = authType
+        self.currentNonce = currentNonce
+        self.window = window
     }
     //이메일 회원가입
     func emailAuthSignUp(email: String, userName: String, password: String, completion: (() -> Void)?) {
@@ -55,7 +62,7 @@ class AuthenticationManager: NSObject, ObservableObject {
                 print("이메일회원가입에러: \(error.localizedDescription)")
             }
             if result != nil {
-                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                _ = Auth.auth().currentUser?.createProfileChangeRequest()
                 //changeRequest?.displayName = userName
                 print("사용자 이메일: \(String(describing: result?.user.email))")
             }
@@ -74,12 +81,10 @@ class AuthenticationManager: NSObject, ObservableObject {
             }
             
             if result != nil {
-                self.signState = .signIn
+                self.uid = result?.user.uid
                 self.email = result?.user.email
                 self.authType = .kakao
-                print("사용자 이메일: \(String(describing: result?.user.email))")
-                print("사용자 이름: \(String(describing: result?.user.displayName))")
-                
+                self.signState = .signIn
             }
         }
     }
@@ -128,9 +133,10 @@ class AuthenticationManager: NSObject, ObservableObject {
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                self.signState = .signIn
+                self.uid = result?.user.uid
                 self.email = result?.user.email
                 self.authType = .google
+                self.signState = .signIn
             }
         }
     }
@@ -146,9 +152,10 @@ class AuthenticationManager: NSObject, ObservableObject {
         do {
             // 2
             try Auth.auth().signOut()
-            self.signState = .signOut
+            self.uid = nil
             self.email = nil
             self.authType = nil
+            self.signState = .signOut
         } catch {
             print(error.localizedDescription)
         }
@@ -199,7 +206,7 @@ extension AuthenticationManager {
     func loadingInfoDidKakaoAuth() {  // 사용자 정보 불러오기
         print("사용자정보불러오기")
         UserApi.shared.me { kakaoUser, error in
-            if let error = error {
+            if error != nil {
                 print("카카오톡 사용자 정보 불러오는데 실패했습니다.")
                 
                 return
@@ -305,9 +312,10 @@ extension AuthenticationManager: ASAuthorizationControllerDelegate {
                     print(error.localizedDescription)
                     return
                 }
-                self.signState = .signIn
+                self.uid = authResult?.user.uid
                 self.email = authResult?.user.email
                 self.authType = .apple
+                self.signState = .signIn
             }
         }
     }

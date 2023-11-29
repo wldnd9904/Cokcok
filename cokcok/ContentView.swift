@@ -13,11 +13,12 @@ private enum Tab:Hashable {
 }
 
 struct ContentView : View {
-    @EnvironmentObject var authManager: AuthenticationManager
+    @EnvironmentObject var model: ModelData
     @State private var selectedTab: Tab = .summary
+    @State private var showNewUserView:(String, String, AuthType)?
     var body: some View {
         VStack{
-            if(authManager.signState == .signIn) {
+            if(model.signState == .signIn) {
                 TabView(selection: $selectedTab) {
                     NavigationStack{
                         SwingView()
@@ -47,28 +48,36 @@ struct ContentView : View {
                         Image(systemName: "waveform.path.ecg.rectangle")
                         Text("경기 분석")
                     }
-                    .badge(10)
                     .tag(Tab.matches)
                     
                 }
                 .background(.thinMaterial)
                 .font(.headline)
             } else {
-                LoginView()
+                if(showNewUserView != nil){
+                    NewUserView(manager: NewUserManager(id: showNewUserView!.0, email: showNewUserView!.1, authType: showNewUserView!.2){user in
+                        model.user = user
+                        model.signState = .signIn
+                    })
+                } else {
+                    LoginView(authManager: AuthenticationManager{ uid, email, authType in
+                        if(false){
+                            //로그인 정보 받아오기, 없다면 아래 실행
+                        } else {
+                            showNewUserView = (uid!, email!, authType!)
+                        }
+                    })
+                }
             }
-        }                
-        .onAppear {
+        }.onAppear {
             if Auth.auth().currentUser != nil {
-                authManager.signState = .signIn
+                print(Auth.auth().currentUser?.uid)
+                model.signState = .signIn
             }
-            #if DEBUG
-            authManager.signState = .signIn
-            #endif
         }
     }
 }
 #Preview {
     ContentView()
-        .environmentObject(AuthenticationManager())
         .environmentObject(ModelData())
 }

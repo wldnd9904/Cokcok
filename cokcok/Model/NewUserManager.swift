@@ -34,7 +34,7 @@ class NewUserManager: ObservableObject {
     @Published var showMessage: Bool = false
     @Published var showSelection: Bool = false
     @Published var selectable: Bool = true
-    @Published var selected: Int = 0
+    let onDone: (User) -> Void
     let id: String
     let email: String
     var authType: AuthType
@@ -42,10 +42,14 @@ class NewUserManager: ObservableObject {
     var sex: Sex?
     var grade: Grade?
     var years: Int?
-    init(id: String, email:String, authType:AuthType){
+    init(id: String, email:String, authType:AuthType, onDone:@escaping (User) -> Void){
         self.id = id
         self.email = email
         self.authType = authType
+        self.onDone = onDone
+    }
+    func done() {
+        onDone(makeUser())
     }
     func start() {
         withAnimation {
@@ -75,9 +79,10 @@ class NewUserManager: ObservableObject {
             }
         }
     }
-    func next() {
+    func next(action: () -> ()) {
         if !selectable {return}
         self.selectable = false
+        action()
         withAnimation {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.showMessage = false
@@ -85,7 +90,6 @@ class NewUserManager: ObservableObject {
                 self.question = self.question.next()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.showMessage = true
-                    self.selected = 0
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.showSelection = true
                         self.selectable = true
@@ -104,7 +108,6 @@ class NewUserManager: ObservableObject {
                 self.question = self.question.prev()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.showMessage = true
-                    self.selected = 0
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.showSelection = true
                         self.selectable = true
@@ -112,5 +115,8 @@ class NewUserManager: ObservableObject {
                 }
             }
         }
+    }
+    func makeUser() -> User {
+        User(id: id, email: email, authType: authType, hand: hand!, sex: sex!, grade: grade!, years: years!)
     }
 }

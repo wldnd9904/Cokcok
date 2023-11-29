@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct MyPage: View {
-    @EnvironmentObject var authManager: AuthenticationManager
+    @EnvironmentObject var model: ModelData
     @Binding var isPresented: Bool
     @State var editMode:Bool = false
     @State var hand: Hand = .right
     @State var sex: Sex = .male
     @State var grade: Grade = .c
     @State var theme: ColorTheme = .system
+    @State var year: Int = 0
     var body: some View {
         ZStack(alignment:.top){
             List {
@@ -22,17 +23,17 @@ struct MyPage: View {
                     HStack{
                         Text("계정 제공자")
                         Spacer()
-                        Image("google")
-                        Text("Google")
+                        Text(model.user?.authType.rawValue ?? "")
+                            .foregroundColor(.gray)
                     }
                     HStack{
                         Text("이메일")
                         Spacer()
-                        Text("wldnd9904@uos.ac.kr")
+                        Text(model.user?.email ?? "")
                     }
                     Button("로그아웃") {
                         isPresented = false
-                        authManager.signOut()
+                        model.signState = .signOut
                     }
                     .foregroundColor(.red)
                 }
@@ -40,14 +41,22 @@ struct MyPage: View {
                     Text("내 정보").font(.headline)
                     Spacer()
                     Button(editMode ? "저장":"수정"){
+                        model.user?.hand = self.hand
+                        model.user?.sex = self.sex
+                        model.user?.grade = self.grade
+                        model.user?.years = self.year
                         editMode.toggle()
                     }
                     .foregroundColor(.blue)
                     if editMode {
                         Button("취소"){
+                            self.hand = model.user?.hand ?? .right
+                            self.sex = model.user?.sex ?? .etc
+                            self.grade = model.user?.grade ?? .beginner
+                            self.year = model.user?.years ?? 0
                             editMode.toggle()
                         }
-                        .foregroundColor(.blue)
+                        .foregroundColor(.gray)
                     }
                 }
                         , footer:Text("위 정보는 스윙을 분석할 때 사용됩니다.")
@@ -59,6 +68,13 @@ struct MyPage: View {
                                 ForEach(Grade.allCases) { grade in
                                     Text(grade.rawValue).tag(grade)
                                 }
+                            }
+                            Picker("구력", selection: $year) {
+                                Text("1년 미만").tag(0)
+                                ForEach(1...20, id: \.self) {
+                                    Text("\($0)년").tag($0)
+                                }
+                                Text("20년 이상").tag(21)
                             }
                             Picker("성별", selection: $sex) {
                                 ForEach(Sex.allCases) { sex in
@@ -73,17 +89,29 @@ struct MyPage: View {
                         } else {
                             HStack{Text("급수")
                                 Spacer()
-                                Text(grade.rawValue).foregroundStyle(.gray)
+                                Text(model.user?.grade.rawValue ?? "").foregroundStyle(.gray)
+                            }
+                            
+                            HStack{Text("구력")
+                                Spacer()
+                                Text({
+                                    switch(model.user?.years ?? 0){
+                                    case 0: "1년 미만"
+                                    case 21: "20년 이상"
+                                    default: "\(model.user?.years ?? 0)년"
+                                    }
+                                }()
+                                ).foregroundStyle(.gray)
                             }
                             
                             HStack{Text("성별")
                                 Spacer()
-                                Text(sex.rawValue).foregroundStyle(.gray)
+                                Text(model.user?.sex.rawValue ?? "").foregroundStyle(.gray)
                             }
                             
                             HStack{Text("라켓 잡는 손")
                                 Spacer()
-                                Text(hand.rawValue).foregroundStyle(.gray)
+                                Text(model.user?.hand.rawValue ?? "").foregroundStyle(.gray)
                             }
                         }
                     }
@@ -124,10 +152,16 @@ struct MyPage: View {
                     .frame(width: 35, height: 5)
                     .padding(6)
         }
+        .onAppear{
+            self.hand = model.user?.hand ?? .right
+            self.sex = model.user?.sex ?? .etc
+            self.grade = model.user?.grade ?? .beginner
+            self.year = model.user?.years ?? 0
+        }
     }
 }
 
+
 #Preview {
-    MyPage(isPresented: .constant(true))
-        .environmentObject(AuthenticationManager())
+    MyPage(isPresented: .constant(true)).environmentObject(ModelData())
 }
