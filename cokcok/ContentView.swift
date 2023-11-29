@@ -58,6 +58,9 @@ struct ContentView : View {
                     NewUserView(manager: NewUserManager(id: showNewUserView!.0, email: showNewUserView!.1, authType: showNewUserView!.2){user in
                         model.user = user
                         model.signState = .signIn
+                        model.matches = generateRandomMatchSummaries(count: 20)
+                        model.achievements = generateRandomAchievements(count: 200)
+                        model.swings = generateRandomSwingData(count: 20)
                     })
                 } else {
                     LoginView(authManager: AuthenticationManager{ uid, email, authType in
