@@ -13,13 +13,14 @@ import SwiftUI
 import HealthKit
 
 enum SwingRecordManagerPhoneState: Equatable {
-    case idle, running, saving, receiving, sending, sent, error(String)
+    case idle, running, saving, receiving, saved, sending, sent, error(String)
     var message: String {
         switch(self) {
         case .idle:"대기"
         case .running:"스윙 기록 중"
         case .saving:"영상을 저장하는 중"
         case .receiving:"손목 데이터 수신 중"
+        case .saved:"실력 측정 준비 완료"
         case .sending:"영상과 손목 데이터를 서버에 전송하는 중"
         case .sent:"전송 완료"
         case .error(let detail):"오류: \(detail)."
@@ -160,12 +161,10 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
             return
         }
         output.stopRecording()
-        self.state = .receiving
+        if(self.state == .saving) {self.state = .receiving}
         self.wcsession.sendMessage(["message":"check"], replyHandler: { checkResponse in
             DispatchQueue.main.async{
-                if(self.fileReceived) {
-                    self.uploadSwing()
-                }
+                if(self.fileReceived) {self.state = .saved}
                 self.wcsession.sendMessage(["message":"stop"], replyHandler: {stopResponse in
                     //스탑 실패 시
                 }, errorHandler: { startError in
@@ -228,7 +227,10 @@ extension SwingRecordManagerPhone: WCSessionDelegate {
                 // 다 받았을 때 수신중이었다면 바로 전송
                 self.fileReceived = true
                 self.wcsession.sendMessage(["message":"received"], replyHandler: nil)
-                self.uploadSwing()
+                print(self.state.message)
+                if(self.state == .receiving) {
+                    self.state = .saved
+                }
             } catch {
                 print("Error moving file: \(error.localizedDescription)")
                 self.state = .error("데이터 저장 실패")

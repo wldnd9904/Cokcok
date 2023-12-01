@@ -12,8 +12,8 @@ struct SwingRecordView: View {
     @StateObject var model = SwingRecordManagerPhone()
     let dismiss: () -> Void
     var body: some View {
-        if(model.state == .sent){
-            Text("결과페이지")
+        if(model.state == .saved){
+            SwingResultView(folderName: model.folderName)
         } else {
             ZStack {
                 Text("카메라를 사용할 수 없습니다.")
