@@ -55,11 +55,17 @@ class SwingRecordManagerWatch: NSObject, ObservableObject {
         self.wcsession = session
         super.init()
         self.wcsession.delegate = self
+        do {
+            try startHKSession()
+        } catch {
+            return
+        }
         self.isReachable = wcsession.isReachable
         session.activate()
         self.wcsession.sendMessage(["message":"swingrecord"], replyHandler: nil)
     }
     deinit{
+        endHKSession()
         self.wcsession.sendMessage(["message":"startview"], replyHandler: nil)
         self.wcsession.delegate = nil
     }
@@ -67,11 +73,6 @@ class SwingRecordManagerWatch: NSObject, ObservableObject {
         if self.state != .idle { return }
         if(self.wcsession.isReachable) {
             self.wcsession.sendMessage(["message":"start"], replyHandler: nil)
-        }
-        do {
-            try startHKSession()
-        } catch {
-            return
         }
         self.state = .running
         self.recordedMotion.removeAll()
@@ -90,7 +91,6 @@ class SwingRecordManagerWatch: NSObject, ObservableObject {
         }
         self.state = .saving
         self.motionManager.stopDeviceMotionUpdates()
-        endHKSession()
         DispatchQueue.main.async {
             guard let tmpFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
                 self.state = .error("데이터 저장 실패")
