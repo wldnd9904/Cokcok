@@ -11,6 +11,8 @@ import AVKit
 struct SwingResultView: View {
     let folderName: String
     @State var video: AVPlayer? = nil
+    let onAccept: () -> Void
+    let onCancel: () -> Void
     var body: some View {
         VStack(){
             HStack{
@@ -43,5 +45,5 @@ struct SwingResultView: View {
 }
 
 #Preview {
-    SwingResultView(folderName:"")
+    SwingResultView(folderName:"", onAccept: {}, onCancel: {})
 }

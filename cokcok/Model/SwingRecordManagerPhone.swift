@@ -183,6 +183,11 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
             }
         })
     }
+    
+    func resetRecording(){
+        self.state = .idle
+        self.folderName = "swing-\(Date())"
+    }
 }
 
 // MARK: - 애플워치 세션 델리게이트
@@ -317,7 +322,8 @@ extension SwingRecordManagerPhone {
 // MARK: - 통신부
 extension SwingRecordManagerPhone {
     func uploadSwing(){
-        guard self.state == .receiving else {
+        guard self.state == .saved
+        else {
             return
         }
         self.state = .sending

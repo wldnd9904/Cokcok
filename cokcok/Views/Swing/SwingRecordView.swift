@@ -10,13 +10,18 @@ import HealthKit
 
 struct SwingRecordView: View {
     @StateObject var model = SwingRecordManagerPhone()
+    @State var showHelp = false
     let dismiss: () -> Void
     var body: some View {
         if(model.state == .saved){
-            SwingResultView(folderName: model.folderName)
+            SwingResultView(folderName: model.folderName) {
+                model.uploadSwing()
+            } onCancel: {
+                model.resetRecording()
+            }
         } else {
             ZStack {
-                Text("카메라를 사용할 수 없습니다.")
+                ProgressView()
                 model.preview
                     .ignoresSafeArea()
                 VStack {
@@ -34,6 +39,14 @@ struct SwingRecordView: View {
                         }) {
                             Image(systemName: "arrow.triangle.2.circlepath.camera")
                         }
+                        
+                        Button(action: {
+                            showHelp = true
+                        }) {
+                            Image(systemName: "questionmark.circle")
+                        }
+                        .foregroundColor(model.isButtonActivated ? .yellow : .gray)
+                        
                         Button(action: {
                             dismiss()
                         }) {
@@ -80,6 +93,8 @@ struct SwingRecordView: View {
                     Spacer()
                 }
                 .animation(.easeIn, value: model.state)
+                
+                if(showHelp) {SwingHelpView(onClose: {showHelp = false})}
             }
         }
     }

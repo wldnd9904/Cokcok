@@ -86,6 +86,7 @@
 		B8CDA7E92B15A08300746B1B /* TransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7E82B15A08300746B1B /* TransportManager.swift */; };
 		B8CDA7EA2B15A08300746B1B /* TransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7E82B15A08300746B1B /* TransportManager.swift */; };
 		B8CDA7EC2B15AA1B00746B1B /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */; };
+		B8E1F0B72B1C624A00C66315 /* SwingHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +216,7 @@
 		B8C36C552AFABB2A00671129 /* ScoreChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreChart.swift; sourceTree = "<group>"; };
 		B8CDA7E82B15A08300746B1B /* TransportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportManager.swift; sourceTree = "<group>"; };
 		B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
+		B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingHelpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +366,7 @@
 				B8A885092AF9020B0041F092 /* AVPreview.swift */,
 				B8AB85022B089B1200361F86 /* SwingTrendChart.swift */,
 				B89182DE2B19D65000DA2BE5 /* SwingResultView.swift */,
+				B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */,
 			);
 			path = Swing;
 			sourceTree = "<group>";
@@ -771,6 +774,7 @@
 				B8229FC92B164B14009D039E /* NewUserManager.swift in Sources */,
 				B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */,
 				B8AB85032B089B1200361F86 /* SwingTrendChart.swift in Sources */,
+				B8E1F0B72B1C624A00C66315 /* SwingHelpView.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
 				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,
 				B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */,
