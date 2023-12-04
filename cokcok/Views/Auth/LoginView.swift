@@ -96,7 +96,7 @@ struct LoginView: View {
             }
             if(isShowingProgressView){
                 Color.black.opacity(0.2).ignoresSafeArea()
-                ProgressView()
+                Spinner()
             }
         }
         .ignoresSafeArea(.all)

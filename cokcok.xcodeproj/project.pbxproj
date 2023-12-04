@@ -12,6 +12,10 @@
 		B804F3442B0C94150088B4EF /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = B804F3432B0C94150088B4EF /* KakaoSDKCommon */; };
 		B804F3462B0C94150088B4EF /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = B804F3452B0C94150088B4EF /* KakaoSDKUser */; };
 		B804F3492B0DC0970088B4EF /* MyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B804F3482B0DC0970088B4EF /* MyPage.swift */; };
+		B806FB6C2B1DEE1600E55F01 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B806FB6B2B1DEE1600E55F01 /* Spinner.swift */; };
+		B806FB6E2B1DEF9400E55F01 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B806FB6D2B1DEF9400E55F01 /* APIManager.swift */; };
+		B806FB702B1DF06E00E55F01 /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B806FB6F2B1DF06E00E55F01 /* URLFactory.swift */; };
+		B806FB722B1E0D8700E55F01 /* Data+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B806FB712B1E0D8700E55F01 /* Data+String.swift */; };
 		B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */; };
 		B8229FC72B1631E7009D039E /* NewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8229FC62B1631E7009D039E /* NewUserView.swift */; };
 		B8229FC92B164B14009D039E /* NewUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8229FC82B164B14009D039E /* NewUserManager.swift */; };
@@ -145,6 +149,10 @@
 		B80430D42B04E89000383D88 /* MedalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalView.swift; sourceTree = "<group>"; };
 		B804F3472B0D0CF30088B4EF /* cokcok.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cokcok.entitlements; sourceTree = "<group>"; };
 		B804F3482B0DC0970088B4EF /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
+		B806FB6B2B1DEE1600E55F01 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		B806FB6D2B1DEF9400E55F01 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		B806FB6F2B1DF06E00E55F01 /* URLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
+		B806FB712B1E0D8700E55F01 /* Data+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+String.swift"; sourceTree = "<group>"; };
 		B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetail.swift; sourceTree = "<group>"; };
 		B8229FC62B1631E7009D039E /* NewUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserView.swift; sourceTree = "<group>"; };
 		B8229FC82B164B14009D039E /* NewUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserManager.swift; sourceTree = "<group>"; };
@@ -330,6 +338,8 @@
 				B8AB852A2B08E57300361F86 /* AuthenticationManager.swift */,
 				B8516CA22B0F8BDA00C2DFAA /* Achievement.swift */,
 				B8229FC82B164B14009D039E /* NewUserManager.swift */,
+				B806FB6D2B1DEF9400E55F01 /* APIManager.swift */,
+				B806FB6F2B1DF06E00E55F01 /* URLFactory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -386,6 +396,7 @@
 			children = (
 				B8A8850E2AF9052E0041F092 /* AVCaptureSession+AddIO.swift */,
 				B8516CA42B0F95E100C2DFAA /* Color+.swift */,
+				B806FB712B1E0D8700E55F01 /* Data+String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -509,6 +520,7 @@
 				B8AB85092B08DC9F00361F86 /* LoginView.swift */,
 				B804F3482B0DC0970088B4EF /* MyPage.swift */,
 				B8229FC62B1631E7009D039E /* NewUserView.swift */,
+				B806FB6B2B1DEE1600E55F01 /* Spinner.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -766,6 +778,7 @@
 				B8AB852B2B08E57300361F86 /* AuthenticationManager.swift in Sources */,
 				B8C36C542AFAA18900671129 /* Date&Time.swift in Sources */,
 				B8AAD0662B04921900D9213C /* SummaryBoxView.swift in Sources */,
+				B806FB722B1E0D8700E55F01 /* Data+String.swift in Sources */,
 				B8AB85072B089D2F00361F86 /* SwingAnalyze.swift in Sources */,
 				B8AB850C2B08DCBA00361F86 /* ModelData.swift in Sources */,
 				B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */,
@@ -777,6 +790,7 @@
 				B8E1F0B72B1C624A00C66315 /* SwingHelpView.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
 				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,
+				B806FB6E2B1DEF9400E55F01 /* APIManager.swift in Sources */,
 				B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */,
 				B8516CA52B0F95E100C2DFAA /* Color+.swift in Sources */,
 				B8229FC72B1631E7009D039E /* NewUserView.swift in Sources */,
@@ -790,6 +804,7 @@
 				B8C36C4F2AFA73DD00671129 /* MatchSummary.swift in Sources */,
 				B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */,
 				B869782E2B10B91B00442933 /* AchievementDetail.swift in Sources */,
+				B806FB6C2B1DEE1600E55F01 /* Spinner.swift in Sources */,
 				B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */,
 				B80430D52B04E89000383D88 /* MedalView.swift in Sources */,
 				B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */,
@@ -799,6 +814,7 @@
 				B8CDA7E92B15A08300746B1B /* TransportManager.swift in Sources */,
 				B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */,
 				B84C96ED2B0350B5001106C6 /* User.swift in Sources */,
+				B806FB702B1DF06E00E55F01 /* URLFactory.swift in Sources */,
 				B84C96EF2B0356B3001106C6 /* RecentSwing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

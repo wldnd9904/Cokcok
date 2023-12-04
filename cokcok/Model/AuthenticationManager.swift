@@ -15,7 +15,7 @@ import AuthenticationServices
 import SwiftUI
 import CryptoKit
 
-enum AuthType: String {
+enum AuthType: String, Codable {
     case google = "Google"
     case kakao = "카카오"
     case apple = "Apple"

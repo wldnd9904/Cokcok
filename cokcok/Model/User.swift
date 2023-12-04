@@ -6,18 +6,18 @@
 //
 
 import Foundation
-enum Hand: String, CaseIterable, Identifiable {
+enum Hand: String, CaseIterable, Identifiable, Codable {
     var id: String {rawValue}
     case left = "왼손"
     case right = "오른손"
 }
-enum Sex: String, CaseIterable, Identifiable {
+enum Sex: String, CaseIterable, Identifiable, Codable {
     var id: String {rawValue}
     case male = "남성"
     case female = "여성"
     case etc = "기타"
 }
-enum Grade: String, CaseIterable, Identifiable {
+enum Grade: String, CaseIterable, Identifiable, Codable {
     var id: String {rawValue}
     case beginner = "초심"
     case d = "D조"
@@ -28,7 +28,7 @@ enum Grade: String, CaseIterable, Identifiable {
 }
 
 
-public struct User:Identifiable {
+public struct User:Identifiable, Codable {
     public var id: String
     var email: String
     var authType: AuthType

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SwingAnalyze:Identifiable {
+public struct SwingAnalyze:Identifiable, Codable {
     public var id: UUID
     var score:Int
     var date: Date

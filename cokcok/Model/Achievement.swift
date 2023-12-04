@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Achievement: Identifiable {
+struct Achievement: Identifiable, Codable {
     let id: Int
     let month: Date?
     let name: String
