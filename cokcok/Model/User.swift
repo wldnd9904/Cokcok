@@ -10,12 +10,25 @@ enum Hand: String, CaseIterable, Identifiable, Codable {
     var id: String {rawValue}
     case left = "왼손"
     case right = "오른손"
+    func toAPI() -> String {
+        switch(self){
+        case .left: "L"
+        case .right: "R"
+        }
+    }
 }
 enum Sex: String, CaseIterable, Identifiable, Codable {
     var id: String {rawValue}
     case male = "남성"
     case female = "여성"
     case etc = "기타"
+    func toAPI() -> String {
+        switch(self){
+        case .male: "M"
+        case .female: "F"
+        case .etc: "O"
+        }
+    }
 }
 enum Grade: String, CaseIterable, Identifiable, Codable {
     var id: String {rawValue}
@@ -25,6 +38,22 @@ enum Grade: String, CaseIterable, Identifiable, Codable {
     case b = "B조"
     case a = "A조"
     case jagang = "자강"
+    func toAPI() -> String {
+        switch(self){
+        case .beginner:
+            "E"
+        case .d:
+            "D"
+        case .c:
+            "C"
+        case .b:
+            "B"
+        case .a:
+            "A"
+        case .jagang:
+            "S"
+        }
+    }
 }
 
 

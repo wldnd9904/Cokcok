@@ -13,7 +13,7 @@ enum Player {
 }
 
 struct MatchSummary: Identifiable, Codable {
-    var id: UUID
+    var id: Int
     var startDate: Date
     var endDate: Date
     var duration: TimeInterval
@@ -24,6 +24,19 @@ struct MatchSummary: Identifiable, Codable {
     var myScore: Int
     var opponentScore: Int
     var history: String
+    
+    var backDrive: Int = 0
+    var backHairpin: Int = 0
+    var backHigh: Int = 0
+    var backUnder: Int = 0
+    var foreDrive: Int = 0
+    var foreDrop: Int = 0
+    var foreHairpin: Int = 0
+    var foreHigh: Int = 0
+    var foreSmash: Int = 0
+    var foreUnder: Int = 0
+    var longService: Int = 0
+    var shortService: Int = 0
     
     // 새로운 점수 변동 기록 추가
     mutating func addScore(player: Player, timestamp:Date = Date()) {
@@ -69,10 +82,10 @@ func generateRandomMatchSummaries(count: Int) -> [MatchSummary] {
     var matchSummaries = [MatchSummary]()
     let heartRateRange = 100.0...180.0
 
-    for _ in 1...count {
+    for id in 1...count {
         let averageHeartRate = Double.random(in: heartRateRange)
         guard let workout: HKWorkout = generateRandomWorkout() else { return [] }
-        var matchSummary = MatchSummary(id: UUID(), startDate: workout.startDate, endDate: workout.endDate, duration: workout.duration, totalDistance: workout.totalDistance!.doubleValue(for: .meter()), totalEnergyBurned: workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()), averageHeartRate: averageHeartRate, myScore: 0, opponentScore: 0, history:"")
+        var matchSummary = MatchSummary(id: id, startDate: workout.startDate, endDate: workout.endDate, duration: workout.duration, totalDistance: workout.totalDistance!.doubleValue(for: .meter()), totalEnergyBurned: workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()), averageHeartRate: averageHeartRate, myScore: 0, opponentScore: 0, history:"")
         var currentTime = matchSummary.startDate
         let endTime = matchSummary.endDate
         while matchSummary.myScore < 21 && matchSummary.opponentScore < 21 && currentTime < endTime {

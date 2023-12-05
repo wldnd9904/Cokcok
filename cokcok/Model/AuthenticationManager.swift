@@ -31,6 +31,13 @@ enum AuthType: String, Codable {
             Image("kakao")
                 .resizable()
         }
+    }   
+    func toAPI() -> String {
+        switch(self){
+        case .apple: "apple"
+        case .google: "google"
+        case .kakao: "kakao"
+        }
     }
 }
 
