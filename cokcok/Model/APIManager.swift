@@ -7,26 +7,27 @@
 
 import Foundation
 
-enum APIError: Error {
+public enum APIError: Error {
     case invalidURL
     case invalidRequest
     case requestFailed
     case invalidData
     case decodingError
+    case timeOut
 }
 
-struct MessageResponse: Decodable {
-    let message: String
+public struct messageResponse: Codable {
+    let result: String
 }
 
-enum APIResponse<T: Codable> {
+public enum APIResponse<T: Codable> {
     case message(String)
     case codable(T)
 }
 
-class APIManager {
-    static let shared = APIManager()
-    private let baseURL = "https://<Server IP>"
+public class APIManager {
+    public static let shared = APIManager()
+    private let baseURL = "http://118.32.109.123:8000"
     
     // MARK: - 1. URL: <Server IP>/accounts/info
     private let accountsURL = "/accounts/info"
@@ -34,12 +35,9 @@ class APIManager {
     //(GET) 마이페이지
     //req: token
     //res: token에 따른 Player(선수)의 정보
-    func getMyPageInfo(token: String) async throws -> APIResponse<User> {
+    public func getMyPageInfo(token: String) async throws -> APIResponse<PlayerAPI> {
         let url = try makeURL(endpoint: accountsURL)
-        let params: [String: String] = [
-            "token": token
-        ]
-        let data = try await request(url, params, "GET")
+        let data = try await request(url, token, nil, "GET")
         return try decodeResponse(data: data)
     }
     
@@ -49,7 +47,6 @@ class APIManager {
     func signUp(token: String, sex: Sex, yearsPlaying: Int, grade: Grade, handedness: Hand, email: String, authType: AuthType) async throws -> APIResponse<String> {
          let url = try makeURL(endpoint: accountsURL)
          let params: [String: Any] = [
-             "token": token,
              "sex": sex.toAPI(),
              "years_playing": yearsPlaying,
              "grade": grade.toAPI(),
@@ -57,7 +54,7 @@ class APIManager {
              "email": email,
              "sns": authType.toAPI()
          ]
-        let data = try await request(url, params, "POST")
+        let data = try await request(url, token, params, "POST")
         return try decodeResponse(data: data)
      }
     
@@ -67,7 +64,6 @@ class APIManager {
     func updateUserInfo(token: String, sex: Sex, yearsPlaying: Int, grade: Grade, handedness: Hand, email: String, authType: AuthType) async throws -> APIResponse<String> {
         let url = try makeURL(endpoint: accountsURL)
         let params: [String: Any] = [
-            "token": token,
             "sex": sex.toAPI(),
             "years_playing": yearsPlaying,
             "grade": grade.toAPI(),
@@ -75,7 +71,7 @@ class APIManager {
             "email": email,
             "sns": authType.toAPI()
         ]
-        let data = try await request(url, params, "PUT")
+        let data = try await request(url, token, params, "PUT")
         return try decodeResponse(data: data)
     }
      
@@ -85,10 +81,7 @@ class APIManager {
     //없는 token이면? : APIResponse({"message":"회원가입을 해주세요."})
     func withdraw(token: String) async throws -> APIResponse<String> {
         let url = try makeURL(endpoint: accountsURL)
-        let params: [String: Any] = [
-            "token": token
-        ]
-        let data = try await request(url, params, "DELETE")
+        let data = try await request(url, token, nil, "DELETE")
         return try decodeResponse(data: data)
     }
     
@@ -97,9 +90,9 @@ class APIManager {
     //(GET) 업적 조회
     //req: X
     //res: Achievement 테이블 컬럼 전부(ex achieve_id, achieve_nm, ..)
-    func getAllAchievementTypes() async throws -> APIResponse<[AchievementAPI]> {
+    func getAllAchievementTypes(token:String) async throws -> APIResponse<[AchievementAPI]> {
         let url = try makeURL(endpoint: achieveTypeURL)
-        let data = try await request(url, [:], "GET")
+        let data = try await request(url, token, nil, "GET")
         return try decodeResponse(data: data)
     }
     
@@ -116,24 +109,16 @@ class APIManager {
     //(진행 중인 업적 조회) req: token, "clear":0으로 설정해서 전달
     //              res: Player_Achievement 컬럼 전부 전달
     func getAllAchievements(token: String) async throws -> APIResponse<[PlayerAchievementAPI]> {
-        let url = try makeURL(endpoint: achieveURL)
-        let params: [String: Any] = [
-            "token": token,
-            "clear": 0
-        ]
-        let data = try await request(url, params, "GET")
+        let url = try makeURL(endpoint: achieveURL+"?clear=0")
+        let data = try await request(url, token, nil, "GET")
         return try decodeResponse(data: data)
     }
     
     //(최근 달성 업적 조회) req: token, "clear":1로 설정해서 전달
     //              res: Player_Achievement 날짜순 정렬 상위 5개 전달
     func getRecentAchievements(token: String) async throws -> APIResponse<[PlayerAchievementAPI]> {
-        let url = try makeURL(endpoint: achieveURL)
-        let params: [String: Any] = [
-            "token": token,
-            "clear": 1
-        ]
-        let data = try await request(url, params, "GET")
+        let url = try makeURL(endpoint: achieveURL+"?clear=1")
+        let data = try await request(url,token, nil, "GET")
         return try decodeResponse(data: data)
     }
     
@@ -149,11 +134,10 @@ class APIManager {
     func getMatches(token: String, limit:Int, offset:Int) async throws -> APIResponse<[MatchAPI]> {
         let url = try makeURL(endpoint: matchURL)
         let params: [String: Any] = [
-            "token": token,
             "limit": limit,
             "offset": offset
         ]
-        let data = try await request(url, params, "GET")
+        let data = try await request(url,token, params, "GET")
         return try decodeResponse(data: data)
     }
     
@@ -163,10 +147,9 @@ class APIManager {
     func getMatch(token: String, matchID: String) async throws -> APIResponse<MatchAPI> {
         let url = try makeURL(endpoint: matchURL)
         let params: [String: Any] = [
-            "token": token,
             "match_id": matchID
         ]
-        let data = try await request(url, params, "GET")
+        let data = try await request(url,token, params, "GET")
         return try decodeResponse(data: data)
     }
     
@@ -184,10 +167,9 @@ class APIManager {
     func deleteMatch(token: String, matchID: String) async throws -> APIResponse<String> {
         let url = try makeURL(endpoint: matchURL)
         let params: [String: Any] = [
-            "token": token,
             "match_id": matchID
         ]
-        let data = try await request(url, params, "DELETE")
+        let data = try await request(url, token,params, "DELETE")
         return try decodeResponse(data: data)
     }
     //(초기화)    req: token
@@ -195,10 +177,7 @@ class APIManager {
     //
     func deleteAllMatches(token: String) async throws -> APIResponse<String> {
         let url = try makeURL(endpoint: matchURL)
-        let params: [String: Any] = [
-            "token": token
-        ]
-        let data = try await request(url, params, "DELETE")
+        let data = try await request(url, token,nil, "DELETE")
         return try decodeResponse(data: data)
     }
     
@@ -213,11 +192,10 @@ class APIManager {
     func getSwingAnalyzes(token: String, limit:Int, offset:Int) async throws -> APIResponse<[MotionAPI]> {
         let url = try makeURL(endpoint: motionURL)
         let params: [String: Any] = [
-            "token": token,
             "limit": limit,
             "offset": offset
         ]
-        let data = try await request(url, params, "GET")
+        let data = try await request(url,token, params, "GET")
         return try decodeResponse(data: data)
     }
     
@@ -227,10 +205,7 @@ class APIManager {
     //token이 존재하지않으면 {"message":"회원가입을 해주세요."}
     func getSwingAnalyze(token: String) async throws -> APIResponse<MotionAPI> {
         let url = try makeURL(endpoint: motionURL)
-        let params: [String: Any] = [
-            "token": token
-        ]
-        let data = try await request(url, params, "GET")
+        let data = try await request(url, token, nil, "GET")
         return try decodeResponse(data: data)
     }
     
@@ -288,10 +263,9 @@ class APIManager {
     func deleteSwing(token: String, swingID: String) async throws -> APIResponse<String> {
         let url = try makeURL(endpoint: motionURL)
         let params: [String: Any] = [
-            "token": token,
             "motion_id": swingID
         ]
-        let data = try await request(url, params, "DELETE")
+        let data = try await request(url,token ,params, "DELETE")
         return try decodeResponse(data: data)
     }
     //(초기화)    req: token
@@ -299,45 +273,52 @@ class APIManager {
     //
     func deleteAllSwings(token: String) async throws -> APIResponse<String> {
         let url = try makeURL(endpoint: motionURL)
-        let params: [String: Any] = [
-            "token": token
-        ]
-        let data = try await request(url, params, "DELETE")
+        let data = try await request(url, token, nil, "DELETE")
         return try decodeResponse(data: data)
     }
 }
 
-// MARK: - Helper Functions
+// MARK: - Helper public Functions
 
 extension APIManager {
-    func request(_ url: URL, _ parameters: [String: Any], _ type:String) async throws -> Data {
+    public func request(_ url: URL, _ authToken: String, _ parameters: [String: Any]?, _ type:String) async throws -> Data {
+        print(type + " 요청 시도")
+        print(url)
+        print(authToken)
+        print(parameters)
         var requestURL = URLRequest(url:url)
         requestURL.httpMethod = type
-        // Content-Type을 application/json으로 설정
-        requestURL.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        // 딕셔너리를 JSON 데이터로 변환
-        let jsonData = try JSONSerialization.data(withJSONObject: parameters)
-        // JSON 데이터를 httpBody에 추가
-        requestURL.httpBody = jsonData
+        requestURL.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
+        if let parameters = parameters {
+            // Content-Type을 application/json으로 설정
+            requestURL.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            // 딕셔너리를 JSON 데이터로 변환
+            let jsonData = try JSONSerialization.data(withJSONObject: parameters)
+            // JSON 데이터를 httpBody에 추가
+            requestURL.httpBody = jsonData
+        }
         let (data, response) = try await URLSession.shared.data(for: requestURL)
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode, (200..<300).contains(statusCode) else {
             throw APIError.invalidRequest
         }
         return data
     }
-    private func makeURL(endpoint: String) throws -> URL {
+     public func makeURL(endpoint: String) throws -> URL {
         guard let url = URL(string: baseURL + endpoint) else {
             throw APIError.invalidURL
         }
         return url
     }
     
-    private func decodeResponse<T: Decodable>(data: Data) throws -> APIResponse<T> {
+     public func decodeResponse<T: Decodable>(data: Data) throws -> APIResponse<T> {
         let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
         do {
             // 시도해보고 성공하면 Codable 타입으로 처리
-            let result = try decoder.decode(T.self, from: data)
-            return .codable(result)
+            let result = try? decoder.decode(T.self, from: data)
+            return .codable(result!)
         } catch {
             // 실패하면 String으로 처리
             let messageResponse = try decoder.decode(MessageResponse.self, from: data)

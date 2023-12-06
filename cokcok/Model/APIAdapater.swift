@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MatchAPI: Codable {
+public struct MatchAPI: Codable {
     let match_id: Int
     let start_date: Date
     let end_date: Date
@@ -39,7 +39,7 @@ struct MatchAPI: Codable {
     }
 }
 
-struct PlayerAPI: Codable {
+public struct PlayerAPI: Codable {
     let player_token: String
     let sex: String
     let years_playing: Int
@@ -77,7 +77,7 @@ struct PlayerAPI: Codable {
     }
 }
 
-struct AchievementAPI: Codable {
+public struct AchievementAPI: Codable {
     let achieve_id: Int
     let achieve_nm: String
     let d_min: Int
@@ -89,21 +89,21 @@ struct AchievementAPI: Codable {
     let icon: String
 }
 
-struct PlayerAchievementAPI: Codable {
+public struct PlayerAchievementAPI: Codable {
     let relation_id: Int
     let player_token: String
     let achieve_id: Int
     let cumulative_val: Int
-    let achieve_year_month: Date
-    let d_achieve_date: Date
-    let c_achieve_date: Date
-    let b_achieve_date: Date
-    let a_achieve_date: Date
-    let s_achieve_date: Date
-    let last_achieve_date: Date
+    let achieve_year_month: Date?
+    let d_achieve_date: Date?
+    let c_achieve_date: Date?
+    let b_achieve_date: Date?
+    let a_achieve_date: Date?
+    let s_achieve_date: Date?
+    let last_achieve_date: Date?
 }
 
-struct MotionAPI: Codable{
+public struct MotionAPI: Codable{
     let motion_id: Int
     let video_url: String
     let watch_url: String
@@ -115,3 +115,4 @@ struct MotionAPI: Codable{
     let record_date: Date
     let swing_score: Int
 }
+
