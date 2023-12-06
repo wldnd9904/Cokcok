@@ -16,8 +16,8 @@ public enum APIError: Error {
     case timeOut
 }
 
-public struct messageResponse: Codable {
-    let result: String
+public struct MessageResponse: Codable {
+    let message: String
 }
 
 public enum APIResponse<T: Codable> {
