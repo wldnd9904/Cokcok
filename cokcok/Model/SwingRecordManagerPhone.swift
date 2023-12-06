@@ -322,14 +322,33 @@ extension SwingRecordManagerPhone {
 // MARK: - 통신부
 extension SwingRecordManagerPhone {
     func uploadSwing(){
-        guard self.state == .saved
-        else {
-            return
-        }
+        //guard self.state == .saved
+        //else {
+        //    return
+        //}
         self.state = .sending
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            // Your code here
-            self.state = .sent
+        DispatchQueue.main.async {
+            // Documents 디렉토리 경로 가져오기
+            let fileManager = FileManager.default
+            guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                self.state = .error("파일 전송 실패")
+                return
+            }
+            do {
+                // 폴더 경로 설정
+                let folderPath = documentsDirectory.appendingPathComponent(self.folderName)
+                try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true, attributes: nil)
+                let videoPath = folderPath.appendingPathComponent("Video.mp4")
+                let motionPath = folderPath.appendingPathComponent("swingData.csv")
+                
+                try APIManager.shared.uploadSwing(token: "test", videoURL: videoPath, motionDataURL: motionPath){
+                    print($0)
+                    self.state = .sent
+                }
+            }
+            catch {
+                print(error)
+            }
         }
     }
 }

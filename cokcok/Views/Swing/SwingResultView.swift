@@ -11,13 +11,14 @@ import AVKit
 struct SwingResultView: View {
     let folderName: String
     @State var video: AVPlayer? = nil
-    let onAccept: () -> Void
-    let onCancel: () -> Void
+    @Binding var state: SwingRecordManagerPhoneState
+    let onAccept:() -> Void
+    let onCancel:() -> Void
     var body: some View {
         VStack(){
             HStack{
                 Spacer()
-                Text("실력 측정 준비 완료")
+                Text(state.message)
                 Spacer()
             }
             .padding(.bottom, 7)
@@ -27,9 +28,9 @@ struct SwingResultView: View {
             Spacer()
             Text("이 영상으로 실력을 측정할까요?")
             HStack{
-                Button("확인"){}
+                Button("확인"){onAccept()}
                     .tint(.blue)
-                Button("취소"){}
+                Button("취소"){onCancel()}
                     .tint(.red)
             }
             .font(.headline)
@@ -45,5 +46,7 @@ struct SwingResultView: View {
 }
 
 #Preview {
-    SwingResultView(folderName:"", onAccept: {}, onCancel: {})
+    SwingResultView(folderName:"", state: .constant(.idle)) {} onCancel: {
+        
+    }
 }

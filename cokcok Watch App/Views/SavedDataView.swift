@@ -146,9 +146,20 @@ struct DirectoryContentView: View {
         // 디렉토리 경로 설정
         let url = containerURL.appendingPathComponent(directoryURL)
             if let fileURLs = listFiles(inDirectory: url) {
-                List(fileURLs, id: \.self) { fileURL in
-                    NavigationLink(destination: FileContentView(fileName: fileURL.lastPathComponent, dir:url)) {
-                        Text(fileURL.lastPathComponent)
+                VStack{
+                    Button("업로드"){
+                        print("gd")
+                        do{
+                            print("gd")
+                            try uploadMatch(token: "6f5srp1JpUMdRw33TsKW0sc4lfX2", metaDataURL: url.appendingPathComponent("matchSummary.json"), motionDataURL: url.appendingPathComponent("motionData.csv"), onDone: {_ in print("레전드")})
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                    List(fileURLs, id: \.self) { fileURL in
+                        NavigationLink(destination: FileContentView(fileName: fileURL.lastPathComponent, dir:url)) {
+                            Text(fileURL.lastPathComponent)
+                        }
                     }
                 }
             }
@@ -216,5 +227,52 @@ struct SavedDataView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
             SavedDataView()}
+    }
+}
+
+
+
+func uploadMatch(token: String, metaDataURL: URL, motionDataURL: URL, onDone: @escaping (String) -> Void) throws {
+    let url = URL(string:"http://118.32.109.123:8000/process/match")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+    let boundary = UUID().uuidString
+    request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+    
+    var body = Data()
+    // Video File
+    body.append("--\(boundary)\r\n")
+    body.append("Content-Disposition: form-data; name=\"metadata_file\"; filename=\"metadata.json\"\r\n")
+    body.append("Content-Type: text/json\r\n\r\n")
+    body.append(try! Data(contentsOf: metaDataURL))
+    body.append("\r\n")
+    
+    // Watch File
+    body.append("--\(boundary)\r\n")
+    body.append("Content-Disposition: form-data; name=\"watch_file\"; filename=\"watch.csv\"\r\n")
+    body.append("Content-Type: text/csv\r\n\r\n")
+    body.append(try! Data(contentsOf: motionDataURL))
+    body.append("\r\n")
+    
+    body.append("--\(boundary)--\r\n")
+    
+    request.httpBody = body
+
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        print("gd")
+    }
+    task.resume()
+}
+public extension Data {
+
+    mutating func append(
+        _ string: String,
+        encoding: String.Encoding = .utf8
+    ) {
+        guard let data = string.data(using: encoding) else {
+            return
+        }
+        append(data)
     }
 }

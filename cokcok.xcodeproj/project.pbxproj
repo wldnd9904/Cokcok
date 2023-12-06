@@ -94,8 +94,6 @@
 		B8C536A82B1F450C00A7B123 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536A22B1F450C00A7B123 /* User.swift */; };
 		B8C536AA2B1F451000A7B123 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536A92B1F451000A7B123 /* Achievement.swift */; };
 		B8CDA7E72B159EA800746B1B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B8CDA7E62B159EA800746B1B /* Alamofire */; };
-		B8CDA7E92B15A08300746B1B /* TransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7E82B15A08300746B1B /* TransportManager.swift */; };
-		B8CDA7EA2B15A08300746B1B /* TransportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7E82B15A08300746B1B /* TransportManager.swift */; };
 		B8CDA7EC2B15AA1B00746B1B /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */; };
 		B8E1F0B72B1C624A00C66315 /* SwingHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */; };
 /* End PBXBuildFile section */
@@ -236,7 +234,6 @@
 		B8C536A12B1F450C00A7B123 /* SwingRecordManagerPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordManagerPhone.swift; sourceTree = "<group>"; };
 		B8C536A22B1F450C00A7B123 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B8C536A92B1F451000A7B123 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
-		B8CDA7E82B15A08300746B1B /* TransportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportManager.swift; sourceTree = "<group>"; };
 		B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingHelpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -456,7 +453,6 @@
 			children = (
 				B89B63662B0723B8009B46EA /* DataManager.swift */,
 				B8C36C4E2AFA73DD00671129 /* MatchSummary.swift */,
-				B8CDA7E82B15A08300746B1B /* TransportManager.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -839,7 +835,6 @@
 				B8A8850A2AF9020B0041F092 /* AVPreview.swift in Sources */,
 				B804F3492B0DC0970088B4EF /* MyPage.swift in Sources */,
 				B8C536962B1F445C00A7B123 /* SwingRecordManagerPhone.swift in Sources */,
-				B8CDA7E92B15A08300746B1B /* TransportManager.swift in Sources */,
 				B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */,
 				B84C96EF2B0356B3001106C6 /* RecentSwing.swift in Sources */,
 				B8C536982B1F445C00A7B123 /* ModelData.swift in Sources */,
@@ -878,7 +873,6 @@
 				B840642B2AFF73BD00C46D41 /* ControlsView.swift in Sources */,
 				B840642E2AFF73BD00C46D41 /* ActivityRingsView.swift in Sources */,
 				B8A885192AF90E230041F092 /* SwingRecordManagerWatch.swift in Sources */,
-				B8CDA7EA2B15A08300746B1B /* TransportManager.swift in Sources */,
 				B8A885172AF90B0E0041F092 /* SwingRecordWatchView.swift in Sources */,
 				B84064282AFF73BD00C46D41 /* SummaryView.swift in Sources */,
 				B840642F2AFF73BD00C46D41 /* ElapsedTimeView.swift in Sources */,

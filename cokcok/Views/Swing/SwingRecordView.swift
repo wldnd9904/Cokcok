@@ -13,8 +13,8 @@ struct SwingRecordView: View {
     @State var showHelp = false
     let dismiss: () -> Void
     var body: some View {
-        if(model.state == .saved){
-            SwingResultView(folderName: model.folderName) {
+        if(model.state == .saved || model.state == .sending || model.state == .sent){
+            SwingResultView(folderName: model.folderName, state: $model.state) {
                 model.uploadSwing()
             } onCancel: {
                 model.resetRecording()

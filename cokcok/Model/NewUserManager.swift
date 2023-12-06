@@ -14,7 +14,7 @@ enum Question: Int {
         switch(self){
         case .greeting:"반갑습니다."
         case .greeting2:"시작하기 전에 간단한 질문을 드리겠습니다."
-        case .gender:"당신의 성별은 무언인가요?"
+        case .gender:"당신의 성별은 무엇인가요?"
         case .year:"배드민턴을 얼마나 치셨나요?"
         case .grade:"배드민턴 등급이 있나요?"
         case .hand:"배드민턴 라켓은 어느 손으로 잡으시나요?"

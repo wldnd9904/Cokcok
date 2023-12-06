@@ -56,18 +56,35 @@ struct ContentView : View {
             } else {
                 if(showNewUserView != nil){
                     NewUserView(manager: NewUserManager(id: showNewUserView!.0, email: showNewUserView!.1, authType: showNewUserView!.2){user in
-                        model.user = user
-                        model.signState = .signIn
-                        model.matches = generateRandomMatchSummaries(count: 20)
-                        model.achievements = generateRandomUserAchievements(cnt: 200)
-                        model.swings = generateRandomSwingData(count: 20)
+                        Task {
+                            do {
+                                let data = try await APIManager.shared.signUp(token: user.id, sex: user.sex, yearsPlaying: user.years, grade: user.grade, handedness: user.hand, email: user.email, authType: user.authType)
+                                model.user = user
+                                model.signState = .signIn
+                                model.matches = []
+                                model.achievements = []
+                                model.swings = []
+                                showNewUserView = nil
+                            } catch {
+                                print(error)
+                            }
+                        }
                     })
                 } else {
                     LoginView(authManager: AuthenticationManager{ uid, email, authType in
-                        if(false){
-                            //로그인 정보 받아오기, 없다면 아래 실행
-                        } else {
-                            showNewUserView = (uid!, email!, authType!)
+                        Task{
+                            do {
+                                let data = try await  APIManager.shared.getMyPageInfo(token: uid!)
+                                switch data {
+                                case .codable(let userData):
+                                    model.user = userData.toUser()
+                                    model.signState = .signIn
+                                case .message(let message):
+                                    showNewUserView = (uid!, email!, authType!)
+                                }
+                            } catch {
+                                print(error.localizedDescription)
+                            }
                         }
                     })
                 }
@@ -75,7 +92,19 @@ struct ContentView : View {
         }.onAppear {
             if Auth.auth().currentUser != nil {
                 print(Auth.auth().currentUser?.uid)
-                model.signState = .signIn
+                Task{
+                    do {
+                        let data: APIResponse<PlayerAPI> = try await  APIManager.shared.getMyPageInfo(token: Auth.auth().currentUser!.uid)
+                        switch data {
+                        case .codable(let userData):
+                            model.user = userData.toUser()
+                            model.signState = .signIn
+                        default: return
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
             }
         }
     }
