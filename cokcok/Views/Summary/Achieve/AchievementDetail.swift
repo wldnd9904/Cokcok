@@ -21,22 +21,22 @@ private enum MedalTab: Int, Identifiable, CaseIterable {
         case .diamond: Color.diamond
         }
     }
-    func cnt(item: Achievement)->Int {
+    func cnt(item: AchievementType)->Int {
         switch(self){
-        case .bronze: item.ECnt
-        case .silver: item.DCnt
-        case .gold: item.CCnt
-        case .emerald: item.BCnt
-        case .diamond: item.ACnt
+        case .bronze: item.DMin
+        case .silver: item.CMin
+        case .gold: item.BMin
+        case .emerald: item.AMin
+        case .diamond: item.SMin
         }
     }
-    func date(item: Achievement)->Date? {
+    func date(item: UserAchievement)->Date? {
         switch(self){
-        case .bronze: item.EDate
-        case .silver: item.DDate
-        case .gold: item.CDate
-        case .emerald: item.BDate
-        case .diamond: item.ADate
+        case .bronze: item.DDate
+        case .silver: item.CDate
+        case .gold: item.BDate
+        case .emerald: item.ADate
+        case .diamond: item.SDate
         }
     }
     func prev() -> MedalTab? {
@@ -52,7 +52,7 @@ private enum MedalTab: Int, Identifiable, CaseIterable {
 
 struct AchievementDetail: View {
     @State private var selectedTab: MedalTab = .bronze
-    let item:Achievement
+    let item:UserAchievement
     
     var body: some View {
         ZStack{
@@ -60,16 +60,16 @@ struct AchievementDetail: View {
                     content:  {
                 ForEach(MedalTab.allCases){ tab in
                     VStack{
-                        MedalView(medalType: item.symbol, medalColor: tab.color)
-                            .opacity(tab.cnt(item: item) > item.currentCnt ? 0.1 : 1.0)
+                        MedalView(medalType: item.type.icon, medalColor: tab.color)
+                            .opacity(tab.cnt(item: item.type) > item.currentCnt ? 0.1 : 1.0)
                         if((item.month) != nil) {
-                            Text("\(Calendar.current.component(.month, from: item.month!))월 \(item.name)")
+                            Text("\(Calendar.current.component(.month, from: item.month!))월 \(item.type.name)")
                                 .font(.headline)
                         } else {
-                            Text("\(item.name)")
+                            Text("\(item.type.name)")
                                 .font(.headline)
                         }
-                        (Text("\(item.currentCnt)").font(.system(size: 20, weight: .bold, design: .rounded)) + Text(" /\(tab.cnt(item:item))\(item.unit)").font(.system(size: 14, weight: .semibold, design: .rounded)))
+                        (Text("\(item.currentCnt)").font(.system(size: 20, weight: .bold, design: .rounded)) + Text(" /\(tab.cnt(item:item.type))\(item.type.unit)").font(.system(size: 14, weight: .semibold, design: .rounded)))
                             .padding(.bottom,2)
                         if(tab.date(item: item) != nil) {
                             Text("달성일: " + formatDateString(for:tab.date(item:item)!, toFullDate: true))
@@ -108,15 +108,15 @@ struct AchievementDetail: View {
         }
         .onAppear{ 
             switch item.currentCnt {
-            case item.ECnt..<item.DCnt:
+            case item.type.DMin..<item.type.CMin:
                 selectedTab = .bronze
-            case item.DCnt..<item.CCnt:
+            case item.type.CMin..<item.type.BMin:
                 selectedTab = .silver
-            case item.CCnt..<item.BCnt:
+            case item.type.BMin..<item.type.AMin:
                 selectedTab = .gold
-            case item.BCnt..<item.ACnt:
+            case item.type.AMin..<item.type.SMin:
                 selectedTab = .emerald
-            case item.ACnt...:
+            case item.type.SMin...:
                 selectedTab = .diamond
             default:
                 selectedTab = .bronze
@@ -126,7 +126,7 @@ struct AchievementDetail: View {
 }
 
 #Preview {
-    AchievementDetail(item:generateRandomAchievements(count: 1)[0])
+    AchievementDetail(item:generateRandomUserAchievements(cnt: 1)[0])
         .frame(width:.infinity,height:1000)
         .background(.thinMaterial)
 }

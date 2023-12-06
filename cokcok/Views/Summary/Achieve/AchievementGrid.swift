@@ -10,8 +10,8 @@ import SwiftUI
 
 struct AchievementGrid: View {
     var cols: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
-    let achievements:[Achievement]
-    var onTap: ((_ item:Achievement) -> Void)?
+    let achievements:[UserAchievement]
+    var onTap: ((_ item:UserAchievement) -> Void)?
     var body: some View {
         ScrollView(showsIndicators:false){
             LazyVGrid(columns: cols){
@@ -34,6 +34,6 @@ struct AchievementGrid: View {
 }
 
 #Preview {
-    AchievementGrid(achievements: generateRandomAchievements(count: 10))
+    AchievementGrid(achievements: generateRandomUserAchievements(cnt: 10))
         .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
 }

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct AchievementsView: View {
     var cols: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
-    var achievements: [Achievement]
-    @State var selectedAchievement:Achievement? = nil
-    var achievementsWithoutMonth: [Achievement] { achievements.filter { $0.month == nil }
+    var achievements: [UserAchievement]
+    @State var selectedAchievement:UserAchievement? = nil
+    var achievementsWithoutMonth: [UserAchievement] { achievements.filter { $0.month == nil }
     }
     // 월별로 그룹화
-    var groupedByMonth: Dictionary<Date, [Achievement]> { Dictionary(grouping: achievements.filter {        $0.month != nil
+    var groupedByMonth: Dictionary<Date, [UserAchievement]> { Dictionary(grouping: achievements.filter {        $0.month != nil
     }, by: { achievement in
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month], from: achievement.month!)
@@ -77,7 +77,7 @@ private struct SectionTitle: View {
 }
 #Preview {
     NavigationStack{
-        AchievementsView(achievements:generateRandomAchievements(count: 200))
+        AchievementsView(achievements:generateRandomUserAchievements(cnt: 200))
             .environmentObject(ModelData())
             .navigationTitle("전체 업적")
     }

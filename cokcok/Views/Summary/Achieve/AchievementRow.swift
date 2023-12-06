@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AchievementRow: View {
     var rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
-    let achievements:[Achievement]
-    var onTap: ((_ item:Achievement) -> Void)?
+    let achievements:[UserAchievement]
+    var onTap: ((_ item:UserAchievement) -> Void)?
     var body: some View {
         ScrollView(.horizontal, showsIndicators:false){
             LazyHGrid(rows: rows){
@@ -32,5 +32,5 @@ struct AchievementRow: View {
 }
 
 #Preview {
-    AchievementRow(achievements: generateRandomAchievements(count: 10))
+    AchievementRow(achievements: generateRandomUserAchievements(cnt: 10))
 }

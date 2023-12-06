@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct AchievementItem: View {
-    let item:Achievement
+    let item:UserAchievement
     var medalColor: Color {
         switch item.currentCnt {
-        case item.ECnt..<item.DCnt:
+        case item.type.DMin..<item.type.CMin:
             return .bronze
-        case item.DCnt..<item.CCnt:
+        case item.type.CMin..<item.type.BMin:
             return .silver
-        case item.CCnt..<item.BCnt:
+        case item.type.BMin..<item.type.AMin:
             return .gold
-        case item.BCnt..<item.ACnt:
+        case item.type.AMin..<item.type.SMin:
             return .emerald
-        case item.ACnt...:
+        case item.type.SMin...:
             return .diamond
         default:
             return .bronze.opacity(0.1)
@@ -27,32 +27,32 @@ struct AchievementItem: View {
     }
     var nextCnt: Int {
         switch item.currentCnt {
-        case item.ECnt..<item.DCnt:
-            return item.DCnt
-        case item.DCnt..<item.CCnt:
-            return item.CCnt
-        case item.CCnt..<item.BCnt:
-            return item.BCnt
-        case item.BCnt..<item.ACnt:
-            return item.ACnt
-        case item.ACnt...:
-            return item.ACnt
+        case item.type.DMin..<item.type.CMin:
+            return item.type.CMin
+        case item.type.CMin..<item.type.BMin:
+            return item.type.BMin
+        case item.type.BMin..<item.type.AMin:
+            return item.type.AMin
+        case item.type.AMin..<item.type.SMin:
+            return item.type.SMin
+        case item.type.SMin...:
+            return item.type.SMin
         default:
-            return item.ECnt
+            return item.type.DMin
         }
     }
     var achieveDate: Date? {
         switch item.currentCnt {
-        case item.ECnt..<item.DCnt:
-            return item.EDate
-        case item.DCnt..<item.CCnt:
+        case item.type.DMin..<item.type.CMin:
             return item.DDate
-        case item.CCnt..<item.BCnt:
+        case item.type.CMin..<item.type.BMin:
             return item.CDate
-        case item.BCnt..<item.ACnt:
+        case item.type.BMin..<item.type.AMin:
             return item.BDate
-        case item.ACnt...:
+        case item.type.AMin..<item.type.SMin:
             return item.ADate
+        case item.type.SMin...:
+            return item.SDate
         default:
             return nil
         }
@@ -61,15 +61,15 @@ struct AchievementItem: View {
     var body: some View {
         ZStack{
             VStack{
-                MedalView(medalType: item.symbol, medalColor: medalColor)
+                MedalView(medalType: item.type.icon, medalColor: medalColor)
                 if((item.month) != nil) {
-                    Text("\(Calendar.current.component(.month, from: item.month!))월 \(item.name)")
+                    Text("\(Calendar.current.component(.month, from: item.month!))월 \(item.type.name)")
                         .font(.headline)
                 } else {
-                    Text("\(item.name)")
+                    Text("\(item.type.name)")
                         .font(.headline)
                 }
-                (Text("\(item.currentCnt)").font(.system(size: 20, weight: .bold, design: .rounded)) + Text(" \(item.unit)").font(.system(size: 14, weight: .semibold, design: .rounded)))
+                (Text("\(item.currentCnt)").font(.system(size: 20, weight: .bold, design: .rounded)) + Text(" \(item.type.unit)").font(.system(size: 14, weight: .semibold, design: .rounded)))
                     .padding(.bottom,2)
                 if(achieveDate != nil) {
                     Text("달성일: " + formatDateString(for:achieveDate!, toFullDate: true))
@@ -79,18 +79,6 @@ struct AchievementItem: View {
             .padding(.bottom)
             .background(.white)
             .cornerRadius(10)
-            if(item.isNew){
-                VStack{
-                    HStack{
-                        Spacer()
-                        Circle()
-                            .fill(Color.pink)
-                            .frame(width: 7, height: 7)
-                            .padding(7)
-                    }
-                    Spacer()
-                }
-            }
         }
         .frame(width:140,height:210)
         .background(.white)
@@ -100,10 +88,9 @@ struct AchievementItem: View {
 
 #Preview {
     VStack{
-        AchievementItem(item:generateRandomAchievements(count: 1)[0])
-        AchievementItem(item:generateRandomAchievements(count: 1)[0])
+        AchievementItem(item:generateRandomUserAchievements(cnt: 1)[0])
+        AchievementItem(item:generateRandomUserAchievements(cnt: 1)[0])
     }
         .frame(width:500,height:1000)
         .background(.thinMaterial)
-        
 }

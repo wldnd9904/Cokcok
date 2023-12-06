@@ -17,7 +17,7 @@ struct Row: Identifiable, Hashable {
 struct Summary: View {
     @EnvironmentObject var modelData: ModelData
     @State var showMyPage:Bool = false
-    @State var selectedAchievement:Achievement?
+    @State var selectedAchievement:UserAchievement?
     var columns = [
         GridItem(.adaptive(minimum: 180, maximum: 300), spacing: 8)
     ]

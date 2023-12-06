@@ -24,6 +24,7 @@ final class ModelData: ObservableObject {
     @Published var user:User?
     @Published var swings:[SwingAnalyze] = []
     @Published var matches:[MatchSummary] = []
-    @Published var achievements:[Achievement] = []
+    @Published var achievementTypes:[Int:AchievementType] = [:]
+    @Published var achievements:[UserAchievement] = []
     @Published var theme: ColorTheme = .system
 }

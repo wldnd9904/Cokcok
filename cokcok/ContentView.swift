@@ -59,7 +59,7 @@ struct ContentView : View {
                         model.user = user
                         model.signState = .signIn
                         model.matches = generateRandomMatchSummaries(count: 20)
-                        model.achievements = generateRandomAchievements(count: 200)
+                        model.achievements = generateRandomUserAchievements(cnt: 200)
                         model.swings = generateRandomSwingData(count: 20)
                     })
                 } else {
