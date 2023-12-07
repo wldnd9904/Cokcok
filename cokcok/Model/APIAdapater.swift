@@ -34,9 +34,9 @@ struct MatchAPI: Codable {
     let watch_url: String
     let player_token: String
     
-    func toMatchSummary()-> MatchSummary {
+    /*func toMatchSummary()-> MatchSummary {
         MatchSummary(id: match_id, startDate: start_date, endDate: end_date, duration: TimeInterval(integerLiteral: Int64(duration)), totalDistance: total_distance, totalEnergyBurned: total_energy_burned, averageHeartRate: average_heart_rate, myScore: my_score, opponentScore: opponent_score, history: score_history, backDrive: back_drive, backHairpin: back_hairpin, backHigh: back_high, backUnder: back_under,foreDrive: fore_drive,foreDrop: fore_drop,foreHairpin: fore_hairpin,foreHigh: fore_high, foreSmash: fore_smash,foreUnder: fore_under,longService: long_service,shortService: short_service)
-    }
+    }*/
 }
 
 struct PlayerAPI: Codable {

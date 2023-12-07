@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 enum ColorTheme: String, CaseIterable, Identifiable {
     var id: String {rawValue}
     case light = "밝은 모드"

@@ -32,11 +32,11 @@ func generateRandomSwingData(count: Int) -> [SwingAnalyze] {
     let currentDate = Date()
     let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -30, to: currentDate)!
 
-    for _ in 0..<count {
+    for i in 0..<count {
         let randomScore = Int.random(in: 0...100)
         let randomDate = Date(timeInterval: TimeInterval.random(in: thirtyDaysAgo.timeIntervalSinceNow...currentDate.timeIntervalSinceNow), since: currentDate)
 
-        let swing = SwingAnalyze(id: UUID(), score: randomScore, date: randomDate)
+        let swing = SwingAnalyze(id: i, totalScore: randomScore, date: randomDate, timeStampScore: [2,3,5,8,9,3,9], videoURL: URL(string:"http://www.naver.com")!, power: 80.5, poseStrength: "", poseWeakness: "", wristStrength: "", wristWeakness: "")
         swingList.append(swing)
     }
 

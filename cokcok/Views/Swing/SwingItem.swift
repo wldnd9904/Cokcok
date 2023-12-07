@@ -32,7 +32,7 @@ struct SwingItem: View {
     var body: some View {
         ZStack{
             HStack(alignment:.center) {
-                Text("\(swing.score)")
+                Text("\(swing.totalScore)")
                     .bold()
                     .foregroundStyle(.blue)
                     .font(.title)
@@ -44,7 +44,7 @@ struct SwingItem: View {
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
-            Text(scoreDescription(for: swing.score))
+            Text(scoreDescription(for: swing.totalScore))
                 .font(.headline)
         }
         .frame(maxWidth: .infinity) // 최대 너비 제한
