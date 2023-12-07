@@ -11,6 +11,26 @@ import HealthKit
 enum Player {
     case me, opponent
 }
+enum SwingType: String, Codable {
+    case bd = "백핸드 드라이브"
+    case bh = "백핸드 하이클리어"
+    case bn = "백핸드 헤어핀"
+    case bu = "백핸드 언더클리어"
+    
+    case fd = "포어핸드 드라이브"
+    case fh = "포어핸드 하이클리어"
+    case fn = "포어핸드 헤어핀"
+    case fp = "드롭"
+    case fs = "스매시"
+    case fu = "포어핸드 언더클리어"
+    
+    case ls = "롱 서비스"
+    case ss = "숏 서비스"
+}
+struct Swing: Codable {
+    let type: SwingType
+    let score: Int
+}
 
 struct MatchSummary: Identifiable, Codable {
     var id: Int
@@ -25,18 +45,8 @@ struct MatchSummary: Identifiable, Codable {
     var opponentScore: Int
     var history: String
     
-    var backDrive: Int = 0
-    var backHairpin: Int = 0
-    var backHigh: Int = 0
-    var backUnder: Int = 0
-    var foreDrive: Int = 0
-    var foreDrop: Int = 0
-    var foreHairpin: Int = 0
-    var foreHigh: Int = 0
-    var foreSmash: Int = 0
-    var foreUnder: Int = 0
-    var longService: Int = 0
-    var shortService: Int = 0
+    var swingList: [Swing] = []
+    
     
     // 새로운 점수 변동 기록 추가
     mutating func addScore(player: Player, timestamp:Date = Date()) {

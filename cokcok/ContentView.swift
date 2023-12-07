@@ -57,53 +57,24 @@ struct ContentView : View {
                 if(showNewUserView != nil){
                     NewUserView(manager: NewUserManager(id: showNewUserView!.0, email: showNewUserView!.1, authType: showNewUserView!.2){user in
                         Task {
-                            do {
-                                let data = try await APIManager.shared.signUp(token: user.id, sex: user.sex, yearsPlaying: user.years, grade: user.grade, handedness: user.hand, email: user.email, authType: user.authType)
-                                model.user = user
-                                model.signState = .signIn
-                                model.matches = []
-                                model.achievements = []
-                                model.swings = []
+                            await model.signUpAndSetEmptyData(user:user)
+                            withAnimation{
                                 showNewUserView = nil
-                            } catch {
-                                print(error)
                             }
                         }
                     })
                 } else {
                     LoginView(authManager: AuthenticationManager{ uid, email, authType in
-                        Task{
-                            do {
-                                let data = try await  APIManager.shared.getMyPageInfo(token: uid!)
-                                switch data {
-                                case .codable(let userData):
-                                    model.user = userData.toUser()
-                                    model.signState = .signIn
-                                case .message(let message):
-                                    showNewUserView = (uid!, email!, authType!)
-                                }
-                            } catch {
-                                print(error.localizedDescription)
-                            }
-                        }
-                    })
+                        Task {
+                                await model.signInAndGetData(token:uid!) {showNewUserView = (uid!, email!, authType!)}
+                        }})
                 }
             }
         }.onAppear {
             if Auth.auth().currentUser != nil {
-                print(Auth.auth().currentUser?.uid)
+                print(Auth.auth().currentUser?.uid ?? "")
                 Task{
-                    do {
-                        let data: APIResponse<PlayerAPI> = try await  APIManager.shared.getMyPageInfo(token: Auth.auth().currentUser!.uid)
-                        switch data {
-                        case .codable(let userData):
-                            model.user = userData.toUser()
-                            model.signState = .signIn
-                        default: return
-                        }
-                    } catch {
-                        print(error.localizedDescription)
-                    }
+                    await model.signInAndGetData(token: Auth.auth().currentUser!.uid){}
                 }
             }
         }

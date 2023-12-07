@@ -22,7 +22,7 @@ import Foundation
     case codable(T)
 }
  class APIManager {
- static let shared = APIManager()
+    static let shared = APIManager()
     private let baseURL = "http://118.32.109.123:8000"
     
     // MARK: - 1. URL: <Server IP>/accounts/info

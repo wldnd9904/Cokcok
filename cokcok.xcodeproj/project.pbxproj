@@ -79,13 +79,6 @@
 		B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C512AFA74AD00671129 /* MatchItem.swift */; };
 		B8C36C542AFAA18900671129 /* Date&Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C532AFAA18900671129 /* Date&Time.swift */; };
 		B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C36C552AFABB2A00671129 /* ScoreChart.swift */; };
-		B8C536952B1F445C00A7B123 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5368F2B1F445C00A7B123 /* AuthenticationManager.swift */; };
-		B8C536962B1F445C00A7B123 /* SwingRecordManagerPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536912B1F445C00A7B123 /* SwingRecordManagerPhone.swift */; };
-		B8C536972B1F445C00A7B123 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536922B1F445C00A7B123 /* User.swift */; };
-		B8C536982B1F445C00A7B123 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536902B1F445C00A7B123 /* ModelData.swift */; };
-		B8C536992B1F445C00A7B123 /* NewUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536942B1F445C00A7B123 /* NewUserManager.swift */; };
-		B8C5369A2B1F445C00A7B123 /* SwingAnalyze.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536932B1F445C00A7B123 /* SwingAnalyze.swift */; };
-		B8C5369C2B1F445E00A7B123 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5369B2B1F445E00A7B123 /* Achievement.swift */; };
 		B8C536A32B1F450C00A7B123 /* NewUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5369D2B1F450C00A7B123 /* NewUserManager.swift */; };
 		B8C536A42B1F450C00A7B123 /* SwingAnalyze.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536A02B1F450C00A7B123 /* SwingAnalyze.swift */; };
 		B8C536A52B1F450C00A7B123 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C5369E2B1F450C00A7B123 /* AuthenticationManager.swift */; };
@@ -220,13 +213,6 @@
 		B8C36C512AFA74AD00671129 /* MatchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchItem.swift; sourceTree = "<group>"; };
 		B8C36C532AFAA18900671129 /* Date&Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date&Time.swift"; sourceTree = "<group>"; };
 		B8C36C552AFABB2A00671129 /* ScoreChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreChart.swift; sourceTree = "<group>"; };
-		B8C5368F2B1F445C00A7B123 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
-		B8C536902B1F445C00A7B123 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
-		B8C536912B1F445C00A7B123 /* SwingRecordManagerPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingRecordManagerPhone.swift; sourceTree = "<group>"; };
-		B8C536922B1F445C00A7B123 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		B8C536932B1F445C00A7B123 /* SwingAnalyze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingAnalyze.swift; sourceTree = "<group>"; };
-		B8C536942B1F445C00A7B123 /* NewUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserManager.swift; sourceTree = "<group>"; };
-		B8C5369B2B1F445E00A7B123 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		B8C5369D2B1F450C00A7B123 /* NewUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserManager.swift; sourceTree = "<group>"; };
 		B8C5369E2B1F450C00A7B123 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		B8C5369F2B1F450C00A7B123 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
@@ -349,13 +335,6 @@
 				B8C536A02B1F450C00A7B123 /* SwingAnalyze.swift */,
 				B8C536A12B1F450C00A7B123 /* SwingRecordManagerPhone.swift */,
 				B8C536A22B1F450C00A7B123 /* User.swift */,
-				B8C5369B2B1F445E00A7B123 /* Achievement.swift */,
-				B8C5368F2B1F445C00A7B123 /* AuthenticationManager.swift */,
-				B8C536902B1F445C00A7B123 /* ModelData.swift */,
-				B8C536942B1F445C00A7B123 /* NewUserManager.swift */,
-				B8C536932B1F445C00A7B123 /* SwingAnalyze.swift */,
-				B8C536912B1F445C00A7B123 /* SwingRecordManagerPhone.swift */,
-				B8C536922B1F445C00A7B123 /* User.swift */,
 				B806FB6D2B1DEF9400E55F01 /* APIManager.swift */,
 				B8A624AC2B1EF4EE00B338D4 /* APIAdapater.swift */,
 			);
@@ -793,7 +772,6 @@
 				B86978302B10CBED00442933 /* AchievementsView.swift in Sources */,
 				B8A8850C2AF9024C0041F092 /* VideoError.swift in Sources */,
 				B8C36C542AFAA18900671129 /* Date&Time.swift in Sources */,
-				B8C5369A2B1F445C00A7B123 /* SwingAnalyze.swift in Sources */,
 				B8AAD0662B04921900D9213C /* SummaryBoxView.swift in Sources */,
 				B8C536A32B1F450C00A7B123 /* NewUserManager.swift in Sources */,
 				B806FB722B1E0D8700E55F01 /* Data+String.swift in Sources */,
@@ -802,7 +780,6 @@
 				B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */,
 				B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */,
 				B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */,
-				B8C536992B1F445C00A7B123 /* NewUserManager.swift in Sources */,
 				B8AB85032B089B1200361F86 /* SwingTrendChart.swift in Sources */,
 				B8E1F0B72B1C624A00C66315 /* SwingHelpView.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
@@ -810,7 +787,6 @@
 				B806FB6E2B1DEF9400E55F01 /* APIManager.swift in Sources */,
 				B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */,
 				B8516CA52B0F95E100C2DFAA /* Color+.swift in Sources */,
-				B8C536972B1F445C00A7B123 /* User.swift in Sources */,
 				B8229FC72B1631E7009D039E /* NewUserView.swift in Sources */,
 				B8516CA82B0F97A800C2DFAA /* AchievementRow.swift in Sources */,
 				B86978322B10D13100442933 /* AchievementGrid.swift in Sources */,
@@ -831,14 +807,10 @@
 				B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */,
 				B8AB850A2B08DC9F00361F86 /* LoginView.swift in Sources */,
 				B8C536A82B1F450C00A7B123 /* User.swift in Sources */,
-				B8C536952B1F445C00A7B123 /* AuthenticationManager.swift in Sources */,
 				B8A8850A2AF9020B0041F092 /* AVPreview.swift in Sources */,
 				B804F3492B0DC0970088B4EF /* MyPage.swift in Sources */,
-				B8C536962B1F445C00A7B123 /* SwingRecordManagerPhone.swift in Sources */,
 				B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */,
 				B84C96EF2B0356B3001106C6 /* RecentSwing.swift in Sources */,
-				B8C536982B1F445C00A7B123 /* ModelData.swift in Sources */,
-				B8C5369C2B1F445E00A7B123 /* Achievement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
