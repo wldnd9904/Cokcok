@@ -7,27 +7,44 @@
 
 import Foundation
 import HealthKit
+import SwiftUI
 
 enum Player {
     case me, opponent
 }
-enum SwingType: String, Codable {
-    case bd = "백핸드 드라이브"
-    case bh = "백핸드 하이클리어"
-    case bn = "백핸드 헤어핀"
-    case bu = "백핸드 언더클리어"
-    
-    case fd = "포어핸드 드라이브"
-    case fh = "포어핸드 하이클리어"
-    case fn = "포어핸드 헤어핀"
+enum SwingType: String, Codable, CaseIterable {
+    case fd = "드라이브"
+    case fh = "하이클리어"
     case fp = "드롭"
+    case fu = "언더클리어"
+    case fn = "헤어핀"
     case fs = "스매시"
-    case fu = "포어핸드 언더클리어"
-    
+    case bd = "백드라이브"
+    case bh = "백하이클리어"
+    case bu = "백언더클리어"
+    case bn = "백헤어핀"
     case ls = "롱 서비스"
     case ss = "숏 서비스"
+    
+    var color : Color {
+        switch(self){
+        case .fh:  Color("#45aaf2")
+        case .fu:  Color("#26de81")
+        case .fd:  Color("#fd9644")
+        case .fs:  Color("#fc5c65")
+        case .bh: Color("#2d98da")
+        case .bu: Color("#20bf6b")
+        case .bd: Color("#fa8231")
+        case .fp:  Color("#eb3b5a")
+        case .fn:  Color("#8854d0")
+        case .bn:  Color("#a55eea")
+        case .ss:  Color("#4b6584")
+        case .ls:  Color("#778ca3")
+        }
+    }
 }
-struct Swing: Codable {
+struct Swing: Codable, Identifiable {
+    let id: Int
     let type: SwingType
     let score: Int
 }
@@ -45,7 +62,7 @@ struct MatchSummary: Identifiable, Codable {
     var opponentScore: Int
     var history: String
     
-    var swingList: [Swing] = []
+    var swingList: [Swing] = generateRandomSwings(count: 60)
     
     
     // 새로운 점수 변동 기록 추가
@@ -86,7 +103,19 @@ struct MatchSummary: Identifiable, Codable {
         }
     }
 }
+func generateRandomSwings(count: Int) -> [Swing] {
+    var randomSwings: [Swing] = []
 
+    for i in 1...count {
+        let randomType = SwingType.allCases.randomElement()!
+        let randomScore = Int.random(in: 0...100)
+        
+        let swing = Swing(id: i, type: randomType, score: randomScore)
+        randomSwings.append(swing)
+    }
+
+    return randomSwings
+}
 
 func generateRandomMatchSummaries(count: Int) -> [MatchSummary] {
     var matchSummaries = [MatchSummary]()

@@ -83,6 +83,7 @@
 		B8CDA7E72B159EA800746B1B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B8CDA7E62B159EA800746B1B /* Alamofire */; };
 		B8CDA7EC2B15AA1B00746B1B /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */; };
 		B8DF384A2B21E5C700E32F63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8DF38492B21E5C700E32F63 /* GoogleService-Info.plist */; };
+		B8DF384C2B21FC3600E32F63 /* StrokeChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DF384B2B21FC3600E32F63 /* StrokeChart.swift */; };
 		B8E1F0B72B1C624A00C66315 /* SwingHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */; };
 /* End PBXBuildFile section */
 
@@ -216,6 +217,7 @@
 		B8C536A92B1F451000A7B123 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
 		B8DF38492B21E5C700E32F63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B8DF384B2B21FC3600E32F63 /* StrokeChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeChart.swift; sourceTree = "<group>"; };
 		B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingHelpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -355,6 +357,7 @@
 				B80B1E082AFB377C00C87CA6 /* MatchDetail.swift */,
 				B8C36C512AFA74AD00671129 /* MatchItem.swift */,
 				B8C36C552AFABB2A00671129 /* ScoreChart.swift */,
+				B8DF384B2B21FC3600E32F63 /* StrokeChart.swift */,
 			);
 			path = Matches;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				B8AB850A2B08DC9F00361F86 /* LoginView.swift in Sources */,
 				B8C536A82B1F450C00A7B123 /* User.swift in Sources */,
 				B8A8850A2AF9020B0041F092 /* AVPreview.swift in Sources */,
+				B8DF384C2B21FC3600E32F63 /* StrokeChart.swift in Sources */,
 				B804F3492B0DC0970088B4EF /* MyPage.swift in Sources */,
 				B80B1E092AFB377C00C87CA6 /* MatchDetail.swift in Sources */,
 				B84C96EF2B0356B3001106C6 /* RecentSwing.swift in Sources */,
