@@ -146,7 +146,7 @@ struct MatchDetail: View {
     }
 }
 
-struct DetailItem: View {
+private struct DetailItem: View {
     var title: String
     var value: String
 

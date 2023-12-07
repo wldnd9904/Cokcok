@@ -36,6 +36,8 @@
 		B869782E2B10B91B00442933 /* AchievementDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869782D2B10B91B00442933 /* AchievementDetail.swift */; };
 		B86978302B10CBED00442933 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869782F2B10CBED00442933 /* AchievementsView.swift */; };
 		B86978322B10D13100442933 /* AchievementGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86978312B10D13100442933 /* AchievementGrid.swift */; };
+		B86BE8012B221CC500ED5BAE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B86BE7FE2B221CC500ED5BAE /* GoogleService-Info.plist */; };
+		B86BE8032B221D3D00ED5BAE /* SwingDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86BE8022B221D3D00ED5BAE /* SwingDetail.swift */; };
 		B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E6FD2AF8F9C800BF347E /* Summary.swift */; };
 		B877E7012AF8F9E900BF347E /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7002AF8F9E900BF347E /* Matches.swift */; };
 		B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* SwingView.swift */; };
@@ -82,7 +84,6 @@
 		B8C536AA2B1F451000A7B123 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536A92B1F451000A7B123 /* Achievement.swift */; };
 		B8CDA7E72B159EA800746B1B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B8CDA7E62B159EA800746B1B /* Alamofire */; };
 		B8CDA7EC2B15AA1B00746B1B /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */; };
-		B8DF384A2B21E5C700E32F63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8DF38492B21E5C700E32F63 /* GoogleService-Info.plist */; };
 		B8DF384C2B21FC3600E32F63 /* StrokeChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DF384B2B21FC3600E32F63 /* StrokeChart.swift */; };
 		B8E1F0B72B1C624A00C66315 /* SwingHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */; };
 /* End PBXBuildFile section */
@@ -167,6 +168,8 @@
 		B869782D2B10B91B00442933 /* AchievementDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementDetail.swift; sourceTree = "<group>"; };
 		B869782F2B10CBED00442933 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		B86978312B10D13100442933 /* AchievementGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementGrid.swift; sourceTree = "<group>"; };
+		B86BE7FE2B221CC500ED5BAE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B86BE8022B221D3D00ED5BAE /* SwingDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingDetail.swift; sourceTree = "<group>"; };
 		B877E6FD2AF8F9C800BF347E /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		B877E7002AF8F9E900BF347E /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		B877E7022AF8F9FD00BF347E /* SwingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingView.swift; sourceTree = "<group>"; };
@@ -216,7 +219,6 @@
 		B8C536A22B1F450C00A7B123 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B8C536A92B1F451000A7B123 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
-		B8DF38492B21E5C700E32F63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8DF384B2B21FC3600E32F63 /* StrokeChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeChart.swift; sourceTree = "<group>"; };
 		B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingHelpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -366,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				B877E7022AF8F9FD00BF347E /* SwingView.swift */,
+				B86BE8022B221D3D00ED5BAE /* SwingDetail.swift */,
 				B8AB85042B089CA400361F86 /* SwingItem.swift */,
 				B8A885022AF900740041F092 /* SwingRecordView.swift */,
 				B8A885092AF9020B0041F092 /* AVPreview.swift */,
@@ -437,7 +440,7 @@
 		B8A93AF42AF62DB600A220C7 = {
 			isa = PBXGroup;
 			children = (
-				B8DF38492B21E5C700E32F63 /* GoogleService-Info.plist */,
+				B86BE7FE2B221CC500ED5BAE /* GoogleService-Info.plist */,
 				B84064622AFF7A4B00C46D41 /* MyPlayground.playground */,
 				B8A93AFF2AF62DB600A220C7 /* cokcok */,
 				B8A93B272AF62DB700A220C7 /* cokcok Watch App */,
@@ -711,8 +714,8 @@
 			files = (
 				B8A93B082AF62DB700A220C7 /* Preview Assets.xcassets in Resources */,
 				B8A93B052AF62DB700A220C7 /* Assets.xcassets in Resources */,
-				B8DF384A2B21E5C700E32F63 /* GoogleService-Info.plist in Resources */,
 				B89182E12B19D84100DA2BE5 /* sample.mp4 in Resources */,
+				B86BE8012B221CC500ED5BAE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +784,7 @@
 				B8C36C562AFABB2A00671129 /* ScoreChart.swift in Sources */,
 				B8516CA52B0F95E100C2DFAA /* Color+.swift in Sources */,
 				B8229FC72B1631E7009D039E /* NewUserView.swift in Sources */,
+				B86BE8032B221D3D00ED5BAE /* SwingDetail.swift in Sources */,
 				B8516CA82B0F97A800C2DFAA /* AchievementRow.swift in Sources */,
 				B86978322B10D13100442933 /* AchievementGrid.swift in Sources */,
 				B8C536A72B1F450C00A7B123 /* SwingRecordManagerPhone.swift in Sources */,
