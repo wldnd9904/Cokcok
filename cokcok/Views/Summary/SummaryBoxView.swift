@@ -1,14 +1,14 @@
 import SwiftUI
 
-struct SummaryGroupBoxStyle<V: View>: GroupBoxStyle {
+struct SummaryGroupBoxStyle: GroupBoxStyle {
     var color: Color
-    var destination: V
+    var onSelect: () -> Void
     var date: Date?
 
     @ScaledMetric var size: CGFloat = 1
     
     func makeBody(configuration: Configuration) -> some View {
-        NavigationLink(destination: destination) {
+        Button(action:onSelect){
             GroupBox(label: HStack {
                 configuration.label.foregroundColor(color)
                 Spacer()

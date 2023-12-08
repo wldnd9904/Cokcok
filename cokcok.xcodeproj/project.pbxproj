@@ -84,6 +84,8 @@
 		B8C536AA2B1F451000A7B123 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C536A92B1F451000A7B123 /* Achievement.swift */; };
 		B8CDA7E72B159EA800746B1B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B8CDA7E62B159EA800746B1B /* Alamofire */; };
 		B8CDA7EC2B15AA1B00746B1B /* PathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */; };
+		B8D2FC4D2B23043E00747687 /* SummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D2FC4C2B23043E00747687 /* SummaryRow.swift */; };
+		B8D2FC4F2B230BC900747687 /* SummaryCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D2FC4E2B230BC900747687 /* SummaryCharts.swift */; };
 		B8DF384C2B21FC3600E32F63 /* StrokeChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DF384B2B21FC3600E32F63 /* StrokeChart.swift */; };
 		B8E1F0B72B1C624A00C66315 /* SwingHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */; };
 /* End PBXBuildFile section */
@@ -219,6 +221,8 @@
 		B8C536A22B1F450C00A7B123 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B8C536A92B1F451000A7B123 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		B8CDA7EB2B15AA1B00746B1B /* PathManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathManager.swift; sourceTree = "<group>"; };
+		B8D2FC4C2B23043E00747687 /* SummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRow.swift; sourceTree = "<group>"; };
+		B8D2FC4E2B230BC900747687 /* SummaryCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCharts.swift; sourceTree = "<group>"; };
 		B8DF384B2B21FC3600E32F63 /* StrokeChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeChart.swift; sourceTree = "<group>"; };
 		B8E1F0B62B1C624A00C66315 /* SwingHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingHelpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -345,6 +349,8 @@
 			children = (
 				B8516CA92B0F97B700C2DFAA /* Achieve */,
 				B877E6FD2AF8F9C800BF347E /* Summary.swift */,
+				B8D2FC4E2B230BC900747687 /* SummaryCharts.swift */,
+				B8D2FC4C2B23043E00747687 /* SummaryRow.swift */,
 				B84C96EE2B0356B3001106C6 /* RecentSwing.swift */,
 				B84C96F02B0356C5001106C6 /* RecentMatch.swift */,
 				B8AAD0652B04921900D9213C /* SummaryBoxView.swift */,
@@ -772,6 +778,7 @@
 				B8C536A32B1F450C00A7B123 /* NewUserManager.swift in Sources */,
 				B806FB722B1E0D8700E55F01 /* Data+String.swift in Sources */,
 				B8C536A42B1F450C00A7B123 /* SwingAnalyze.swift in Sources */,
+				B8D2FC4F2B230BC900747687 /* SummaryCharts.swift in Sources */,
 				B8A624AD2B1EF4EE00B338D4 /* APIAdapater.swift in Sources */,
 				B8A885032AF900740041F092 /* SwingRecordView.swift in Sources */,
 				B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */,
@@ -800,6 +807,7 @@
 				B8C536A52B1F450C00A7B123 /* AuthenticationManager.swift in Sources */,
 				B806FB6C2B1DEE1600E55F01 /* Spinner.swift in Sources */,
 				B8A93B012AF62DB600A220C7 /* cokcokApp.swift in Sources */,
+				B8D2FC4D2B23043E00747687 /* SummaryRow.swift in Sources */,
 				B80430D52B04E89000383D88 /* MedalView.swift in Sources */,
 				B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */,
 				B8AB850A2B08DC9F00361F86 /* LoginView.swift in Sources */,

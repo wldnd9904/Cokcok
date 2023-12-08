@@ -18,32 +18,22 @@ struct Summary: View {
     @EnvironmentObject var modelData: ModelData
     @State var showMyPage:Bool = false
     @State var selectedAchievement:UserAchievement?
-    var columns = [
-        GridItem(.adaptive(minimum: 180, maximum: 300), spacing: 8)
-    ]
-    
-    var array: [Row] = [
-        Row(label: "경기 수", image: "play.circle", value: "31", unit: "회", color:.orange),
-        Row(label: "승률", image: "figure.dance", value: "71.2", unit: "%",color:.pink),
-        Row(label: "이동 거리", image: "figure.run", value: "2.4", unit: "km",color:.blue),
-        Row(label: "경기 시간", image: "stopwatch", value: "165:14", unit: "시간", color:.green),
-        Row(label: "스윙 수", image: "figure.badminton", value: "3105", unit: "회", color:.orange),
-    ]
+    @State var selectedSummaryType: SummaryType = .matchCount
+    let month = Calendar.current.component(.month, from: Date())
     var body: some View {
-        ScrollView{
-            SectionTitle(title: "11월 경기 요약")
-            ScrollView(.horizontal, showsIndicators: false){
-                LazyHGrid(rows: columns, spacing: 8) {
-                    ForEach(array) { row in
-                        GroupBox(label: Label(row.label, systemImage: row.image)) {
-                            SummaryValueView(value: row.value, unit: row.unit)
-                        }.groupBoxStyle(SummaryGroupBoxStyle(color: row.color, destination: EmptyView()))
-                    }
-                }
-            }
-            .cornerRadius(10)
-            
-            
+        ScrollView(showsIndicators: false){
+            SectionTitle(title: "\(month)월 경기 요약")
+            SummaryRow(matches:modelData.matches.filter{Calendar.current.component(.month, from: $0.startDate) == month}, selectedSummaryType: $selectedSummaryType)
+            SummaryCharts(matches:  modelData.matches.filter{Calendar.current.component(.month, from: $0.startDate) == month}, selectedSummaryType: $selectedSummaryType)
+                .frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                minHeight: 440,
+                maxHeight: .infinity,
+                alignment: .topLeading
+              )
+                .background(.white)
+                .cornerRadius(10)
             HStack{
                 SectionTitle(title: "최근 달성 업적")
                 Spacer()
@@ -56,6 +46,7 @@ struct Summary: View {
                 selectedAchievement = item
             }
             .cornerRadius(10)
+            .padding(.bottom,100)
         }
         .padding()
         .overlay{
@@ -93,21 +84,6 @@ private struct SectionTitle: View {
         }
     }
 }
-
-private struct SummaryValueView: View {
-    var value: String
-    var unit: String
-    
-    @ScaledMetric var size: CGFloat = 1
-    
-    @ViewBuilder var body: some View {
-        HStack {
-            Text(value).font(.system(size: 24 * size, weight: .bold, design: .rounded)) + Text(" \(unit)").font(.system(size: 14 * size, weight: .semibold, design: .rounded)).foregroundColor(.secondary)
-            Spacer()
-        }
-    }
-}
-
 
 
 #Preview {

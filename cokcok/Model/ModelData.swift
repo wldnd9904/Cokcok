@@ -23,12 +23,12 @@ final class ModelData: ObservableObject {
     var uid: String = ""
     @Published var user:User?
     @Published var swings:[SwingAnalyze] = []
-    @Published var matches:[MatchSummary] = generateRandomMatchSummaries(count: 30)
+    @Published var matches:[MatchSummary] = []
     @Published var achievementTypes:[Int:AchievementType] = [:]
     @Published var achievements:[UserAchievement] = []
     @Published var recentAchievements:[UserAchievement] = []
     @Published var theme: ColorTheme = .system
-    let isDemo = false
+    let isDemo = true
     
     func signInAndGetData(token:String, onNotSignedUp: () -> Void) async -> Void {
         if isDemo {
@@ -41,7 +41,9 @@ final class ModelData: ObservableObject {
                     }
                     self.achievements = generateRandomUserAchievements(cnt: 300)
                     self.swings = generateRandomSwingData(count: 20)
-                    self.matches = generateRandomMatchSummaries(count: 30)
+                    self.matches = generateRandomMatchSummaries(count: 50)
+                    self.achievements = generateRandomUserAchievements(cnt: 100)
+                    self.recentAchievements = generateRandomUserAchievements(cnt: 10)
                 }
             }
         } else {
