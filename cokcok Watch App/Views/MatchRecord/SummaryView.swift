@@ -19,7 +19,7 @@ struct SummaryView: View {
     }()
     
     var body: some View {
-        if workoutManager.state != .ended {
+        if workoutManager.state != .ended && workoutManager.state != .saved {
             ProgressView(workoutManager.state.message)
                 .navigationBarHidden(true)
         } else {

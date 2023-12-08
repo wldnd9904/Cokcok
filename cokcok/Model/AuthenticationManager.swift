@@ -15,31 +15,6 @@ import AuthenticationServices
 import SwiftUI
 import CryptoKit
 
-enum AuthType: String, Codable {
-    case google = "Google"
-    case kakao = "카카오"
-    case apple = "Apple"
-    var image: Image {
-        switch(self){
-        case .apple: 
-            Image(systemName: "apple.logo")
-                .resizable()
-        case .google:
-            Image("google")
-                .resizable()
-        case .kakao:
-            Image("kakao")
-                .resizable()
-        }
-    }   
-    func toAPI() -> String {
-        switch(self){
-        case .apple: "apple"
-        case .google: "google"
-        case .kakao: "kakao"
-        }
-    }
-}
 
 class AuthenticationManager: NSObject, ObservableObject {
     @Published var signState: signState = .signOut {

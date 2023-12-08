@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 enum Hand: String, CaseIterable, Identifiable, Codable {
     var id: String {rawValue}
     case left = "왼손"
@@ -56,7 +57,31 @@ enum Grade: String, CaseIterable, Identifiable, Codable {
     }
 }
 
-
+enum AuthType: String, Codable {
+    case google = "Google"
+    case kakao = "카카오"
+    case apple = "Apple"
+    var image: Image {
+        switch(self){
+        case .apple:
+            Image(systemName: "apple.logo")
+                .resizable()
+        case .google:
+            Image("google")
+                .resizable()
+        case .kakao:
+            Image("kakao")
+                .resizable()
+        }
+    }
+    func toAPI() -> String {
+        switch(self){
+        case .apple: "apple"
+        case .google: "google"
+        case .kakao: "kakao"
+        }
+    }
+}
 public struct User:Identifiable, Codable {
     public var id: String
     var email: String

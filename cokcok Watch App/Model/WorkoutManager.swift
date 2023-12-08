@@ -9,6 +9,7 @@ import Foundation
 import HealthKit
 import CoreMotion
 import WatchKit
+import WatchConnectivity
 
 enum WorkoutState {
     case idle, running, pause, saving1, saving2, sending, sent, saved, error, ended
@@ -42,6 +43,27 @@ class WorkoutManager: NSObject, ObservableObject {
     var builder: HKLiveWorkoutBuilder?
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
+    let wcsession:WCSession
+    var user: User?
+    
+    override init() {
+        wcsession = .default
+        super.init()
+        wcsession.delegate = self
+        do {
+            try login()
+        } catch {
+            print(error.localizedDescription)
+#if targetEnvironment(simulator)
+            self.user = .demo
+#else
+            self.user = nil
+#endif
+        }
+        do{
+            try trySendingRemainingFiles()
+        }catch{}
+    }
     
     func startWorkout() {
         //시뮬레이터에서는 검사 안 함
@@ -272,15 +294,112 @@ extension WorkoutManager {
             self.state = .error
             return
         }
-        //TODO: 서버로 전송 시도
-        self.state = .sending
+        Task {
+            DispatchQueue.main.async{
+                self.state = .sending
+            }
+            do {
+                //파일 서버로 보내기
+                guard let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appending(path: "\(matchSummary.id)") else {fatalError()}
+                let metaDataURL = directoryURL.appending(path:"matchSummary.json")
+                let motionDataURL = directoryURL.appending(path:"motionData.csv")
+                try APIManager.shared.uploadMatch(token: user!.id, metaDataURL: metaDataURL, motionDataURL: motionDataURL, onDone: {
+                    do {
+                        DispatchQueue.main.async {
+                            self.state = .sent
+                        }
+                        //보냈으면 삭제
+                        try FileManager.default.removeItem(at:directoryURL)
+                        DispatchQueue.main.async{
+                            self.state = .ended
+                        }
+                    } catch {
+                        fatalError()
+                    }
+                })
+            }catch {
+                //못보내면 일단 저장만하기
+                DispatchQueue.main.async{
+                    self.state = .saved
+                }
+                return
+            }
+        }
+    }
+    
+    func trySendingRemainingFiles() throws {
+        //파일 전부 보내기 시도, 보내면 삭제
+        //파일 서버로 보내기
+        if user==nil {return }
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: [])
+        fileURLs.forEach{ uid in
+            print(uid.lastPathComponent)
+            do{
+                //파일 서버로 보내기
+                let directoryURL = documentsURL.appending(path: uid.lastPathComponent)
+                let metaDataURL = directoryURL.appending(path:"matchSummary.json")
+                let motionDataURL = directoryURL.appending(path:"motionData.csv")
+                if FileManager.default.fileExists(atPath: metaDataURL.path()) && FileManager.default.fileExists(atPath: motionDataURL.path()){
+                    try APIManager.shared.uploadMatch(token: user!.id, metaDataURL: metaDataURL, motionDataURL: motionDataURL, onDone: {
+                        do {
+                            //보냈으면 삭제
+                            try FileManager.default.removeItem(at:directoryURL)
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    })
+                } else {return}
+            }catch{
+                //못보내도 상관없음
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
+
+// MARK: - 유저데이터 관련
+extension WorkoutManager {
+    func login() throws {
+            let userDataURL = FileManager.default.urls(for:.documentDirectory,in:.userDomainMask).first?.appending(path:"userData.json")
+            let userData = try Data(contentsOf: userDataURL!)
+            // JSON 디코딩을 통해 User 객체로 변환
+            let decoder = JSONDecoder()
+            self.user = try decoder.decode(User.self, from: userData)
+    }
+    func logout() throws {
+        let userDataURL = FileManager.default.urls(for:.documentDirectory,in:.userDomainMask).first?.appending(path:"userData.json")
+        try FileManager.default.removeItem(at:userDataURL!)
+        self.user = nil
+    }
+}
+
+// MARK: - 애플워치 세션 델리게이트
+extension WorkoutManager: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
-        //TODO: 보내졌다면 저장한 파일 삭제
-        self.state = .sent //보내졌을 때
-        
-        //TODO: 못보냈다면 일단 내부에 저장
-        self.state = .saved //못보냈을 때
-        
-        self.state = .ended
+    }
+    private func session(_ session: WCSession, didReceiveMessage message: [String : User]) {
+        if let userData = message["userData"]{
+            let fileManager = FileManager.default
+            // Document 디렉토리의 URL 가져오기
+            if let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+                do {
+                    // User 객체를 JSON 데이터로 인코딩
+                    let encoder = JSONEncoder()
+                    let userDataData = try encoder.encode(user)
+                    // userData.json 파일의 URL
+                    let userDataURL = documentsURL.appendingPathComponent("userData.json")
+                    // 파일에 JSON 데이터 쓰기
+                    try userDataData.write(to: userDataURL)
+                    print("User 데이터를 저장했습니다: \(userDataURL.path)")
+                    DispatchQueue.main.async{
+                        self.user = userData
+                    }
+                } catch {
+                    print("User 데이터 저장 실패: \(error.localizedDescription)")
+                }
+            }
+        }
     }
 }
