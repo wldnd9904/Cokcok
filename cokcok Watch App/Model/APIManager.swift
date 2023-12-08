@@ -9,7 +9,7 @@ import SwiftUI
 
 class APIManager {
     static let shared = APIManager()
-    func uploadMatch(token: String, metaDataURL: URL, motionDataURL: URL, onDone: @escaping () -> Void) throws {
+    func uploadMatch(token: String, metaDataURL: URL, motionDataURL: URL, onDone: @escaping () -> Void, onError: @escaping () -> Void) throws {
         let url = URL(string:"http://118.32.109.123:8000/process/match")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -37,7 +37,12 @@ class APIManager {
         request.httpBody = body
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            onDone()
+            if let error = error{
+                print(error.localizedDescription)
+                onError()
+            }else {
+                onDone()
+            }
         }
         task.resume()
     }

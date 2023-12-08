@@ -48,11 +48,11 @@ struct StartView: View {
                         }
                         .tint(.green)
                     }
-#if targetEnvironment(simulator)
+//#if targetEnvironment(simulator)
                     NavigationLink(value: MenuType.savedData){
                         Text(MenuType.savedData.name)
                     }
-#endif
+//#endif
                     Spacer()
                 }
             }

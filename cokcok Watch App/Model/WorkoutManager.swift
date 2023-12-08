@@ -44,12 +44,13 @@ class WorkoutManager: NSObject, ObservableObject {
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
     let wcsession:WCSession
-    var user: User?
+    @Published var user: User?
     
     override init() {
         wcsession = .default
         super.init()
         wcsession.delegate = self
+        wcsession.activate()
         do {
             try login()
         } catch {
@@ -75,7 +76,7 @@ class WorkoutManager: NSObject, ObservableObject {
         #endif
         if state != .idle { return }
         self.state = .running
-        matchSummary = MatchSummary(id: 0, startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, history:"")
+        matchSummary = MatchSummary(id: Int.random(in:Int.min...Int.max), startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, history:"")
         print("matchsummary = \(matchSummary!.id)")
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .badminton
@@ -316,6 +317,10 @@ extension WorkoutManager {
                     } catch {
                         fatalError()
                     }
+                }, onError: {
+                    DispatchQueue.main.async{
+                        self.state = .saved
+                    }
                 })
             }catch {
                 //못보내면 일단 저장만하기
@@ -348,6 +353,7 @@ extension WorkoutManager {
                         } catch {
                             print(error.localizedDescription)
                         }
+                    }, onError: {
                     })
                 } else {return}
             }catch{
@@ -379,26 +385,25 @@ extension WorkoutManager: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         
     }
-    private func session(_ session: WCSession, didReceiveMessage message: [String : User]) {
-        if let userData = message["userData"]{
-            let fileManager = FileManager.default
-            // Document 디렉토리의 URL 가져오기
-            if let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-                do {
-                    // User 객체를 JSON 데이터로 인코딩
-                    let encoder = JSONEncoder()
-                    let userDataData = try encoder.encode(user)
-                    // userData.json 파일의 URL
-                    let userDataURL = documentsURL.appendingPathComponent("userData.json")
-                    // 파일에 JSON 데이터 쓰기
-                    try userDataData.write(to: userDataURL)
-                    print("User 데이터를 저장했습니다: \(userDataURL.path)")
-                    DispatchQueue.main.async{
-                        self.user = userData
-                    }
-                } catch {
-                    print("User 데이터 저장 실패: \(error.localizedDescription)")
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        let fileManager = FileManager.default
+        // Document 디렉토리의 URL 가져오기
+        if let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            do {
+                // User 객체를 JSON 데이터로 인코딩
+                let decoder = JSONDecoder()
+                let userData = try decoder.decode(User.self,from:messageData)
+                DispatchQueue.main.async{
+                    self.user = userData
                 }
+                // userData.json 파일의 URL
+                let userDataURL = documentsURL.appendingPathComponent("userData.json")
+                // 파일에 JSON 데이터 쓰기
+                try messageData.write(to: userDataURL)
+                print("User 데이터를 저장했습니다: \(userDataURL.path)")
+
+            } catch {
+                print("User 데이터 저장 실패: \(error.localizedDescription)")
             }
         }
     }
