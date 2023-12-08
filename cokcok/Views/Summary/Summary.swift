@@ -43,9 +43,6 @@ struct Summary: View {
             }
             .cornerRadius(10)
             
-            SectionTitle(title: "경기 분석")
-                .padding(.top)
-            RecentMatch()
             
             HStack{
                 SectionTitle(title: "최근 달성 업적")
@@ -55,7 +52,7 @@ struct Summary: View {
                 ){Text("더보기")}
             }
             .padding(.top)
-            AchievementRow(achievements: modelData.achievements){item in
+            AchievementRow(achievements: modelData.recentAchievements){item in
                 selectedAchievement = item
             }
             .cornerRadius(10)

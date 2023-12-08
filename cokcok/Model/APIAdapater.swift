@@ -87,6 +87,11 @@ struct AchievementAPI: Codable {
     let s_min: Int
     let is_month_update: String
     let icon: String
+    let unit: String?
+    
+    func toAchievementType() -> AchievementType {
+        AchievementType(id: achieve_id, name: achieve_nm, unit: unit ?? "", DMin: d_min, CMin: c_min, BMin: b_min, AMin: a_min, SMin: s_min, icon: icon)
+    }
 }
 
 struct PlayerAchievementAPI: Codable {
@@ -101,6 +106,10 @@ struct PlayerAchievementAPI: Codable {
     let a_achieve_date: Date?
     let s_achieve_date: Date?
     let last_achieve_date: Date?
+    
+    func toUserAchievement(_ types: [Int:AchievementType]) -> UserAchievement {
+        UserAchievement(id: relation_id, type: types[achieve_id]!, month: achieve_year_month, currentCnt: cumulative_val, DDate: d_achieve_date, CDate: c_achieve_date, BDate: b_achieve_date, ADate: a_achieve_date,SDate: s_achieve_date)
+    }
 }
 
 struct MotionAPI: Codable{

@@ -12,18 +12,23 @@ struct AchievementRow: View {
     let achievements:[UserAchievement]
     var onTap: ((_ item:UserAchievement) -> Void)?
     var body: some View {
-        ScrollView(.horizontal, showsIndicators:false){
-            LazyHGrid(rows: rows){
-                ForEach(achievements) { item in
-                    ZStack{
-                        AchievementItem(item: item)
-                        Color.black
-                            .opacity(0.0000001)
-                            .onTapGesture {
-                                if(onTap != nil ) {
-                                    onTap!(item)
+        if achievements.isEmpty {
+            Text("달성한 업적이 없습니다. 경기를 기록해 보세요!")
+                .padding(.vertical,20)
+        } else {
+            ScrollView(.horizontal, showsIndicators:false){
+                LazyHGrid(rows: rows){
+                    ForEach(achievements) { item in
+                        ZStack{
+                            AchievementItem(item: item)
+                            Color.black
+                                .opacity(0.0000001)
+                                .onTapGesture {
+                                    if(onTap != nil ) {
+                                        onTap!(item)
+                                    }
                                 }
-                            }
+                        }
                     }
                 }
             }

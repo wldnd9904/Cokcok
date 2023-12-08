@@ -26,8 +26,9 @@ final class ModelData: ObservableObject {
     @Published var matches:[MatchSummary] = generateRandomMatchSummaries(count: 30)
     @Published var achievementTypes:[Int:AchievementType] = [:]
     @Published var achievements:[UserAchievement] = []
+    @Published var recentAchievements:[UserAchievement] = []
     @Published var theme: ColorTheme = .system
-    let isDemo = true
+    let isDemo = false
     
     func signInAndGetData(token:String, onNotSignedUp: () -> Void) async -> Void {
         if isDemo {
@@ -46,16 +47,59 @@ final class ModelData: ObservableObject {
         } else {
             do {
                 let data = try await APIManager.shared.getMyPageInfo(token: token)
+                print(data)
                 switch data {
                 case .codable(let userData):
                     DispatchQueue.main.async{
                         withAnimation{
                             self.user = userData.toUser()
+                        }
+                    }
+                case .message(_):
+                    onNotSignedUp()
+                    return
+                }
+                let data2 = try await APIManager.shared.getAllAchievementTypes(token: token)
+                print(data2)
+                switch data2 {
+                case .codable(let achievementType):
+                    DispatchQueue.main.async{
+                        withAnimation{
+                            achievementType.forEach{
+                                self.achievementTypes[$0.achieve_id] = $0.toAchievementType()
+                            }
+                        }
+                    }
+                case .message(_):
+                    onNotSignedUp()
+                    return
+                }
+                let data3 = try await APIManager.shared.getRecentAchievements(token: token)
+                print(data3)
+                switch data3 {
+                case .codable(let achievements):
+                    DispatchQueue.main.async{
+                        withAnimation{
+                            self.recentAchievements = achievements.map{$0.toUserAchievement(self.achievementTypes)}
+                        }
+                    }
+                case .message(_):
+                    onNotSignedUp()
+                    return
+                }
+                let data4 = try await APIManager.shared.getAllAchievements(token: token)
+                print(data4)
+                switch data4 {
+                case .codable(let achievements):
+                    DispatchQueue.main.async{
+                        withAnimation{
+                            self.achievements = achievements.map{$0.toUserAchievement(self.achievementTypes)}
                             self.signState = .signIn
                         }
                     }
                 case .message(_):
                     onNotSignedUp()
+                    return
                 }
             } catch {
                 print(error.localizedDescription)

@@ -66,6 +66,7 @@ struct ContentView : View {
                 } else {
                     LoginView(authManager: AuthenticationManager{ uid, email, authType in
                         Task {
+                            print("gd")
                                 await model.signInAndGetData(token:uid!) {showNewUserView = (uid!, email!, authType!)}
                         }})
                 }
