@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import WatchConnectivity
 enum ColorTheme: String, CaseIterable, Identifiable {
     var id: String {rawValue}
     case light = "밝은 모드"
@@ -18,7 +19,7 @@ enum signState {
     case signOut
 }
 
-final class ModelData: ObservableObject {
+final class ModelData: NSObject, ObservableObject {
     @Published var signState: signState = .signOut
     var uid: String = ""
     @Published var user:User?
@@ -29,6 +30,13 @@ final class ModelData: ObservableObject {
     @Published var recentAchievements:[UserAchievement] = []
     @Published var theme: ColorTheme = .system
     let isDemo = true
+    let wcsession = WCSession.default
+    
+    override init(){
+        super.init()
+        self.wcsession.delegate = self
+        self.wcsession.activate()
+    }
     
     func signInAndGetData(token:String, onNotSignedUp: () -> Void) async -> Void {
         if isDemo {
@@ -44,6 +52,7 @@ final class ModelData: ObservableObject {
                     self.matches = generateRandomMatchSummaries(count: 50)
                     self.achievements = generateRandomUserAchievements(cnt: 100)
                     self.recentAchievements = generateRandomUserAchievements(cnt: 10)
+                    self.sendWatchUserData()
                 }
             }
         } else {
@@ -127,4 +136,30 @@ final class ModelData: ObservableObject {
             }
         }
     }
+    func sendWatchUserData(){
+        if(self.wcsession.isReachable){
+            if let userData = self.user{
+                do{
+                    self.wcsession.sendMessageData(try JSONEncoder().encode(userData), replyHandler: nil)
+                }catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+}
+
+extension ModelData: WCSessionDelegate{
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
 }
