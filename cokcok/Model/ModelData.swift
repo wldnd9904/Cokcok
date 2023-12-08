@@ -23,7 +23,7 @@ final class ModelData: ObservableObject {
     var uid: String = ""
     @Published var user:User?
     @Published var swings:[SwingAnalyze] = []
-    @Published var matches:[MatchSummary] = []
+    @Published var matches:[MatchSummary] = generateRandomMatchSummaries(count: 30)
     @Published var achievementTypes:[Int:AchievementType] = [:]
     @Published var achievements:[UserAchievement] = []
     @Published var theme: ColorTheme = .system
@@ -31,23 +31,28 @@ final class ModelData: ObservableObject {
     
     func signInAndGetData(token:String, onNotSignedUp: () -> Void) async -> Void {
         if isDemo {
-            withAnimation{
-                self.user = .demo
-                self.signState = .signIn
-                generateDemoAchievementTypes().forEach{
-                    self.achievementTypes[$0.id] = $0
+            DispatchQueue.main.async{
+                withAnimation{
+                    self.user = .demo
+                    self.signState = .signIn
+                    generateDemoAchievementTypes().forEach{
+                        self.achievementTypes[$0.id] = $0
+                    }
+                    self.achievements = generateRandomUserAchievements(cnt: 300)
+                    self.swings = generateRandomSwingData(count: 20)
+                    self.matches = generateRandomMatchSummaries(count: 30)
                 }
-                self.achievements = generateRandomUserAchievements(cnt: 300)
-                self.swings = generateRandomSwingData(count: 20)
             }
-        }else {
+        } else {
             do {
                 let data = try await APIManager.shared.getMyPageInfo(token: token)
                 switch data {
                 case .codable(let userData):
-                    withAnimation{
-                        self.user = userData.toUser()
-                        self.signState = .signIn
+                    DispatchQueue.main.async{
+                        withAnimation{
+                            self.user = userData.toUser()
+                            self.signState = .signIn
+                        }
                     }
                 case .message(_):
                     onNotSignedUp()
@@ -66,12 +71,14 @@ final class ModelData: ObservableObject {
                 print(error.localizedDescription)
             }
         }
-        withAnimation{
-            self.user = user
-            self.signState = .signIn
-            self.matches = []
-            self.achievements = []
-            self.swings = []
+        DispatchQueue.main.async{
+            withAnimation{
+                self.user = user
+                self.signState = .signIn
+                self.matches = []
+                self.achievements = []
+                self.swings = []
+            }
         }
     }
 }

@@ -9,8 +9,18 @@ import SwiftUI
 
 struct MatchDetail: View {
     let match: MatchSummary
+    let onDelete: ()-> Void
     @State var selectedSwing: SwingType? = nil
-    
+    @State var showAlert1: Bool = false
+    @State var showAlert2: Bool = false
+    @State var isDeleting: Bool = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    var avgScore: Double {
+        if match.swingList.count == 0 {0}            else {
+            Double(match.swingList.reduce(0){$0 + $1.score
+            })/Double(match.swingList.count)
+        }
+    }
     var body: some View {
         List {
             Section(header:Text("운동 세부사항").font(.title2).foregroundStyle(.primary).bold()){
@@ -56,41 +66,77 @@ struct MatchDetail: View {
                     .frame(height:200)
             }
             Section(header:Text("스윙 통계").font(.title2).foregroundStyle(.primary).bold()){
+                HStack{
+                    DetailItem(title:"스윙 횟수", value:" \(match.swingList.count)회")
+                    DetailItem(title: "평균 점수", value: String(format:"%.1f점",avgScore))
+                }
                 ScrollView(.horizontal, showsIndicators: false){
                     StrokeChart(swings: match.swingList, selectedSwing: $selectedSwing)
                         .frame(width:(500+CGFloat(match.swingList.count)*5),height:200)
                         .padding(.vertical,20)
                 }
-                
-                HStack{
-                    StrokeItem(selectedSwing: $selectedSwing, type: .fh, swingList: match.swingList)
-                    Spacer()
-                    StrokeItem(selectedSwing: $selectedSwing, type: .fu, swingList: match.swingList)
-                    Spacer()
-                    StrokeItem(selectedSwing: $selectedSwing, type: .fd, swingList: match.swingList)
-                    Spacer()
-                    StrokeItem(selectedSwing: $selectedSwing, type: .fs, swingList: match.swingList)
-                }
-                HStack{
-                    StrokeItem(selectedSwing: $selectedSwing, type: .bh, swingList: match.swingList)
-                    Spacer()
-                    StrokeItem(selectedSwing: $selectedSwing, type: .bu, swingList: match.swingList)
-                    Spacer()
-                    StrokeItem(selectedSwing: $selectedSwing, type: .bd, swingList: match.swingList)
-                    Spacer()
-                    StrokeItem(selectedSwing: $selectedSwing, type: .fp, swingList: match.swingList)
-                }
-                HStack{
-                    StrokeItem(selectedSwing: $selectedSwing, type: .fn, swingList: match.swingList)
-                    Spacer()
-                    StrokeItem(selectedSwing: $selectedSwing, type: .bn, swingList: match.swingList)
-                    Spacer()
-                    StrokeItem(selectedSwing: $selectedSwing, type: .ss, swingList: match.swingList)
-                    Spacer()
-                    StrokeItem(selectedSwing: $selectedSwing, type: .ls, swingList: match.swingList)
+                VStack(alignment:.center){
+                    Text("스윙 종류를 터치하여 점수를 확인할 수 있습니다.")
+                        .font(.caption).foregroundStyle(.gray)
+                    HStack{
+                        StrokeItem(selectedSwing: $selectedSwing, type: .fh, swingList: match.swingList)
+                        Spacer()
+                        StrokeItem(selectedSwing: $selectedSwing, type: .fu, swingList: match.swingList)
+                        Spacer()
+                        StrokeItem(selectedSwing: $selectedSwing, type: .fd, swingList: match.swingList)
+                        Spacer()
+                        StrokeItem(selectedSwing: $selectedSwing, type: .fs, swingList: match.swingList)
+                    }
+                    HStack{
+                        StrokeItem(selectedSwing: $selectedSwing, type: .bh, swingList: match.swingList)
+                        Spacer()
+                        StrokeItem(selectedSwing: $selectedSwing, type: .bu, swingList: match.swingList)
+                        Spacer()
+                        StrokeItem(selectedSwing: $selectedSwing, type: .bd, swingList: match.swingList)
+                        Spacer()
+                        StrokeItem(selectedSwing: $selectedSwing, type: .fp, swingList: match.swingList)
+                    }
+                    HStack{
+                        StrokeItem(selectedSwing: $selectedSwing, type: .fn, swingList: match.swingList)
+                        Spacer()
+                        StrokeItem(selectedSwing: $selectedSwing, type: .bn, swingList: match.swingList)
+                        Spacer()
+                        StrokeItem(selectedSwing: $selectedSwing, type: .ss, swingList: match.swingList)
+                        Spacer()
+                        StrokeItem(selectedSwing: $selectedSwing, type: .ls, swingList: match.swingList)
+                    }
                 }
             }
+            Button("경기 기록 삭제하기"){
+                showAlert1.toggle()
+            }
+            .tint(.red)
+            .alert(isPresented: $showAlert1) {
+                Alert(
+                    title: Text("삭제 확인"),
+                    message: Text("삭제하시겠습니까?"),
+                    primaryButton: .destructive(Text("삭제")) {
+                        // 확인 버튼이 눌렸을 때
+                        showAlert2.toggle()
+                    },
+                    secondaryButton: .cancel(Text("취소"))
+                )
+            }
         }
+        .alert(isPresented: $showAlert2) {
+            Alert(
+                title: Text("삭제 완료"),
+                message: Text("삭제되었습니다."),
+                dismissButton: .default(Text("확인")) {
+                    // 삭제 버튼이 눌렸을 때의 동작
+                    onDelete()
+                    self.presentationMode.wrappedValue.dismiss()
+                    // 두 번째 얼럿의 확인 버튼이 눌렸을 때
+                    // 여기에서 실제 삭제 동작을 수행할 수 있습니다.
+                }
+            )
+        }
+
         .scrollIndicators(.hidden)
     }
     
@@ -167,7 +213,7 @@ private struct DetailItem: View {
 }
 
 #Preview {
-    MatchDetail(match:generateRandomMatchSummaries(count: 1)[0])
+    MatchDetail(match:generateRandomMatchSummaries(count: 1)[0]){}
 }
 
 

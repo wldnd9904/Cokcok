@@ -61,6 +61,12 @@ func formatDateWithDay(_ date: Date) -> String {
     }
 }
 
+func formatDateToYearMonth(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "YYYY년 M월"
+    return dateFormatter.string(from: date)
+}
+
 func formatTimeIntervalDuration(_ duration: TimeInterval, showseconds:Bool = false) -> String {
     let timeInSeconds = Int(duration)
     let hours = timeInSeconds / 3600

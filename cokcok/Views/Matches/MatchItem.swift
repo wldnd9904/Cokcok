@@ -9,15 +9,17 @@ import SwiftUI
 
 struct MatchItem: View {
     let match: MatchSummary
-
+    let score: Double = Double(Int.random(in: 0...1000))/10
     var body: some View {
         HStack(alignment:.center) {
             HStack{
-                Image(systemName: "clock")
-                    .foregroundColor(.green)
+                Text("\(String(format:"%.1f",score))")
+                    .bold()
+                    .foregroundStyle(.green)
                     .font(.title)
-                Text("\(formatTimeIntervalDuration(match.duration))")
-                    .font(.system(.title, design: .rounded, weight: .bold)).foregroundStyle(.green)
+                Text("점")
+                    .bold()
+                    .foregroundStyle(.gray)
                 Spacer()
                 Text("\(match.myScore)")
                     .fontWeight(match.myScore >= match.opponentScore ? .bold : nil)
@@ -35,18 +37,9 @@ struct MatchItem: View {
                     .foregroundStyle(.red)
                     .font(.title)
                 Spacer()
-                VStack(alignment: .trailing){
-                    HStack{
-                        Image(systemName: "heart.fill")
-                            .foregroundColor(.red)
-                        Text("\(String(format: "%.0f", match.averageHeartRate)) BPM")
-                            .font(.subheadline)
-                            .foregroundColor(.red)
-                    }
                     Text(formatDateString(for: match.startDate))
                         .font(.subheadline)
                         .foregroundColor(.gray)
-                }
             }
         }
         .frame(maxWidth: .infinity) // 최대 너비 제한
