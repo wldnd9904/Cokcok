@@ -274,7 +274,12 @@ import Foundation
             } else if let data = data {
                 do{
                     let response:APIResponse<MotionAPI> = try self.decodeResponse(data: data)
-                    onDone(response)
+                    switch(response){
+                    case .codable(_):
+                        onDone(response)
+                    case .message(_):
+                        onDone(.message("에러"))
+                    }
                 } catch {
                     onDone(.message("에러"))
                 }
@@ -348,8 +353,14 @@ extension APIManager {
             return .codable(result)
         } catch {
             // 실패하면 String으로 처리
-            let messageResponse = try decoder.decode(MessageResponse.self, from: data)
-            return .message(messageResponse.message)
+            do{
+                let messageResponse = try decoder.decode(MessageResponse.self, from: data)
+                return .message(messageResponse.message)
+            } catch {
+                //또 실패하면 그냥 string
+                let messageResponse = try decoder.decode(String.self, from: data)
+                return .message(messageResponse)
+            }
         }
     }
 }

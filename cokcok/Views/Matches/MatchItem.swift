@@ -9,11 +9,10 @@ import SwiftUI
 
 struct MatchItem: View {
     let match: MatchSummary
-    let score: Double = Double(Int.random(in: 0...1000))/10
     var body: some View {
         HStack(alignment:.center) {
             HStack{
-                Text("\(String(format:"%.1f",score))")
+                Text("\(String(format:"%.1f",match.score))")
                     .bold()
                     .foregroundStyle(.green)
                     .font(.title)

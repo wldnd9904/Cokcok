@@ -33,6 +33,12 @@ struct Matches: View {
                             ForEach(matchGroups[key] ?? [], id: \.id) { match in
                                 NavigationLink(destination: MatchDetail(match:match){
                                     model.matches.removeAll{$0.id == match.id}
+                                    Task{
+                                        do{
+                                            let res = try await APIManager.shared.deleteMatch(token: model.user?.id ?? "", matchID: match.id)
+                                            print(res)
+                                        } catch { print(error.localizedDescription)}
+                                    }
                                 }
                                     .navigationTitle(formatDateWithDay(match.startDate))){
                                         MatchItem(match: match)
@@ -69,6 +75,10 @@ struct Matches: View {
                     primaryButton: .destructive(Text("삭제")) {
                         // 확인 버튼이 눌렸을 때
                         Task {
+                            do{
+                               let res = try await APIManager.shared.deleteAllMatches(token: model.user?.id ?? "")
+                                print(res)
+                            } catch { print(error.localizedDescription)}
                             DispatchQueue.main.async{
                                 showAlert.toggle()
                                 isDeleted = true

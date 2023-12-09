@@ -76,7 +76,7 @@ class WorkoutManager: NSObject, ObservableObject {
         #endif
         if state != .idle { return }
         self.state = .running
-        matchSummary = MatchSummary(id: Int.random(in:Int.min...Int.max), startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, history:"")
+        matchSummary = MatchSummary(id: Int.random(in:Int.min...Int.max), startDate: Date(), endDate: Date(), duration: 0, totalDistance: 0, totalEnergyBurned: 0, averageHeartRate: 0, myScore: 0, opponentScore: 0, scoreHistory:"")
         print("matchsummary = \(matchSummary!.id)")
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .badminton
@@ -339,26 +339,28 @@ extension WorkoutManager {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: [])
         fileURLs.forEach{ uid in
-            print(uid.lastPathComponent)
-            do{
-                //파일 서버로 보내기
-                let directoryURL = documentsURL.appending(path: uid.lastPathComponent)
-                let metaDataURL = directoryURL.appending(path:"matchSummary.json")
-                let motionDataURL = directoryURL.appending(path:"motionData.csv")
-                if FileManager.default.fileExists(atPath: metaDataURL.path()) && FileManager.default.fileExists(atPath: motionDataURL.path()){
-                    try APIManager.shared.uploadMatch(token: user!.id, metaDataURL: metaDataURL, motionDataURL: motionDataURL, onDone: {
-                        do {
-                            //보냈으면 삭제
-                            try FileManager.default.removeItem(at:directoryURL)
-                        } catch {
-                            print(error.localizedDescription)
-                        }
-                    }, onError: {
-                    })
-                } else {return}
-            }catch{
-                //못보내도 상관없음
-                print(error.localizedDescription)
+            Task{
+                print(uid.lastPathComponent)
+                do{
+                    //파일 서버로 보내기
+                    let directoryURL = documentsURL.appending(path: uid.lastPathComponent)
+                    let metaDataURL = directoryURL.appending(path:"matchSummary.json")
+                    let motionDataURL = directoryURL.appending(path:"motionData.csv")
+                    if FileManager.default.fileExists(atPath: metaDataURL.path()) && FileManager.default.fileExists(atPath: motionDataURL.path()){
+                        try APIManager.shared.uploadMatch(token: user!.id, metaDataURL: metaDataURL, motionDataURL: motionDataURL, onDone: {
+                            do {
+                                //보냈으면 삭제
+                                try FileManager.default.removeItem(at:directoryURL)
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }, onError: {
+                        })
+                    } else {return}
+                }catch{
+                    //못보내도 상관없음
+                    print(error.localizedDescription)
+                }
             }
         }
     }

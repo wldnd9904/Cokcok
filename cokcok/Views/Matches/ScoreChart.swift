@@ -12,13 +12,13 @@ struct ScoreChart: View {
     let matchSummary: MatchSummary
     func history(_ whose: Character) -> [(x: Int, y:Int)] {
         var sum:Int = 0
-        var graph:[(x: Int, y:Int)]  =  matchSummary.history.enumerated().reduce(into:[(    x:0,y:0)]) {
+        var graph:[(x: Int, y:Int)]  =  matchSummary.scoreHistory.enumerated().reduce(into:[(    x:0,y:0)]) {
             if $1.element == whose {
                 sum += 1
                 $0.append((x:$1.offset+1, y:sum))
             }
         }
-        graph.append((x:matchSummary.history.count, y:sum))
+        graph.append((x:matchSummary.scoreHistory.count, y:sum))
         return graph
     }
     
@@ -39,7 +39,7 @@ struct ScoreChart: View {
             "나":Circle().strokeBorder(lineWidth: 3),
             "상대": Circle().strokeBorder(lineWidth: 3)
         ])
-        .chartXScale(domain: -1...matchSummary.history.count+1)
+        .chartXScale(domain: -1...matchSummary.scoreHistory.count+1)
         .chartYScale(domain: -1...max(matchSummary.myScore , matchSummary.opponentScore)+1)
         .chartXAxis {
             AxisMarks() { _ in

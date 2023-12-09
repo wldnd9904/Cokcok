@@ -6,7 +6,13 @@
 //
 
 import SwiftUI
-
+struct MessageResponse: Codable {
+   let message: String
+}
+enum APIResponse<T: Codable> {
+   case message(String)
+   case codable(T)
+}
 class APIManager {
     static let shared = APIManager()
     func uploadMatch(token: String, metaDataURL: URL, motionDataURL: URL, onDone: @escaping () -> Void, onError: @escaping () -> Void) throws {
@@ -41,12 +47,55 @@ class APIManager {
                 print(error.localizedDescription)
                 onError()
             }else {
-                onDone()
+                do{
+                    let response:APIResponse<MessageResponse> = try self.decodeResponse(data: data!)
+                    switch(response){
+                    case .codable( let messagevalue):
+                        print(messagevalue.message)
+                        if messagevalue.message == "경기 기록이 성공적으로 업로드 되었습니다." {
+                            onDone()
+                        } else {
+                            onError()}
+                    case .message(let messagevalue):
+                        print(messagevalue)
+                        if messagevalue == "경기 기록이 성공적으로 업로드 되었습니다." {
+                            onDone()
+                        } else {
+                            onError()}
+                    }
+                } catch {
+                    onError()
+                }
             }
         }
         task.resume()
     }
+    
+    func decodeResponse<T: Decodable>(data: Data) throws -> APIResponse<T> {
+        let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        print(data)
+        print(String(data:data, encoding: .utf8)!)
+        do {
+            // 시도해보고 성공하면 Codable 타입으로 처리
+            let result = try decoder.decode(T.self, from: data)
+            return .codable(result)
+        } catch {
+            // 실패하면 String으로 처리
+            do{
+                let messageResponse = try decoder.decode(MessageResponse.self, from: data)
+                return .message(messageResponse.message)
+            } catch {
+                //또 실패하면 그냥 string
+                let messageResponse = try decoder.decode(String.self, from: data)
+                return .message(messageResponse)
+            }
+        }
+    }
 }
+    
 public extension Data {
     
     mutating func append(

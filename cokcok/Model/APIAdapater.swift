@@ -8,7 +8,33 @@
 
 import Foundation
 
-struct MatchAPI: Codable {
+public struct SwingAPI: Codable {
+    let id: Int
+    let score: Int
+    let type: String
+    func toSwing() -> Swing{
+        let swingType:SwingType =
+            switch(type){
+            case "fd":  .fd
+            case "fh":  .fh
+            case "fp":  .fp
+            case "fu":  .fu
+            case "fn":  .fn
+            case "fs":  .fs
+            case "bd":  .bd
+            case "bh":  .bh
+            case "bu":  .bu
+            case "bn":  .bn
+            case "ls":  .ls
+            case "ss":  .ss
+            default:
+                    .fs
+            }
+        return Swing(id:id, type:swingType, score:score)
+    }
+}
+
+public struct MatchAPI: Codable {
     let match_id: Int
     let start_date: Date
     let end_date: Date
@@ -19,24 +45,13 @@ struct MatchAPI: Codable {
     let my_score: Int
     let opponent_score: Int
     let score_history: String
-    let back_drive: Int
-    let back_hairpin: Int
-    let back_high: Int
-    let back_under: Int
-    let fore_drive: Int
-    let fore_drop: Int
-    let fore_hairpin: Int
-    let fore_high: Int
-    let fore_smash: Int
-    let fore_under: Int
-    let long_service: Int
-    let short_service: Int
     let watch_url: String
     let player_token: String
-    
-    /*func toMatchSummary()-> MatchSummary {
-        MatchSummary(id: match_id, startDate: start_date, endDate: end_date, duration: TimeInterval(integerLiteral: Int64(duration)), totalDistance: total_distance, totalEnergyBurned: total_energy_burned, averageHeartRate: average_heart_rate, myScore: my_score, opponentScore: opponent_score, history: score_history, backDrive: back_drive, backHairpin: back_hairpin, backHigh: back_high, backUnder: back_under,foreDrive: fore_drive,foreDrop: fore_drop,foreHairpin: fore_hairpin,foreHigh: fore_high, foreSmash: fore_smash,foreUnder: fore_under,longService: long_service,shortService: short_service)
-    }*/
+    let swing_list: [SwingAPI]
+    let swing_average_score: Double
+    func toMatchSummary()-> MatchSummary {
+        MatchSummary(id: match_id, startDate: start_date, endDate: end_date, duration: TimeInterval(integerLiteral: Int64(duration)), totalDistance: total_distance, totalEnergyBurned: total_energy_burned, averageHeartRate: average_heart_rate, myScore: my_score, opponentScore: opponent_score, scoreHistory: score_history,score:swing_average_score, swingList: swing_list.map{$0.toSwing()})
+     }
 }
 
 struct PlayerAPI: Codable {

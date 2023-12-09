@@ -29,6 +29,7 @@ final class ModelData: NSObject, ObservableObject {
     @Published var achievements:[UserAchievement] = []
     @Published var recentAchievements:[UserAchievement] = []
     @Published var theme: ColorTheme = .system
+    @Published var signingIn: Bool = false
     let isDemo = false
     let wcsession = WCSession.default
     
@@ -42,8 +43,8 @@ final class ModelData: NSObject, ObservableObject {
         if isDemo {
             DispatchQueue.main.async{
                 withAnimation{
+                    self.signingIn = true
                     self.user = .demo
-                    self.signState = .signIn
                     generateDemoAchievementTypes().forEach{
                         self.achievementTypes[$0.id] = $0
                     }
@@ -53,10 +54,15 @@ final class ModelData: NSObject, ObservableObject {
                     self.achievements = generateRandomUserAchievements(cnt: 100)
                     self.recentAchievements = generateRandomUserAchievements(cnt: 10)
                     self.sendWatchUserData()
+                    self.signingIn = false
+                    self.signState = .signIn
                 }
             }
         } else {
             do {
+                DispatchQueue.main.async{
+                    self.signingIn = true
+                }
                 let data = try await APIManager.shared.getMyPageInfo(token: token)
                 print(data)
                 switch data {
@@ -105,7 +111,21 @@ final class ModelData: NSObject, ObservableObject {
                     DispatchQueue.main.async{
                         withAnimation{
                             self.achievements = achievements.map{$0.toUserAchievement(self.achievementTypes)}
+                        }
+                    }
+                case .message(_):
+                    onNotSignedUp()
+                    return
+                }
+                let data5 = try await APIManager.shared.getMatches(token: token, limit: 100, offset: 0)
+                print(data5)
+                switch data5 {
+                case .codable(let matches):
+                    DispatchQueue.main.async{
+                        withAnimation{
+                            self.matches = matches.map{$0.toMatchSummary()}
                             self.sendWatchUserData()
+                            self.signingIn = false
                             self.signState = .signIn
                         }
                     }

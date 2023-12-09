@@ -11,7 +11,6 @@ import FirebaseAuth
 
 struct LoginView: View {
     var authManager:AuthenticationManager
-    @State var isShowingProgressView = false                   // 로그인 비동기 ProgressView
     @State var isShowingAlert: Bool = false                     // 로그인 완료 Alert
     @Environment(\.window) var window: UIWindow?
     
@@ -29,7 +28,6 @@ struct LoginView: View {
                 Spacer()
                 
                 Button {
-                    isShowingProgressView = true
                     authManager.signIn()
                 } label: {
                     HStack{
@@ -52,7 +50,6 @@ struct LoginView: View {
                 }
                 
                 Button {
-                    isShowingProgressView = true
                     authManager.kakaoAuthSignIn()
                 } label: {
                     HStack{
@@ -71,7 +68,6 @@ struct LoginView: View {
                 .cornerRadius(15.0)
                 
                 Button {
-                    isShowingProgressView = true
                     authManager.startAppleLogin(window: window)
                 } label:{
                     HStack{
@@ -93,10 +89,6 @@ struct LoginView: View {
                 
                 Spacer()
                 Spacer()
-            }
-            if(isShowingProgressView){
-                Color.black.opacity(0.2).ignoresSafeArea()
-                Spinner()
             }
         }
         .ignoresSafeArea(.all)

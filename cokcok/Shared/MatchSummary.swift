@@ -42,6 +42,7 @@ enum SwingType: String, Codable, CaseIterable {
         case .ls:  Color("#778ca3")
         }
     }
+    
 }
 struct Swing: Codable, Identifiable {
     let id: Int
@@ -60,19 +61,20 @@ struct MatchSummary: Identifiable, Codable {
     
     var myScore: Int
     var opponentScore: Int
-    var history: String
+    var scoreHistory: String
     
-    var swingList: [Swing] = generateRandomSwings(count: 60)
+    var score:Double = 0
+    var swingList: [Swing] = []
     
     
     // 새로운 점수 변동 기록 추가
     mutating func addScore(player: Player, timestamp:Date = Date()) {
         switch(player){
         case .me:
-            history.append("m")
+            scoreHistory.append("m")
             myScore += 1
         case .opponent:
-            history.append("o")
+            scoreHistory.append("o")
             opponentScore += 1
         }
     }
@@ -80,13 +82,13 @@ struct MatchSummary: Identifiable, Codable {
     mutating func removeScore(player: Player) {
         switch player {
         case .me:
-            if let lastIndex = history.lastIndex(of: "m") {
-                history.remove(at: lastIndex)
+            if let lastIndex = scoreHistory.lastIndex(of: "m") {
+                scoreHistory.remove(at: lastIndex)
                 myScore -= 1
             }
         case .opponent:
-            if let lastIndex = history.lastIndex(of: "o") {
-                history.remove(at: lastIndex)
+            if let lastIndex = scoreHistory.lastIndex(of: "o") {
+                scoreHistory.remove(at: lastIndex)
                 opponentScore -= 1
             }
         }
@@ -96,10 +98,10 @@ struct MatchSummary: Identifiable, Codable {
         switch player {
         case .me:
             myScore = 0
-            history = String(repeating:"o", count: opponentScore)
+            scoreHistory = String(repeating:"o", count: opponentScore)
         case .opponent:
             opponentScore = 0
-            history = String(repeating: "m", count: myScore)
+            scoreHistory = String(repeating: "m", count: myScore)
         }
     }
 }
@@ -124,7 +126,7 @@ func generateRandomMatchSummaries(count: Int) -> [MatchSummary] {
     for id in 1...count {
         let averageHeartRate = Double.random(in: heartRateRange)
         guard let workout: HKWorkout = generateRandomWorkout() else { return [] }
-        var matchSummary = MatchSummary(id: id, startDate: workout.startDate, endDate: workout.endDate, duration: workout.duration, totalDistance: workout.totalDistance!.doubleValue(for: .meter()), totalEnergyBurned: workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()), averageHeartRate: averageHeartRate, myScore: 0, opponentScore: 0, history:"")
+        var matchSummary = MatchSummary(id: id, startDate: workout.startDate, endDate: workout.endDate, duration: workout.duration, totalDistance: workout.totalDistance!.doubleValue(for: .meter()), totalEnergyBurned: workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()), averageHeartRate: averageHeartRate, myScore: 0, opponentScore: 0, scoreHistory:"")
         var currentTime = matchSummary.startDate
         let endTime = matchSummary.endDate
         while matchSummary.myScore < 21 && matchSummary.opponentScore < 21 && currentTime < endTime {
