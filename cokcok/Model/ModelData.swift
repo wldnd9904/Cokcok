@@ -29,10 +29,7 @@ final class ModelData: NSObject, ObservableObject {
     @Published var achievements:[UserAchievement] = []
     @Published var recentAchievements:[UserAchievement] = []
     @Published var theme: ColorTheme = .system
-<<<<<<< HEAD
     let isDemo = false
-=======
-    let isDemo = true
     let wcsession = WCSession.default
     
     override init(){
@@ -40,7 +37,6 @@ final class ModelData: NSObject, ObservableObject {
         self.wcsession.delegate = self
         self.wcsession.activate()
     }
->>>>>>> feature/auth
     
     func signInAndGetData(token:String, onNotSignedUp: () -> Void) async -> Void {
         if isDemo {
@@ -109,6 +105,7 @@ final class ModelData: NSObject, ObservableObject {
                     DispatchQueue.main.async{
                         withAnimation{
                             self.achievements = achievements.map{$0.toUserAchievement(self.achievementTypes)}
+                            self.sendWatchUserData()
                             self.signState = .signIn
                         }
                     }
