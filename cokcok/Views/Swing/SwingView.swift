@@ -12,28 +12,31 @@ struct SwingView: View {
     @State var isShownFullScreenCover = false
     let swingList: [SwingAnalyze] = generateRandomSwingData(count: 10)
     var body: some View {
-        ScrollView(showsIndicators:false){            HStack {
-            SectionTitle(title: "최근 나의 스윙")
-            NavigationLink(destination: {
-                Text("스윙리스트")
-            }) {
-                Text("더보기")
-            }
-        }
-            SwingTrendChart(swings:swingList)
-                .padding()
-                .background(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-            
-            
-
+        ScrollView(showsIndicators:false){
             VStack{
-                ForEach(swingList.reversed()){ swing in
-                    SwingItem(swing: swing)
+                HStack {
+                    SectionTitle(title: "최근 나의 스윙")
+                    NavigationLink(destination: {
+                        Text("스윙리스트")
+                    }) {
+                        Text("더보기")
+                    }
+                }
+                SwingTrendChart(swings:swingList)
+                    .padding()
+                    .background(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                
+                
+                VStack{
+                    ForEach(swingList.reversed()){ swing in
+                        SwingItem(swing: swing)
+                    }
                 }
             }
+            .padding()
         }
-        .padding()
         .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
         .toolbar{
             Button {

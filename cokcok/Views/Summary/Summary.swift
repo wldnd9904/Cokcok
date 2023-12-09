@@ -22,33 +22,35 @@ struct Summary: View {
     let month = Calendar.current.component(.month, from: Date())
     var body: some View {
         ScrollView(showsIndicators: false){
-            SectionTitle(title: "\(month)월 경기 요약")
-            SummaryRow(matches:modelData.matches.filter{Calendar.current.component(.month, from: $0.startDate) == month}, selectedSummaryType: $selectedSummaryType)
-            SummaryCharts(matches:  modelData.matches.filter{Calendar.current.component(.month, from: $0.startDate) == month}, selectedSummaryType: $selectedSummaryType)
-                .frame(
-                minWidth: 0,
-                maxWidth: .infinity,
-                minHeight: 440,
-                maxHeight: .infinity,
-                alignment: .topLeading
-              )
-                .background(.white)
+            VStack{
+                SectionTitle(title: "\(month)월 경기 요약")
+                SummaryRow(matches:modelData.matches.filter{Calendar.current.component(.month, from: $0.startDate) == month}, selectedSummaryType: $selectedSummaryType)
+                SummaryCharts(matches:  modelData.matches.filter{Calendar.current.component(.month, from: $0.startDate) == month}, selectedSummaryType: $selectedSummaryType)
+                    .frame(
+                        minWidth: 0,
+                        maxWidth: .infinity,
+                        minHeight: 440,
+                        maxHeight: .infinity,
+                        alignment: .topLeading
+                    )
+                    .background(.white)
+                    .cornerRadius(10)
+                HStack{
+                    SectionTitle(title: "최근 달성 업적")
+                    Spacer()
+                    NavigationLink(destination:AchievementsView(achievements:modelData.achievements)
+                        .navigationTitle("전체 업적")
+                    ){Text("더보기")}
+                }
+                .padding(.top)
+                AchievementRow(achievements: modelData.recentAchievements){item in
+                    selectedAchievement = item
+                }
                 .cornerRadius(10)
-            HStack{
-                SectionTitle(title: "최근 달성 업적")
-                Spacer()
-                NavigationLink(destination:AchievementsView(achievements:modelData.achievements)
-                    .navigationTitle("전체 업적")
-                ){Text("더보기")}
             }
-            .padding(.top)
-            AchievementRow(achievements: modelData.recentAchievements){item in
-                selectedAchievement = item
-            }
-            .cornerRadius(10)
-            .padding(.bottom,100)
+            .padding()
+            .padding(.bottom,50)
         }
-        .padding()
         .overlay{
             if(selectedAchievement != nil){
                 Color.black
@@ -60,7 +62,7 @@ struct Summary: View {
                 AchievementDetail(item: selectedAchievement!)
             }
         }
-        .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
+        .background(Color(.systemGroupedBackground))
         .toolbar{
             Button {
                 showMyPage.toggle()
