@@ -25,8 +25,8 @@ struct SummaryView: View {
         } else {
             ScrollView(.vertical) {
                 VStack(alignment: .leading) {
-                    Text("승리!")
-                        .font(.title)
+                    Text( "기록 완료")
+                        .font(.title2)
                     SummaryMetricView(
                         title: "경기 시간",
                         value: durationFormatter.string(from: workoutManager.matchSummary?.duration ?? 0.0) ?? ""
@@ -60,10 +60,11 @@ struct SummaryView: View {
                             )
                         + " bpm"
                     ).accentColor(Color.red)
-                    Text("Activity Rings")
-                    ActivityRingsView(
-                        healthStore: workoutManager.healthStore
-                    ).frame(width: 50, height: 50)
+                    if(workoutManager.state == .ended){
+                        Text("경기가 기록되었습니다. iPhone 콕콕 앱에서 분석 결과를 확인할 수 있습니다.")
+                    }else {
+                        Text("인터넷이 연결되지 않아 경기가 임시 저장되었습니다. 인터넷이 연결되면 자동으로 iPhone 콕콕 앱에 저장됩니다.")
+                    }
                     Button("확인") {
                         dismiss()
                     }

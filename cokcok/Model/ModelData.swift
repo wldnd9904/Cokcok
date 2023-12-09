@@ -28,7 +28,7 @@ final class ModelData: ObservableObject {
     @Published var achievements:[UserAchievement] = []
     @Published var recentAchievements:[UserAchievement] = []
     @Published var theme: ColorTheme = .system
-    let isDemo = true
+    let isDemo = false
     
     func signInAndGetData(token:String, onNotSignedUp: () -> Void) async -> Void {
         if isDemo {
