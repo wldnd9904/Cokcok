@@ -112,7 +112,7 @@ func generateRandomSwings(count: Int) -> [Swing] {
 
     for i in 1...count {
         let randomType = SwingType.allCases.randomElement()!
-        let randomScore = Int.random(in: 0...100)
+        let randomScore = randomType == .x ? Int.random(in: 0...29) : Int.random(in: 30...100)
         
         let swing = Swing(id: i, type: randomType, score: randomScore)
         randomSwings.append(swing)
@@ -129,6 +129,7 @@ func generateRandomMatchSummaries(count: Int) -> [MatchSummary] {
         let averageHeartRate = Double.random(in: heartRateRange)
         guard let workout: HKWorkout = generateRandomWorkout() else { return [] }
         var matchSummary = MatchSummary(id: id, startDate: workout.startDate, endDate: workout.endDate, duration: workout.duration, totalDistance: workout.totalDistance!.doubleValue(for: .meter()), totalEnergyBurned: workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()), averageHeartRate: averageHeartRate, myScore: 0, opponentScore: 0, scoreHistory:"")
+        matchSummary.swingList = generateRandomSwings(count: 60)
         var currentTime = matchSummary.startDate
         let endTime = matchSummary.endDate
         while matchSummary.myScore < 21 && matchSummary.opponentScore < 21 && currentTime < endTime {

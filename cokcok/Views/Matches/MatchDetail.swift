@@ -16,9 +16,9 @@ struct MatchDetail: View {
     @State var isDeleting: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var avgScore: Double {
-        if match.swingList.count == 0 {0}            else {
-            Double(match.swingList.reduce(0){$0 + $1.score
-            })/Double(match.swingList.count)
+        if match.swingList.filter({$0.type != .x}).count == 0 {0}            else {
+            Double(match.swingList.filter({$0.type != .x}).reduce(0){$0 + $1.score
+            })/Double(match.swingList.filter({$0.type != .x}).count)
         }
     }
     var body: some View {
