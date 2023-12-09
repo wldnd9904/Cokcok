@@ -21,6 +21,8 @@ struct StrokeChart: View {
             .interpolationMethod(.catmullRom)
             .symbol(.circle)
             .symbolSize(50)
+            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.gray]),startPoint: .top,
+                                      endPoint: .bottom))
             
             ForEach(swings, id: \.id) { swing in
                 PointMark(x: .value("index",swing.id), y:.value("score", swing.score))
@@ -33,14 +35,15 @@ struct StrokeChart: View {
                     }
                     .symbol {
                             Circle()
+                            .stroke(swing.type.color, lineWidth:3)
                                 .foregroundStyle(swing.type.color)
-                                .opacity(swing.type == selectedSwing ? 1.0 : 0.0)
+                                .scaleEffect(swing.type == selectedSwing ? 1.2 : 0.6)
                                 .animation(.easeInOut, value: selectedSwing)
                                 .frame(width:10)
                     }
             }
-
         }
+        .chartXScale(domain:1...swings.count+1)
         .chartYScale(domain: -1...101)
         .chartYAxis{
             AxisMarks(position:.leading)

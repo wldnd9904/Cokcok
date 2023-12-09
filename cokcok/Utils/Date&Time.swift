@@ -79,3 +79,23 @@ func formatTimeIntervalDuration(_ duration: TimeInterval, showseconds:Bool = fal
         return String(format: "\(hours):%02d", minutes)
     }
 }
+
+func formatHourMinutes(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "h시 m분"
+    
+    let formattedString = dateFormatter.string(from: date)
+    
+    let calendar = Calendar.current
+    let components = calendar.dateComponents([.hour], from: date)
+    
+    if let hour = components.hour {
+        if hour < 12 {
+            return "오전 \(formattedString)"
+        } else {
+            return "오후 \(formattedString)"
+        }
+    }
+    
+    return formattedString
+}

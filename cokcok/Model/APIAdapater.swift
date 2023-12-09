@@ -27,6 +27,7 @@ public struct SwingAPI: Codable {
             case "bn":  .bn
             case "ls":  .ls
             case "ss":  .ss
+            case "x": .x
             default:
                     .fs
             }

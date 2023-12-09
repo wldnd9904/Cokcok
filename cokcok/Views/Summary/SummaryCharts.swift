@@ -87,12 +87,12 @@ struct MatchCountChart: View {
                 .symbol(.circle)
                 .foregroundStyle(.orange)
             }
-            .interpolationMethod(.cardinal)
+            .interpolationMethod(.catmullRom)
             ForEach(cumulativeValue) { data in
                 AreaMark(x: .value("x", data.id),
                          y: .value("y", data.y))
             }
-            .interpolationMethod(.cardinal)
+            .interpolationMethod(.catmullRom)
             .foregroundStyle(linearGradient)
         }
         .chartXScale(domain:1...today)
@@ -130,12 +130,12 @@ struct DistanceChart: View {
                 .symbol(.circle)
                 .foregroundStyle(.blue)
             }
-            .interpolationMethod(.cardinal)
+            .interpolationMethod(.catmullRom)
             ForEach(cumulativeValue) { data in
                 AreaMark(x: .value("x", data.id),
                          y: .value("y", data.y))
             }
-            .interpolationMethod(.cardinal)
+            .interpolationMethod(.catmullRom)
             .foregroundStyle(linearGradient)
         }
         .chartXScale(domain:1...today)
@@ -172,12 +172,12 @@ struct TimeChart: View {
                 .symbol(.circle)
                 .foregroundStyle(.green)
             }
-            .interpolationMethod(.cardinal)
+            .interpolationMethod(.catmullRom)
             ForEach(cumulativeValue) { data in
                 AreaMark(x: .value("x", data.id),
                          y: .value("y", data.y))
             }
-            .interpolationMethod(.cardinal)
+            .interpolationMethod(.catmullRom)
             .foregroundStyle(linearGradient)
         }
         .chartXScale(domain:1...today)
@@ -196,18 +196,20 @@ struct SwingChart: View {
         Chart {
             ForEach(SwingType.allCases, id:\.self){
                 swingType in
-                SectorMark(angle: .value("Type", matches.reduce(0){$0+$1.swingList.filter{$0.type == swingType}.count}),
-                           innerRadius: .ratio(0.4),
-                           angularInset: 1.5)
-                .foregroundStyle(swingType.color)
-                .cornerRadius(5)
-                .annotation(position: .overlay){
-                    VStack{
-                        Text(swingType.rawValue)
-                        Text("\(matches.reduce(0){$0+$1.swingList.filter{$0.type == swingType}.count})회")
+                if(matches.reduce(0){$0+$1.swingList.filter{$0.type == swingType}.count}>0){
+                    SectorMark(angle: .value("Type", matches.reduce(0){$0+$1.swingList.filter{$0.type == swingType}.count}),
+                               innerRadius: .ratio(0.4),
+                               angularInset: 1.5)
+                    .foregroundStyle(swingType.color)
+                    .cornerRadius(5)
+                    .annotation(position: .overlay){
+                        VStack{
+                            Text(swingType.rawValue)
+                            Text("\(matches.reduce(0){$0+$1.swingList.filter{$0.type == swingType}.count})회")
+                        }
+                        .font(.caption)
+                        .foregroundColor(.white)
                     }
-                    .font(.caption)
-                    .foregroundColor(.white)
                 }
             }
         }
@@ -230,36 +232,42 @@ struct WinPortionChart: View {
     }
     var body: some View {
         Chart {
-            SectorMark(angle: .value("Type", win),
-                       innerRadius: .ratio(0.5),
-                       angularInset: 1.5)
-            .foregroundStyle(.blue)
-            .cornerRadius(5)
-            .annotation(position: .overlay){
-                Text("\(win)")
-                    .font(.caption)
-                    .foregroundColor(.white)
+            if(win>0){
+                SectorMark(angle: .value("Type", win),
+                           innerRadius: .ratio(0.5),
+                           angularInset: 1.5)
+                .foregroundStyle(.blue)
+                .cornerRadius(5)
+                .annotation(position: .overlay){
+                    Text("\(win)")
+                        .font(.caption)
+                        .foregroundColor(.white)
+                }
             }
-            SectorMark(angle: .value("Type", lose),
-                       innerRadius: .ratio(0.5),
-                       angularInset: 1.5)
-            .foregroundStyle(.red)
-            .annotation(position: .overlay){
-                Text("\(lose)")
-                    .font(.caption)
-                    .foregroundColor(.white)
+            if(lose>0){
+                SectorMark(angle: .value("Type", lose),
+                           innerRadius: .ratio(0.5),
+                           angularInset: 1.5)
+                .foregroundStyle(.red)
+                .cornerRadius(5)
+                .annotation(position: .overlay){
+                    Text("\(lose)")
+                        .font(.caption)
+                        .foregroundColor(.white)
+                }
             }
-            .cornerRadius(5)
-            SectorMark(angle: .value("Type", draw),
-                       innerRadius: .ratio(0.5),
-                       angularInset: 1.5)
-            .foregroundStyle(.green)
-            .annotation(position: .overlay){
-                Text("\(draw)")
-                    .font(.caption)
-                    .foregroundColor(.white)
+            if(draw>0){
+                SectorMark(angle: .value("Type", draw),
+                           innerRadius: .ratio(0.5),
+                           angularInset: 1.5)
+                .foregroundStyle(.green)
+                .annotation(position: .overlay){
+                    Text("\(draw)")
+                        .font(.caption)
+                        .foregroundColor(.white)
+                }
+                .cornerRadius(5)
             }
-            .cornerRadius(5)
         }
         .frame(height: 300)
         .padding(20)

@@ -45,6 +45,15 @@ struct MyPage: View {
                         model.user?.sex = self.sex
                         model.user?.grade = self.grade
                         model.user?.years = self.year
+                        if editMode{
+                            Task{
+                                do{
+                                    try await APIManager.shared.updateUserInfo(token: model.user!.id, sex: model.user!.sex, yearsPlaying: model.user!.years, grade: model.user!.grade, handedness: model.user!.hand, email: model.user!.email, authType: model.user!.authType)
+                                } catch{
+                                    
+                                }
+                            }
+                        }
                         editMode.toggle()
                     }
                     .foregroundColor(.blue)

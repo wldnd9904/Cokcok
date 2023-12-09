@@ -338,8 +338,8 @@ extension WorkoutManager {
         if user==nil {return }
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: [])
-        fileURLs.forEach{ uid in
-            Task{
+        Task{
+            fileURLs.forEach{ uid in
                 print(uid.lastPathComponent)
                 do{
                     //파일 서버로 보내기

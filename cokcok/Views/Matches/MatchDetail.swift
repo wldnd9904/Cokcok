@@ -23,7 +23,12 @@ struct MatchDetail: View {
     }
     var body: some View {
         List {
-            Section(header:Text("운동 세부사항").font(.title2).foregroundStyle(.primary).bold()){
+            Section(header:Text("운동 세부사항").font(.title2).foregroundStyle(.primary).bold()){                VStack(alignment:.leading,spacing:3){
+                Text("경기 시간")
+                    .bold()
+                Text(formatHourMinutes(match.startDate)+" ~ "+formatHourMinutes(match.endDate))
+                    .foregroundStyle(Color.indigo)
+                }
                 HStack() {
                     DetailItem(title: "운동 시간", value:formatTimeIntervalDuration(match.duration, showseconds:true))
                         .accentColor(.green)
@@ -67,8 +72,12 @@ struct MatchDetail: View {
             }
             Section(header:Text("스윙 통계").font(.title2).foregroundStyle(.primary).bold()){
                 HStack{
-                    DetailItem(title:"스윙 횟수", value:" \(match.swingList.count)회")
+                    DetailItem(title:"스윙 횟수", value:" \(match.swingList.filter{$0.type != .x}.count)회")
                     DetailItem(title: "평균 점수", value: String(format:"%.1f점",avgScore))
+                }
+                HStack{
+                    DetailItem(title:"분류되지 않은 스윙 횟수", value:" \(match.swingList.filter{$0.type == .x}.count)회")
+                        .accentColor(.gray)
                 }
                 ScrollView(.horizontal, showsIndicators: false){
                     StrokeChart(swings: match.swingList, selectedSwing: $selectedSwing)
@@ -216,25 +225,3 @@ private struct DetailItem: View {
     MatchDetail(match:generateRandomMatchSummaries(count: 1)[0]){}
 }
 
-
-
-
-/*
-    var body: some View {
-        HStack{
-            VStack(alignment: .leading){
-                Text(type.rawValue)
-                    .bold()
-                HStack{
-                    Text(String(format:"%.1f",avgScore))
-                        .font(.system(.title2, design: .rounded)
-                        )+Text("점")
-                    Text("/")
-                    Text("\(filteredSwingList.count)")
-                        .font(.system(.title2, design: .rounded))+Text("회")
-                }.foregroundStyle(color)
-            }
-            Spacer()
-        }
-    }
-*/

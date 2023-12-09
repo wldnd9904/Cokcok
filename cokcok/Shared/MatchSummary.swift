@@ -25,6 +25,7 @@ enum SwingType: String, Codable, CaseIterable {
     case bn = "백헤어핀"
     case ls = "롱 서비스"
     case ss = "숏 서비스"
+    case x = "분류 실패"
     
     var color : Color {
         switch(self){
@@ -40,6 +41,7 @@ enum SwingType: String, Codable, CaseIterable {
         case .bn:  Color("#a55eea")
         case .ss:  Color("#4b6584")
         case .ls:  Color("#778ca3")
+        case .x: .gray
         }
     }
     
