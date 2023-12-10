@@ -124,6 +124,19 @@ final class ModelData: NSObject, ObservableObject {
                     DispatchQueue.main.async{
                         withAnimation{
                             self.matches = matches.map{$0.toMatchSummary()}
+                        }
+                    }
+                case .message(_):
+                    onNotSignedUp()
+                    return
+                }
+                let data6 = try await APIManager.shared.getSwingAnalyzes(token: token, limit: 100, offset: 0)
+                print(data6)
+                switch data6 {
+                case .codable(let swings):
+                    DispatchQueue.main.async{
+                        withAnimation{
+                            self.swings = swings.map{$0.toSwingAnalyze()}
                             self.sendWatchUserData()
                             self.signingIn = false
                             self.signState = .signIn

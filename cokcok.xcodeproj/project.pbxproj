@@ -44,7 +44,7 @@
 		B877E7012AF8F9E900BF347E /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7002AF8F9E900BF347E /* Matches.swift */; };
 		B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* SwingView.swift */; };
 		B89182DF2B19D65000DA2BE5 /* SwingResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89182DE2B19D65000DA2BE5 /* SwingResultView.swift */; };
-		B89182E12B19D84100DA2BE5 /* sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B89182E02B19D84100DA2BE5 /* sample.mp4 */; };
+		B8993C7D2B2598F40079B2FB /* SwingScoreChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8993C7C2B2598F40079B2FB /* SwingScoreChart.swift */; };
 		B89B63672B0723B8009B46EA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89B63662B0723B8009B46EA /* DataManager.swift */; };
 		B89B636A2B072435009B46EA /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89B63692B072435009B46EA /* CountDownView.swift */; };
 		B8A624AD2B1EF4EE00B338D4 /* APIAdapater.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A624AC2B1EF4EE00B338D4 /* APIAdapater.swift */; };
@@ -179,7 +179,7 @@
 		B877E7002AF8F9E900BF347E /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		B877E7022AF8F9FD00BF347E /* SwingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingView.swift; sourceTree = "<group>"; };
 		B89182DE2B19D65000DA2BE5 /* SwingResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingResultView.swift; sourceTree = "<group>"; };
-		B89182E02B19D84100DA2BE5 /* sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.mp4; sourceTree = "<group>"; };
+		B8993C7C2B2598F40079B2FB /* SwingScoreChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingScoreChart.swift; sourceTree = "<group>"; };
 		B89B63662B0723B8009B46EA /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		B89B63692B072435009B46EA /* CountDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountDownView.swift; path = "cokcok Watch App/Views/CountDownView.swift"; sourceTree = SOURCE_ROOT; };
 		B8A624AC2B1EF4EE00B338D4 /* APIAdapater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAdapater.swift; sourceTree = "<group>"; };
@@ -377,6 +377,7 @@
 			children = (
 				B877E7022AF8F9FD00BF347E /* SwingView.swift */,
 				B86BE8022B221D3D00ED5BAE /* SwingDetail.swift */,
+				B8993C7C2B2598F40079B2FB /* SwingScoreChart.swift */,
 				B8AB85042B089CA400361F86 /* SwingItem.swift */,
 				B8A885022AF900740041F092 /* SwingRecordView.swift */,
 				B8A885092AF9020B0041F092 /* AVPreview.swift */,
@@ -485,7 +486,6 @@
 				B8A93B002AF62DB600A220C7 /* cokcokApp.swift */,
 				B8A93B022AF62DB600A220C7 /* ContentView.swift */,
 				B8A93B042AF62DB700A220C7 /* Assets.xcassets */,
-				B89182E02B19D84100DA2BE5 /* sample.mp4 */,
 				B8A93B062AF62DB700A220C7 /* Preview Content */,
 			);
 			path = cokcok;
@@ -724,7 +724,6 @@
 			files = (
 				B8A93B082AF62DB700A220C7 /* Preview Assets.xcassets in Resources */,
 				B8A93B052AF62DB700A220C7 /* Assets.xcassets in Resources */,
-				B89182E12B19D84100DA2BE5 /* sample.mp4 in Resources */,
 				B86BE8012B221CC500ED5BAE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,6 +787,7 @@
 				B8A8850F2AF9052E0041F092 /* AVCaptureSession+AddIO.swift in Sources */,
 				B8C36C522AFA74AD00671129 /* MatchItem.swift in Sources */,
 				B8AB85032B089B1200361F86 /* SwingTrendChart.swift in Sources */,
+				B8993C7D2B2598F40079B2FB /* SwingScoreChart.swift in Sources */,
 				B8E1F0B72B1C624A00C66315 /* SwingHelpView.swift in Sources */,
 				B8A93B032AF62DB600A220C7 /* ContentView.swift in Sources */,
 				B877E7012AF8F9E900BF347E /* Matches.swift in Sources */,

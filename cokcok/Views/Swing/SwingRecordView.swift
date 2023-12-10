@@ -24,6 +24,7 @@ struct SwingRecordView: View {
                 ProgressView()
                 model.preview
                     .ignoresSafeArea()
+                 
                 VStack {
                     Spacer()
                     HStack(spacing:20){

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SwingView: View {
+    @EnvironmentObject var model:ModelData
     @State var path: [String] = []
     @State var isShownFullScreenCover = false
-    let swingList: [SwingAnalyze] = generateRandomSwingData(count: 10)
     var body: some View {
         ScrollView(showsIndicators:false){
             VStack{
@@ -22,16 +22,18 @@ struct SwingView: View {
                         Text("더보기")
                     }
                 }
-                SwingTrendChart(swings:swingList)
+                SwingTrendChart(swings:model.swings)
                     .padding()
                     .background(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                
-                
-                
                 VStack{
-                    ForEach(swingList.reversed()){ swing in
-                        SwingItem(swing: swing)
+                    ForEach(model.swings){ swing in
+                        NavigationLink(destination:{
+                            SwingDetail(swing:swing)
+                                .navigationTitle(formatDateWithDay(swing.recordDate))
+                        }, label:{
+                            SwingItem(swing: swing)
+                        })
                     }
                 }
             }
@@ -66,6 +68,7 @@ private struct SectionTitle: View {
         NavigationStack{
             SwingView()
                 .navigationTitle("스윙 분석")
+                .environmentObject(ModelData())
         }.tabItem { Text("스윙 분석") }
     }
 }

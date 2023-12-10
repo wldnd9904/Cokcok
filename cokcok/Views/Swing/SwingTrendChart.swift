@@ -13,7 +13,7 @@ struct SwingTrendChart: View {
     
     var body: some View {
         Chart {
-            ForEach(swings.enumerated().map{($0,$1.totalScore)},id:\.0){
+            ForEach(swings.enumerated().map{($0,$1.swingScore)},id:\.0){
                 MyLineMark(x: $0 , y: $1)
             }
         }

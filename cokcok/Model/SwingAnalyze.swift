@@ -9,21 +9,22 @@ import Foundation
 
 public struct SwingAnalyze:Identifiable, Codable {
     public let id: Int
-    let totalScore:Int
-    let date: Date
-    let timeStampScore: [Int] // 시점별 점수
-    let videoURL: URL
-    let power: Double // 타점의 가속도
+    let videoUrl: URL
     let poseStrength: String
     let poseWeakness: String
-    let wristStrength: String
-    let wristWeakness: String
-    
-    //스코어, 맥스
-    //타임스탬프별 오차
-    //타점인덱스는 16
-    //그래프에서 x가 타임스탬프, y가 점수
-    //8 ~ 22가 유효구간
+    let wristPrepareStrength: String
+    let wristImpactStrength: String
+    let wristFollowStrength: String
+    let wristPrepareWeakness: String
+    let wristImpactWeakness: String
+    let wristFollowWeakness: String
+    let recordDate: Date
+    let swingScore: Int
+    let swingScoreList: [Double]
+    let resPrepare: Double
+    let resImpact: Double
+    let resFollow: Double
+    let wristMaxAcceleration: Double
 }
 
 func generateRandomSwingData(count: Int) -> [SwingAnalyze] {
@@ -35,10 +36,9 @@ func generateRandomSwingData(count: Int) -> [SwingAnalyze] {
     for i in 0..<count {
         let randomScore = Int.random(in: 0...100)
         let randomDate = Date(timeInterval: TimeInterval.random(in: thirtyDaysAgo.timeIntervalSinceNow...currentDate.timeIntervalSinceNow), since: currentDate)
-
-        let swing = SwingAnalyze(id: i, totalScore: randomScore, date: randomDate, timeStampScore: [2,3,5,8,9,3,9], videoURL: URL(string:"http://www.naver.com")!, power: 80.5, poseStrength: "", poseWeakness: "자세가 별로입니다.", wristStrength: "", wristWeakness: "손목도 별로입니다.")
+        let swing = SwingAnalyze(id: i, videoUrl: URL(string:"https://cokcok.s3.ap-northeast-2.amazonaws.com/videos/2023-12-10%2016%3A31%3A11_f.mp4")!, poseStrength: "", poseWeakness: "", wristPrepareStrength: "", wristImpactStrength: "", wristFollowStrength: "", wristPrepareWeakness: "", wristImpactWeakness: "", wristFollowWeakness: "", recordDate: randomDate, swingScore: randomScore, swingScoreList: generateNormalDistributionArray(size: 15, mean: 50, standardDeviation: 20), resPrepare: 50, resImpact: 60, resFollow: 70, wristMaxAcceleration: 21.5)
         swingList.append(swing)
     }
 
-    return swingList.sorted { $0.date < $1.date }
+    return swingList.sorted { $0.recordDate < $1.recordDate }
 }

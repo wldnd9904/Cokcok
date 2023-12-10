@@ -82,20 +82,18 @@ func formatTimeIntervalDuration(_ duration: TimeInterval, showseconds:Bool = fal
 
 func formatHourMinutes(_ date: Date) -> String {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "h시 m분"
-    
-    let formattedString = dateFormatter.string(from: date)
-    
-    let calendar = Calendar.current
-    let components = calendar.dateComponents([.hour], from: date)
-    
-    if let hour = components.hour {
-        if hour < 12 {
-            return "오전 \(formattedString)"
-        } else {
-            return "오후 \(formattedString)"
-        }
-    }
-    
-    return formattedString
+    dateFormatter.locale = Locale(identifier: "ko_KR") // 한글 로케일 설정
+
+    dateFormatter.dateFormat = "a h시 mm분"
+    let formattedDate = dateFormatter.string(from: date)
+    return formattedDate
+}
+
+func formatFullDateHourMinutes(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "ko_KR") // 한글 로케일 설정
+
+    dateFormatter.dateFormat = "yyyy년 M월 d일 a h시 mm분"
+    let formattedDate = dateFormatter.string(from: date)
+    return formattedDate
 }

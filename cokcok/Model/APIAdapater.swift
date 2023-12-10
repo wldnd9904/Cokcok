@@ -128,16 +128,30 @@ struct PlayerAchievementAPI: Codable {
     }
 }
 
-struct MotionAPI: Codable{
+public struct MotionAPI: Codable{
     let motion_id: Int
     let video_url: String
     let watch_url: String
     let pose_strength: String
-    let wrist_strength: String
     let pose_weakness: String
-    let wrist_weakness: String
+    
+    let wrist_prepare_strength: String
+    let wrist_impact_strength: String
+    let wrist_follow_strength: String
+    let wrist_prepare_weakness: String
+    let wrist_impact_weakness: String
+    let wrist_follow_weakness: String
+    
     let player_token: String
     let record_date: Date
     let swing_score: Int
+    let res: String
+    let res_prepare: Double
+    let res_impact: Double
+    let res_follow: Double
+    let wrist_max_acc: Double
+    
+    func toSwingAnalyze() -> SwingAnalyze {
+        SwingAnalyze(id: motion_id, videoUrl: URL(string:video_url)!, poseStrength: pose_strength, poseWeakness: pose_weakness,wristPrepareStrength:wrist_prepare_strength,wristImpactStrength:wrist_impact_strength, wristFollowStrength:wrist_follow_strength, wristPrepareWeakness:wrist_prepare_weakness, wristImpactWeakness:wrist_impact_weakness, wristFollowWeakness:wrist_follow_weakness, recordDate: record_date, swingScore: swing_score, swingScoreList: res.split(separator: " ").compactMap{Double($0)}, resPrepare: res_prepare, resImpact: res_impact, resFollow: res_follow, wristMaxAcceleration: wrist_max_acc)
+    }
 }
-
