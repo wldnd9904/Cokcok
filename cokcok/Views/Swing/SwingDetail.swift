@@ -163,6 +163,9 @@ struct SwingDetail: View {
                     .frame(height:420)
             }
             
+            Button("스윙 기록 삭제하기"){
+            }
+            .tint(.red)
         }
         .multilineTextAlignment(.leading)
         .scrollIndicators(.hidden)

@@ -186,6 +186,7 @@ class SwingRecordManagerPhone: NSObject, ObservableObject {
     
     func resetRecording(){
         self.state = .idle
+        self.isButtonActivated = true
         self.folderName = "swing-\(Date())"
     }
 }
@@ -321,11 +322,11 @@ extension SwingRecordManagerPhone {
 
 // MARK: - 통신부
 extension SwingRecordManagerPhone {
-    func uploadSwing(){
-        //guard self.state == .saved
-        //else {
-        //    return
-        //}
+    func uploadSwing(token:String, onDone: @escaping(SwingAnalyze) -> Void,  onError: @escaping(String) -> Void){
+        guard self.state == .saved
+        else {
+            return
+        }
         self.state = .sending
         DispatchQueue.main.async {
             // Documents 디렉토리 경로 가져오기
@@ -341,9 +342,22 @@ extension SwingRecordManagerPhone {
                 let videoPath = folderPath.appendingPathComponent("Video.mp4")
                 let motionPath = folderPath.appendingPathComponent("swingData.csv")
                 
-                try APIManager.shared.uploadSwing(token: "test", videoURL: videoPath, motionDataURL: motionPath){
+                try APIManager.shared.uploadSwing(token:token , videoURL: videoPath, motionDataURL: motionPath){
+                    DispatchQueue.main.async{
+                        self.state = .sent
+                    }
                     print($0)
-                    self.state = .sent
+                    print("gd")
+                    switch($0){
+                    case .codable(let response):
+                        DispatchQueue.main.async{
+                            onDone(response.toSwingAnalyze())
+                        }
+                    case .message(let msg):
+                        DispatchQueue.main.async{
+                            onError(msg)
+                        }
+                    }
                 }
             }
             catch {

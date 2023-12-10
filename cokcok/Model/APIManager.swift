@@ -270,19 +270,13 @@ import Foundation
         request.httpBody = body
 
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                onDone(.message("에러"))
-            } else if let data = data {
+            if let data = data {
                 do{
                     let response:APIResponse<MotionAPI> = try self.decodeResponse(data: data)
-                    switch(response){
-                    case .codable(_):
-                        onDone(response)
-                    case .message(_):
-                        onDone(.message("에러"))
-                    }
+                    onDone(response)
                 } catch {
-                    onDone(.message("에러"))
+                    print("2")
+                    print(error.localizedDescription)
                 }
             }
         }

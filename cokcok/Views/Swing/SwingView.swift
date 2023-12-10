@@ -16,18 +16,14 @@ struct SwingView: View {
             VStack{
                 HStack {
                     SectionTitle(title: "최근 나의 스윙")
-                    NavigationLink(destination: {
-                        Text("스윙리스트")
-                    }) {
-                        Text("더보기")
-                    }
+                    Spacer()
                 }
                 SwingTrendChart(swings:model.swings)
                     .padding()
                     .background(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 VStack{
-                    ForEach(model.swings){ swing in
+                    ForEach(model.swings.reversed()){ swing in
                         NavigationLink(destination:{
                             SwingDetail(swing:swing)
                                 .navigationTitle(formatDateWithDay(swing.recordDate))
@@ -38,6 +34,7 @@ struct SwingView: View {
                 }
             }
             .padding()
+            .padding(.bottom,50)
         }
         .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
         .toolbar{

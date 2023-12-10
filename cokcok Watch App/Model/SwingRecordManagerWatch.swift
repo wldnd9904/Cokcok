@@ -70,7 +70,7 @@ class SwingRecordManagerWatch: NSObject, ObservableObject {
         self.wcsession.delegate = nil
     }
     func startRecording() {
-        if self.state != .idle { return }
+        if self.state != .idle && self.state != .ended { return }
         if(self.wcsession.isReachable) {
             self.wcsession.sendMessage(["message":"start"], replyHandler: nil)
         }

@@ -33,6 +33,7 @@ struct SwingResultView: View {
                 Button("취소"){onCancel()}
                     .tint(.red)
             }
+            .disabled(state == .sending)
             .font(.headline)
             .buttonStyle(.bordered)
         }

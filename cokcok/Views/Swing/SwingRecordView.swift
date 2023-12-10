@@ -9,13 +9,30 @@ import SwiftUI
 import HealthKit
 
 struct SwingRecordView: View {
+    @EnvironmentObject var modelData:ModelData
     @StateObject var model = SwingRecordManagerPhone()
     @State var showHelp = false
+    @State var swingResult: SwingAnalyze? = nil
+    @State var errorMsg:String? = nil
     let dismiss: () -> Void
     var body: some View {
-        if(model.state == .saved || model.state == .sending || model.state == .sent){
+        if(errorMsg != nil){
+            VStack{
+                Text(errorMsg!)
+                Button("닫기"){dismiss()}
+            }
+        }else if(swingResult != nil){
+            SwingDetail(swing: swingResult!)
+        } else if(model.state == .saved || model.state == .sending || model.state == .sent){
             SwingResultView(folderName: model.folderName, state: $model.state) {
-                model.uploadSwing()
+                model.uploadSwing(token:modelData.user!.id){ swingAnalyze in
+                    DispatchQueue.main.async{
+                        modelData.swings.append(swingAnalyze)
+                    }
+                    dismiss()
+                }onError:{
+                    errorMsg = $0
+                }
             } onCancel: {
                 model.resetRecording()
             }
@@ -55,7 +72,7 @@ struct SwingRecordView: View {
                         }
                         .foregroundColor(model.isButtonActivated ? .red : .gray)
                     }
-                    .disabled(!model.isButtonActivated)
+                    .disabled(!model.isButtonActivated && !model.state.isError())
                     .padding(10)
                     .font(.title)
                     .background(.white)
@@ -71,6 +88,7 @@ struct SwingRecordView: View {
                                 if !model.isReachable {
                                     Text("애플워치가 연결되지 않았습니다.")
                                     Button(action: {
+                                        model.state = .idle
                                         model.startCokcokWatchApp()
                                     }) {
                                         Text("애플워치에서 콕콕 열기")
@@ -102,4 +120,5 @@ struct SwingRecordView: View {
 }
 #Preview {
     SwingRecordView(dismiss:{})
+        .environmentObject(ModelData())
 }
