@@ -43,6 +43,8 @@
 		B877E6FE2AF8F9C800BF347E /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E6FD2AF8F9C800BF347E /* Summary.swift */; };
 		B877E7012AF8F9E900BF347E /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7002AF8F9E900BF347E /* Matches.swift */; };
 		B877E7032AF8F9FD00BF347E /* SwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B877E7022AF8F9FD00BF347E /* SwingView.swift */; };
+		B8786F402B26BDCE0047ED8F /* Giffy in Frameworks */ = {isa = PBXBuildFile; productRef = B8786F3F2B26BDCE0047ED8F /* Giffy */; };
+		B8786F422B26BE910047ED8F /* sample.gif in Resources */ = {isa = PBXBuildFile; fileRef = B8786F412B26BE910047ED8F /* sample.gif */; };
 		B89182DF2B19D65000DA2BE5 /* SwingResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89182DE2B19D65000DA2BE5 /* SwingResultView.swift */; };
 		B8993C7D2B2598F40079B2FB /* SwingScoreChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8993C7C2B2598F40079B2FB /* SwingScoreChart.swift */; };
 		B89B63672B0723B8009B46EA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89B63662B0723B8009B46EA /* DataManager.swift */; };
@@ -178,6 +180,7 @@
 		B877E6FD2AF8F9C800BF347E /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		B877E7002AF8F9E900BF347E /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 		B877E7022AF8F9FD00BF347E /* SwingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingView.swift; sourceTree = "<group>"; };
+		B8786F412B26BE910047ED8F /* sample.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sample.gif; sourceTree = "<group>"; };
 		B89182DE2B19D65000DA2BE5 /* SwingResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingResultView.swift; sourceTree = "<group>"; };
 		B8993C7C2B2598F40079B2FB /* SwingScoreChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingScoreChart.swift; sourceTree = "<group>"; };
 		B89B63662B0723B8009B46EA /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -237,6 +240,7 @@
 			files = (
 				B8AB851B2B08E2E100361F86 /* GoogleSignInSwift in Frameworks */,
 				B8CDA7E72B159EA800746B1B /* Alamofire in Frameworks */,
+				B8786F402B26BDCE0047ED8F /* Giffy in Frameworks */,
 				B8AB85162B08E29A00361F86 /* FirebaseAuth in Frameworks */,
 				B804F3462B0C94150088B4EF /* KakaoSDKUser in Frameworks */,
 				B8AB85192B08E2E100361F86 /* GoogleSignIn in Frameworks */,
@@ -486,6 +490,7 @@
 				B8A93B002AF62DB600A220C7 /* cokcokApp.swift */,
 				B8A93B022AF62DB600A220C7 /* ContentView.swift */,
 				B8A93B042AF62DB700A220C7 /* Assets.xcassets */,
+				B8786F412B26BE910047ED8F /* sample.gif */,
 				B8A93B062AF62DB700A220C7 /* Preview Content */,
 			);
 			path = cokcok;
@@ -558,6 +563,7 @@
 				B804F3432B0C94150088B4EF /* KakaoSDKCommon */,
 				B804F3452B0C94150088B4EF /* KakaoSDKUser */,
 				B8CDA7E62B159EA800746B1B /* Alamofire */,
+				B8786F3F2B26BDCE0047ED8F /* Giffy */,
 			);
 			productName = cokcok;
 			productReference = B8A93AFD2AF62DB600A220C7 /* cokcok.app */;
@@ -702,6 +708,7 @@
 				B8AB85172B08E2E100361F86 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				B804F3402B0C94150088B4EF /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				B8CDA7E52B159EA800746B1B /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B8786F3E2B26BDCE0047ED8F /* XCRemoteSwiftPackageReference "Giffy" */,
 			);
 			productRefGroup = B8A93AFE2AF62DB600A220C7 /* Products */;
 			projectDirPath = "";
@@ -722,6 +729,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8786F422B26BE910047ED8F /* sample.gif in Resources */,
 				B8A93B082AF62DB700A220C7 /* Preview Assets.xcassets in Resources */,
 				B8A93B052AF62DB700A220C7 /* Assets.xcassets in Resources */,
 				B86BE8012B221CC500ED5BAE /* GoogleService-Info.plist in Resources */,
@@ -1418,6 +1426,14 @@
 				minimumVersion = 2.19.0;
 			};
 		};
+		B8786F3E2B26BDCE0047ED8F /* XCRemoteSwiftPackageReference "Giffy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tfmart/Giffy.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		B8AB85142B08E29A00361F86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1459,6 +1475,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B804F3402B0C94150088B4EF /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
+		};
+		B8786F3F2B26BDCE0047ED8F /* Giffy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8786F3E2B26BDCE0047ED8F /* XCRemoteSwiftPackageReference "Giffy" */;
+			productName = Giffy;
 		};
 		B8AB85152B08E29A00361F86 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
