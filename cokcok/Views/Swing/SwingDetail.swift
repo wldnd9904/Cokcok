@@ -22,8 +22,8 @@ struct SwingDetail: View {
                         .foregroundStyle(Color.indigo)
                 }
                 HStack {
-                    DetailItem(title: "스윙 점수", value: "\(swing.swingScore)점")
-                    .accentColor(.blue)
+                    DetailItem(title: "종합 점수", value: "\(swing.swingScore)점")
+                        .accentColor(.blue)
                     DetailItem(title: "최고 손목 가속도", value: Measurement(value: swing.wristMaxAcceleration,unit: UnitAcceleration.metersPerSecondSquared)
                         .formatted(.measurement(width: .abbreviated,usage: .asProvided,numberFormatStyle: .number.precision(.fractionLength(2)))))
                     .accentColor(.pink)
@@ -53,7 +53,7 @@ struct SwingDetail: View {
                         VStack(alignment:.leading, spacing:5){
                             HStack{
                                 DetailItem(title:"구간", value:"임팩트 이전")
-                                DetailItem(title:"점수", value:String(format:"%.1f",swing.resPrepare)+"점")
+                                DetailItem(title:"점수", value:String(format:"%.0f",swing.resPrepare)+"점")
                             }
                             .padding(.bottom)
                             if(swing.wristPrepareStrength.count>0){
@@ -78,7 +78,7 @@ struct SwingDetail: View {
                         VStack(alignment:.leading, spacing:5){
                             HStack{
                                 DetailItem(title:"구간", value:"임팩트")
-                                DetailItem(title:"점수", value:String(format:"%.1f",swing.resImpact)+"점")
+                                DetailItem(title:"점수", value:String(format:"%.0f",swing.resImpact)+"점")
                             }
                             .padding(.bottom)
                             if(swing.wristImpactStrength.count>0){
@@ -102,8 +102,8 @@ struct SwingDetail: View {
                         .tag(2)
                         VStack(alignment:.leading, spacing:5){
                             HStack{
-                                    DetailItem(title:"구간", value:"임팩트 이후")
-                                    DetailItem(title:"점수", value:String(format:"%.1f",swing.resFollow)+"점")
+                                DetailItem(title:"구간", value:"임팩트 이후")
+                                DetailItem(title:"점수", value:String(format:"%.0f",swing.resFollow)+"점")
                             }
                             .padding(.bottom)
                             if(swing.wristFollowStrength.count>0){
@@ -169,57 +169,6 @@ struct SwingDetail: View {
         }
         .multilineTextAlignment(.leading)
         .scrollIndicators(.hidden)
-    }
-    
-    private struct StrokeItem: View {
-        @Binding var selectedSwing: SwingType?
-        let type: SwingType
-        let swingList: [Swing]
-        var filteredSwingList: [Swing] {
-            swingList.filter{$0.type == type}
-        }
-        var avgScore: Double {
-            if filteredSwingList.count == 0 {0}            else {
-                Double(filteredSwingList.reduce(0){$0 + $1.score
-                })/Double(filteredSwingList.count)
-            }
-        }
-        
-        var body: some View {
-            VStack {
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 60, height: 60)
-                    .overlay(
-                        Circle()
-                            .stroke(type.color, lineWidth: 3)
-                            .frame(width: 60, height: 60)
-                    )
-                    .overlay{
-                        if selectedSwing == type {
-                            Text(String(format:"%.1f", avgScore))
-                                .font(.title2)+Text("점").font(.subheadline)
-                        } else {
-                            Text("\(filteredSwingList.count)")
-                                .font(.title)+Text("회").font(.subheadline)
-                        }
-                    }
-                    .foregroundColor(type.color)
-                Text(type.rawValue)
-                    .font(.caption)
-            }
-            .onTapGesture {
-                if(selectedSwing == type){
-                    withAnimation{
-                        selectedSwing = nil
-                    }
-                }else {
-                    withAnimation{
-                        selectedSwing = type
-                    }
-                }
-            }
-        }
     }
 }
 
