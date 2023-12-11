@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct MyPage: View {
     @EnvironmentObject var model: ModelData
@@ -34,6 +35,11 @@ struct MyPage: View {
                     Button("로그아웃") {
                         isPresented = false
                         model.signState = .signOut
+                        do{
+                            try Auth.auth().signOut()
+                        } catch {
+                            print(error.localizedDescription)
+                        }
                     }
                     .foregroundColor(.red)
                 }
