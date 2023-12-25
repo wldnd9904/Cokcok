@@ -1,9 +1,10 @@
 import React from 'react';
 import ImageSlider from '../components/ImageSlider';
 import styled from 'styled-components';
+import { Card } from 'react-bootstrap';
 
 const Container = styled.div`
-  width:90%;
+  max-width:700px;
   margin-left:auto;
   margin-right:auto;
   margin-bottom: 10%;
@@ -11,15 +12,16 @@ const Container = styled.div`
       font-size: 1.5em; /* 폰트 크기 조절, 필요에 따라 조절 가능 */
       font-weight: bold; /* 글꼴 두껍게 설정 */
       color: #333; /* 글꼴 색상 설정, 필요에 따라 조절 가능 */
-      /* 다른 스타일 속성들을 필요에 따라 추가할 수 있습니다. */
-      margin: 1.5em 0.5em 0.5em 0.5em;
-    }
+}
     h3 {
       font-size: 2em; /* 폰트 크기 조절, 필요에 따라 조절 가능 */
       font-weight: bold; /* 글꼴 두껍게 설정 */
       color: #333; /* 글꼴 색상 설정, 필요에 따라 조절 가능 */
       /* 다른 스타일 속성들을 필요에 따라 추가할 수 있습니다. */
       margin: 0.5em;
+    }
+    >div {
+      margin: 1em 0em;
     }
     `;
 
@@ -108,12 +110,24 @@ function Screenshots() {
   return (
     <Container>
       <h3>스크린샷</h3>
-      <h2>메인 및 요약</h2>
-      <ImageSlider images={summaryImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/screenshots/${name}.png?raw=true`; })} labels={summaryLabels} />
-      <h2>스윙 분석</h2>
-      <ImageSlider images={swingImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/screenshots/${name}.png?raw=true`; })} labels={swingLabels} />
-      <h2>경기 기록</h2>
-      <ImageSlider images={matchImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/screenshots/${name}.png?raw=true`; })} labels={matchLabels} />
+      <Card>
+        <Card.Header as="h2">메인 및 요약</Card.Header>
+        <Card.Body>
+          <ImageSlider images={summaryImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/screenshots/${name}.png?raw=true`; })} labels={summaryLabels} />
+        </Card.Body>
+      </Card>
+      <Card>
+        <Card.Header as="h2">스윙 분석</Card.Header>
+        <Card.Body>
+          <ImageSlider images={swingImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/screenshots/${name}.png?raw=true`; })} labels={swingLabels} />
+        </Card.Body>
+      </Card>  
+      <Card>
+        <Card.Header as="h2">경기 기록</Card.Header>
+        <Card.Body>
+          <ImageSlider images={matchImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/screenshots/${name}.png?raw=true`; })} labels={matchLabels} />
+        </Card.Body>
+      </Card>
     </Container>
   );
 }
