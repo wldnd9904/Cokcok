@@ -30,21 +30,21 @@ function DemoVideo() {
     <Container>
       <h3>데모 영상</h3>
       <Card>
-        <Card.Header as="h2">장충동 왕족발 보쌈</Card.Header>
+        <Card.Header as="h2">경기 기록</Card.Header>
         <Card.Body style={{display:"flex",justifyContent:"center"}}>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/LiSNdTRqo0k?si=zH4bo_vCtbN6l10H" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/u3pRLlZK6m4?si=UXeEEd7wCQHZQg5M" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         </Card.Body>
       </Card>
       <Card>
-        <Card.Header as="h2">제목</Card.Header>
-        <Card.Body>
-          <p>내용</p>
+        <Card.Header as="h2">스윙 분석</Card.Header>
+        <Card.Body style={{display:"flex",justifyContent:"center"}}>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/tZmWJKJvWlA?si=IgewjKUPQCPHYd2S" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         </Card.Body>
       </Card>
       <Card>
-        <Card.Header as="h2">제목</Card.Header>
-        <Card.Body>
-          <p>어쩌고저쩌고</p>
+        <Card.Header as="h2">전체 데모</Card.Header>
+        <Card.Body style={{display:"flex",justifyContent:"center"}}>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/2YaW6OimJ8w?si=Sso3NMI3Y5G43M_n" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
         </Card.Body>
       </Card>
 </Container>
