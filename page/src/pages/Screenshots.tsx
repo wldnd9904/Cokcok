@@ -8,22 +8,25 @@ const Container = styled.div`
   margin-left:auto;
   margin-right:auto;
   margin-bottom: 10%;
-    h2 {
-      font-size: 1.5em; /* 폰트 크기 조절, 필요에 따라 조절 가능 */
-      font-weight: bold; /* 글꼴 두껍게 설정 */
-      color: #333; /* 글꼴 색상 설정, 필요에 따라 조절 가능 */
-}
-    h3 {
-      font-size: 2em; /* 폰트 크기 조절, 필요에 따라 조절 가능 */
-      font-weight: bold; /* 글꼴 두껍게 설정 */
-      color: #333; /* 글꼴 색상 설정, 필요에 따라 조절 가능 */
-      /* 다른 스타일 속성들을 필요에 따라 추가할 수 있습니다. */
-      margin: 0.5em;
-    }
-    >div {
-      margin: 1em 0em;
-    }
-    `;
+  h1 {
+    font-size: 1em;
+  }
+  h2 {
+    font-size: 1.5em; /* 폰트 크기 조절, 필요에 따라 조절 가능 */
+    font-weight: bold; /* 글꼴 두껍게 설정 */
+    color: #333; /* 글꼴 색상 설정, 필요에 따라 조절 가능 */
+  }
+  h3 {
+    font-size: 2em; /* 폰트 크기 조절, 필요에 따라 조절 가능 */
+    font-weight: bold; /* 글꼴 두껍게 설정 */
+    color: #333; /* 글꼴 색상 설정, 필요에 따라 조절 가능 */
+    /* 다른 스타일 속성들을 필요에 따라 추가할 수 있습니다. */
+    margin: 0.5em;
+  }
+  >div {
+    margin: 1em 0em;
+  }
+  `;
 
 const swingImages = [
   "스윙분석_페이지",
