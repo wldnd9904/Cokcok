@@ -95,20 +95,19 @@
  ┗ 📜cokcokApp.swift
 # 핵심 기능
 ## 스윙 분석
-<img src="https://github.com/wldnd9904/Cokcok/blob/main/page/images/스윙분석.gif?raw=true"/>
+![스윙분석](https://github.com/wldnd9904/Cokcok/assets/74809873/b621c17b-3466-47d1-a58e-2f731f999309)
 
 **카메라**와 **IMU센서**를 이용하여 사용자의 자세와 손목 움직임을 수집하고, **실력을 평가**합니다.
 > **iOS**와 **watchOS**를 연결하고 상태를 관리하기 위해 **WatchConnectivity**를 사용하고, **IMU 센서 데이터**를 수집하기 위해 **CoreMotion**을 사용하였습니다.
 ## 경기 기록
-<img src="https://github.com/wldnd9904/Cokcok/blob/main/page/images/경기기록0.gif?raw=true"/>
-<img src="https://github.com/wldnd9904/Cokcok/blob/main/page/images/경기기록1.gif?raw=true"/>
-<img src="https://github.com/wldnd9904/Cokcok/blob/main/page/images/경기기록2.gif?raw=true"/>
+![경기기록0](https://github.com/wldnd9904/Cokcok/assets/74809873/cc08a58b-b863-43f9-a8a7-4dc83963b8fa)
+![경기기록1](https://github.com/wldnd9904/Cokcok/assets/74809873/7ba0d3e6-973a-4da2-abce-87686a48cc5b)
+![경기기록2](https://github.com/wldnd9904/Cokcok/assets/74809873/f41b2929-1e82-491d-aad3-a602c23bd432)
 
 **IMU센서를** 이용해 경기를 기록하고, **운동 정보**와 경기 중의 **스윙을 분류 및 분석**합니다.
 > **IMU 센서 데이터**를 수집하기 위해 **CoreMotion**을 사용하고, **운동 정보**를 수집하기 위해 **HealthKit**을 사용하였습니다.
 ## 요약
-
-<img src="https://github.com/wldnd9904/Cokcok/blob/main/page/images/요약.gif?raw=true"/>
+![요약](https://github.com/wldnd9904/Cokcok/assets/74809873/9918e8d3-a1b7-42c6-b16d-7e3e897446e9)
 
 이번 달의 **배드민턴 통계**를 확인하고, **업적**을 확인할 수 있습니다.
 > 전체적인 **레이아웃**은 **SwiftUI**를 이용하여 구현하였고, **그래프**를 표시하기 위해 **Charts**를 사용했습니다.
