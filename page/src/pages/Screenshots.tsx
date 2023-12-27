@@ -116,19 +116,19 @@ function Screenshots() {
       <Card>
         <Card.Header as="h2">메인 및 요약</Card.Header>
         <Card.Body>
-          <ImageSlider images={summaryImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/screenshots/${name}.png?raw=true`; })} labels={summaryLabels} />
+          <ImageSlider images={summaryImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/images/${name}.png?raw=true`; })} labels={summaryLabels} />
         </Card.Body>
       </Card>
       <Card>
         <Card.Header as="h2">스윙 분석</Card.Header>
         <Card.Body>
-          <ImageSlider images={swingImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/screenshots/${name}.png?raw=true`; })} labels={swingLabels} />
+          <ImageSlider images={swingImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/images/${name}.png?raw=true`; })} labels={swingLabels} />
         </Card.Body>
       </Card>  
       <Card>
         <Card.Header as="h2">경기 기록</Card.Header>
         <Card.Body>
-          <ImageSlider images={matchImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/screenshots/${name}.png?raw=true`; })} labels={matchLabels} />
+          <ImageSlider images={matchImages.map((name) => { return `https://github.com/wldnd9904/Cokcok/blob/page/page/images/${name}.png?raw=true`; })} labels={matchLabels} />
         </Card.Body>
       </Card>
     </Container>

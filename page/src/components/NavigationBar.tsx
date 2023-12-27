@@ -19,11 +19,7 @@ function NavigationBar() {
               <NavDropdown.Item href="/app">앱</NavDropdown.Item>
               <NavDropdown.Item href="/server">서버</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Github" id="basic-nav-dropdown">
-              <NavDropdown.Item href="https://github.com/rkdthdah/cokcok_data_core">알고리즘</NavDropdown.Item>
-              <NavDropdown.Item href="https://github.com/wldnd9904/Cokcok">앱</NavDropdown.Item>
-              <NavDropdown.Item href="https://github.com/straipe/cokcok">서버</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/ksc2023">한국정보과학회 KSC 2023</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
