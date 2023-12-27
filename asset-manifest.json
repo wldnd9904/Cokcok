@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Cokcok/static/css/main.3d85d988.css",
-    "main.js": "/Cokcok/static/js/main.c26df46c.js",
+    "main.js": "/Cokcok/static/js/main.1f5515dd.js",
     "index.html": "/Cokcok/index.html",
     "main.3d85d988.css.map": "/Cokcok/static/css/main.3d85d988.css.map",
-    "main.c26df46c.js.map": "/Cokcok/static/js/main.c26df46c.js.map"
+    "main.1f5515dd.js.map": "/Cokcok/static/js/main.1f5515dd.js.map"
   },
   "entrypoints": [
     "static/css/main.3d85d988.css",
-    "static/js/main.c26df46c.js"
+    "static/js/main.1f5515dd.js"
   ]
 }
