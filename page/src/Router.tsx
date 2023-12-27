@@ -27,7 +27,7 @@ function Router() {
         <Route path={`/server`} element = {
             <MarkdownPage 
                 title="서버" 
-                filePath="https://github.com/straipe/cokcok/main/README.md" 
+                filePath="https://raw.githubusercontent.com/straipe/cokcok/main/README.md" 
                 githubPath="https://github.com/straipe/cokcok"/>}/>
     </Routes>
     </BrowserRouter>

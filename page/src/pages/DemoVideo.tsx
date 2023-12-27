@@ -20,7 +20,7 @@ const Container = styled.div`
       margin: 0.5em;
     }
     >div {
-      margin: 1em 0em;
+      margin: 1em 0.5em;
     }
     `;
     

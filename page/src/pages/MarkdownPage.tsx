@@ -9,6 +9,13 @@ const Container = styled.div`
   margin-left:auto;
   margin-right:auto;
   margin-bottom: 10%;
+
+  img {
+    max-width:100%;
+  }
+    >div {
+      margin: 1em 0.5em;
+    }
     `;
 
 const Title = styled.div`
