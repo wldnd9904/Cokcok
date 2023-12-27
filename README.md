@@ -1,3 +1,5 @@
+프로젝트 소개 페이지: https://wldnd9904.github.io/Cokcok/
+
 # 콕콕 - iOS & watchOS App
 ![COKCOK](https://github.com/wldnd9904/Cokcok/blob/main/page/images/logo_large.png?raw=true)
 **콕콕: 배드민턴을 즐기는 사람들을 위한 실력 측정 서비스**
