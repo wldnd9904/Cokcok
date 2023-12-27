@@ -1,5 +1,5 @@
 # 콕콕 - iOS & watchOS App
-<div class="sc-dkPuFg biAZGa"><img width="200px" src="https://github.com/wldnd9904/Cokcok/blob/main/page/images/logo_large.png?raw=true"></div>
+![COKCOK](https://github.com/wldnd9904/Cokcok/blob/main/page/images/logo_large.png?raw=true)
 **콕콕: 배드민턴을 즐기는 사람들을 위한 실력 측정 서비스**
 서비스 **콕콕** 은 사용자의 스윙 및 경기 데이터를 분석해 실력 수준을 측정하고, 실력 향상을 위한 정보를 제시합니다. 이를 통해 생활체육으로 배드민턴을 즐기는 이들의 기술 접근성을 높이고, 건강한 체육 활동에 도움이 되고자 합니다.
 
@@ -117,8 +117,7 @@
 ![시스템 아키텍처](https://github.com/wldnd9904/Cokcok/blob/main/page/images/architecture.png?raw=true)
 > **watchOS**와 **iOS**에서 수집한 데이터를 **Amazon EC2 djngo서버**에서 **Python**을 이용해 분석하고, 데이터는 **Amazon RDS** 와 **Amazon S3**에 저장합니다.
 ## 기술 스택
-
-- 앱: <img src="https://img.shields.io/badge/iOS-000000?style=flat&amp;logo=ios&amp;logoColor=white"> <img src="https://img.shields.io/badge/watchOS-000000?style=flat&amp;logo=ios&amp;logoColor=white"> <img src="https://img.shields.io/badge/Swift-F05138?style=flat&amp;logo=swift&amp;logoColor=white">
-- 서버: <img src="https://img.shields.io/badge/django-092E20?style=flat&amp;logo=django&amp;logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=flat&amp;logo=amazon%20ec2&amp;logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20S3-569A31?style=flat&amp;logo=amazon%20s3&amp;logoColor=white"> <img src="https://img.shields.io/badge/Amazon%20RDS-527FFF?style=flat&amp;logo=amazon%20rds&amp;logoColor=white">
-- 알고리즘: <img src="https://img.shields.io/badge/scikitlearn-F7931E?style=flat&amp;logo=scikit-learn&amp;logoColor=white"> <img src="https://img.shields.io/badge/pandas-150458?style=flat&amp;logo=pandas&amp;logoColor=white"> <img src="https://img.shields.io/badge/MoveNet-FF6F00?style=flat&amp;logo=tenserflow&amp;logoColor=white">
+- 앱: ![](https://img.shields.io/badge/iOS-000000?style=flat&amp;logo=ios&amp;logoColor=white) ![](https://img.shields.io/badge/watchOS-000000?style=flat&amp;logo=ios&amp;logoColor=white) ![](https://img.shields.io/badge/Swift-F05138?style=flat&amp;logo=swift&amp;logoColor=white)
+- 서버: ![](https://img.shields.io/badge/django-092E20?style=flat&amp;logo=django&amp;logoColor=white) ![](https://img.shields.io/badge/Amazon%20EC2-FF9900?style=flat&amp;logo=amazon%20ec2&amp;logoColor=white) ![](https://img.shields.io/badge/Amazon%20S3-569A31?style=flat&amp;logo=amazon%20s3&amp;logoColor=white) ![](https://img.shields.io/badge/Amazon%20RDS-527FFF?style=flat&amp;logo=amazon%20rds&amp;logoColor=white)
+- 알고리즘: ![](https://img.shields.io/badge/scikitlearn-F7931E?style=flat&amp;logo=scikit-learn&amp;logoColor=white) ![](https://img.shields.io/badge/pandas-150458?style=flat&amp;logo=pandas&amp;logoColor=white) ![](https://img.shields.io/badge/MoveNet-FF6F00?style=flat&amp;logo=tenserflow&amp;logoColor=white)
 - 이 레포지토리는 앱 부분만을 포함합니다.
