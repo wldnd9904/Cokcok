@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Cokcok/static/css/main.3d85d988.css",
+    "main.js": "/Cokcok/static/js/main.3ee0021c.js",
+    "index.html": "/Cokcok/index.html",
+    "main.3d85d988.css.map": "/Cokcok/static/css/main.3d85d988.css.map",
+    "main.3ee0021c.js.map": "/Cokcok/static/js/main.3ee0021c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3d85d988.css",
+    "static/js/main.3ee0021c.js"
+  ]
+}
