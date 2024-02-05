@@ -63,7 +63,13 @@ final class ModelData: NSObject, ObservableObject {
                 DispatchQueue.main.async{
                     self.signingIn = true
                 }
-                let data = try await APIManager.shared.getMyPageInfo(token: token)
+                async let asyncData = APIManager.shared.getMyPageInfo(token: token)
+                async let asyncData2 = APIManager.shared.getAllAchievementTypes(token: token)
+                async let asyncData3 = APIManager.shared.getRecentAchievements(token: token)
+                async let asyncData4 = APIManager.shared.getAllAchievements(token: token)
+                async let asyncData5 = APIManager.shared.getMatches(token: token, limit: 100, offset: 0)
+                async let asyncData6 = APIManager.shared.getSwingAnalyzes(token: token, limit: 100, offset: 0)
+                let data = try await asyncData
                 print(data)
                 switch data {
                 case .codable(let userData):
@@ -76,7 +82,7 @@ final class ModelData: NSObject, ObservableObject {
                     onNotSignedUp()
                     return
                 }
-                let data2 = try await APIManager.shared.getAllAchievementTypes(token: token)
+                let data2 = try await asyncData2
                 print(data2)
                 switch data2 {
                 case .codable(let achievementType):
@@ -91,7 +97,7 @@ final class ModelData: NSObject, ObservableObject {
                     onNotSignedUp()
                     return
                 }
-                let data3 = try await APIManager.shared.getRecentAchievements(token: token)
+                let data3 = try await asyncData3
                 print(data3)
                 switch data3 {
                 case .codable(let achievements):
@@ -104,7 +110,7 @@ final class ModelData: NSObject, ObservableObject {
                     onNotSignedUp()
                     return
                 }
-                let data4 = try await APIManager.shared.getAllAchievements(token: token)
+                let data4 = try await asyncData4
                 print(data4)
                 switch data4 {
                 case .codable(let achievements):
@@ -117,7 +123,7 @@ final class ModelData: NSObject, ObservableObject {
                     onNotSignedUp()
                     return
                 }
-                let data5 = try await APIManager.shared.getMatches(token: token, limit: 100, offset: 0)
+                let data5 = try await asyncData5
                 print(data5)
                 switch data5 {
                 case .codable(let matches):
@@ -130,7 +136,7 @@ final class ModelData: NSObject, ObservableObject {
                     onNotSignedUp()
                     return
                 }
-                let data6 = try await APIManager.shared.getSwingAnalyzes(token: token, limit: 100, offset: 0)
+                let data6 = try await asyncData6
                 print(data6)
                 switch data6 {
                 case .codable(let swings):

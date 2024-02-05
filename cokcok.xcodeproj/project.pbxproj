@@ -165,7 +165,6 @@
 		B84064252AFF73BD00C46D41 /* ActivityRingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityRingsView.swift; sourceTree = "<group>"; };
 		B84064262AFF73BD00C46D41 /* ElapsedTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
 		B840645E2AFF75D600C46D41 /* SavedDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedDataView.swift; sourceTree = "<group>"; };
-		B84064622AFF7A4B00C46D41 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B84C96EE2B0356B3001106C6 /* RecentSwing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSwing.swift; sourceTree = "<group>"; };
 		B84C96F02B0356C5001106C6 /* RecentMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMatch.swift; sourceTree = "<group>"; };
 		B8516CA42B0F95E100C2DFAA /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -328,13 +327,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B877E6FA2AF8F9AC00BF347E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		B877E6FB2AF8F9B400BF347E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,7 +448,6 @@
 			isa = PBXGroup;
 			children = (
 				B86BE7FE2B221CC500ED5BAE /* GoogleService-Info.plist */,
-				B84064622AFF7A4B00C46D41 /* MyPlayground.playground */,
 				B8A93AFF2AF62DB600A220C7 /* cokcok */,
 				B8A93B272AF62DB700A220C7 /* cokcok Watch App */,
 				B8A93AFE2AF62DB600A220C7 /* Products */,
@@ -485,7 +476,6 @@
 				B8A8850D2AF904930041F092 /* Extensions */,
 				B8A885062AF901B10041F092 /* Utils */,
 				B877E6FB2AF8F9B400BF347E /* Model */,
-				B877E6FA2AF8F9AC00BF347E /* Resources */,
 				B877E6F92AF8F99C00BF347E /* Views */,
 				B8A93B002AF62DB600A220C7 /* cokcokApp.swift */,
 				B8A93B022AF62DB600A220C7 /* ContentView.swift */,
